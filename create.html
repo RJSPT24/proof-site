@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create My PROOF</title>
+<meta name="description" content="Fill in a PROOF form step by step, in your browser. Nothing is sent anywhere.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/nav.css">
+<style>
+
+  :root {
+    --ground:     #f2f3ef;
+    --card:       #ffffff;
+    --ink:        #16191d;
+    --ink-soft:   #5b6167;
+    --ink-faint:  #8b9198;
+    --line:       #e0e2dd;
+    --line-firm:  #c7cac3;
+    --field:      #ffffff;
+    --field-line: #cfd2cb;
+    --seal:       #7b2231;
+    --seal-hover: #63161f;
+    --seal-ink:   #ffffff;
+    --bar:        #1b1e22;
+    --bar-ink:    #f2f3ef;
+    --err:        #a3242f;
+    --err-wash:   #fbeff0;
+    --ok:         #2c5b4c;
+    --focus:      #7b2231;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:     #101215;
+      --card:       #191c20;
+      --ink:        #e7e9e5;
+      --ink-soft:   #a5abb0;
+      --ink-faint:  #7d838a;
+      --line:       #2a2e33;
+      --line-firm:  #3d434a;
+      --field:      #14171a;
+      --field-line: #3a4046;
+      --seal:       #b8404f;
+      --seal-hover: #cc5261;
+      --seal-ink:   #ffffff;
+      --bar:        #0b0d0f;
+      --bar-ink:    #e7e9e5;
+      --err:        #ef94a0;
+      --err-wash:   #2e1a1e;
+      --ok:         #86bda9;
+      --focus:      #d4808c;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:     #101215;
+    --card:       #191c20;
+    --ink:        #e7e9e5;
+    --ink-soft:   #a5abb0;
+    --ink-faint:  #7d838a;
+    --line:       #2a2e33;
+    --line-firm:  #3d434a;
+    --field:      #14171a;
+    --field-line: #3a4046;
+    --seal:       #b8404f;
+    --seal-hover: #cc5261;
+    --seal-ink:   #ffffff;
+    --bar:        #0b0d0f;
+    --bar-ink:    #e7e9e5;
+    --err:        #ef94a0;
+    --err-wash:   #2e1a1e;
+    --ok:         #86bda9;
+    --focus:      #d4808c;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  
+
+  .mark {
+    width: 30px; height: 30px; background: var(--seal); color: #fff;
+    display: grid; place-items: center;
+    font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 0.95rem;
+    border-radius: 3px;
+  }
+
+  
+  
+
+  .theme-toggle {
+    margin-left: auto;
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: transparent; border: 1px solid #3a4046; color: var(--bar-ink);
+    border-radius: 999px; font: inherit; font-size: 0.82rem;
+    padding: 0.3rem 0.75rem; cursor: pointer;
+  }
+  .theme-toggle:hover { border-color: #5a6169; }
+  .theme-toggle svg { width: 14px; height: 14px; flex: none; }
+
+  .shell { display: grid; grid-template-columns: 15rem 1fr; min-height: calc(100vh - 46px); }
+  .rail { border-right: 1px solid var(--line); padding: 1.4rem 0; }
+  .rail a {
+    display: block; padding: 0.55rem 1.1rem;
+    border-left: 3px solid var(--seal); background: var(--card);
+    font-weight: 600; font-size: 0.92rem; color: var(--ink); text-decoration: none;
+  }
+
+  .stage { padding: clamp(1.2rem, 4vw, 3rem) 1.1rem 5rem; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    max-width: 44rem; margin: 0 auto; padding: clamp(1.4rem, 3.5vw, 2.6rem);
+  }
+
+  .card-head { display: grid; grid-template-columns: 2rem 1fr 2rem; align-items: center; margin-bottom: 1.6rem; }
+  .card-head h1 { grid-column: 2; text-align: center; font-size: clamp(1.3rem, 3vw, 1.65rem); font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+  .backarrow { grid-column: 1; background: none; border: none; cursor: pointer; color: var(--ink-soft); font-size: 1.2rem; line-height: 1; padding: 0.3rem; border-radius: 4px; }
+  .backarrow[hidden] { visibility: hidden; display: block; }
+
+  .steprow { display: grid; grid-template-columns: 1fr auto 1fr; align-items: baseline; margin-bottom: 0.6rem; }
+  .steprow .label { grid-column: 2; font-weight: 600; font-size: 0.95rem; }
+  .steprow .count { grid-column: 3; text-align: right; color: var(--ink-faint); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+
+  .segs { display: flex; gap: 6px; justify-content: center; margin-bottom: 2rem; }
+  .segs i { width: 46px; height: 4px; border-radius: 2px; background: var(--line-firm); transition: background 180ms ease; }
+  .segs i.on { background: var(--ink); }
+
+  h2.sect { font-size: 1.18rem; font-weight: 700; margin: 0 0 0.3rem; letter-spacing: -0.015em; }
+  p.sect { color: var(--ink-soft); margin: 0 0 1.6rem; font-size: 0.95rem; }
+
+  .choices { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.5rem; }
+  .choices.two { display: grid; grid-template-columns: 1fr 1fr; }
+
+  .choice {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    border: 1px solid var(--field-line); border-radius: 6px;
+    padding: 0.85rem 0.95rem; cursor: pointer; background: var(--card);
+  }
+  .choice:hover { border-color: var(--line-firm); }
+  .choice.sel { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+  .choice input { margin: 0.25rem 0 0; accent-color: var(--ink); flex: none; }
+  .choice > span { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+  .choice .t { display: block; font-weight: 700; font-size: 0.95rem; }
+  .choice .d { display: block; color: var(--ink-soft); font-size: 0.88rem; }
+  .choice.collapsed .d { display: none; }
+
+  .fields { display: flex; flex-direction: column; gap: 1.15rem; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem; }
+
+  .f label.k { display: flex; align-items: center; gap: 0.35rem; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .req { color: var(--seal); }
+
+  .tip {
+    width: 15px; height: 15px; border-radius: 50%;
+    border: 1px solid var(--ink-faint); color: var(--ink-faint);
+    font-size: 10px; line-height: 13px; text-align: center;
+    cursor: help; font-weight: 700; flex: none; font-family: "IBM Plex Mono", monospace;
+  }
+
+  input[type="text"], input[type="date"], input[type="email"], select, textarea {
+    width: 100%; font: inherit; font-size: 0.95rem;
+    color: var(--ink); background: var(--field);
+    border: 1px solid var(--field-line); border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+  }
+  textarea { resize: vertical; min-height: 4.5rem; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, .choice:focus-within { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+  .money { position: relative; }
+  .money span { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--ink-faint); }
+  .money input { padding-left: 1.7rem; }
+
+  .checks { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; }
+  .checks label, .single { display: flex; align-items: center; gap: 0.45rem; font-size: 0.92rem; cursor: pointer; }
+  .checks input, .single input { accent-color: var(--seal); width: 15px; height: 15px; }
+
+  .err { color: var(--err); font-size: 0.85rem; margin-top: 0.35rem; display: none; }
+  .err.show { display: block; }
+  .f.bad input, .f.bad select, .f.bad textarea { border-color: var(--err); }
+
+  .sub-block {
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem; display: flex; flex-direction: column; gap: 1.15rem;
+  }
+  .sub-block > .cap {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint);
+    margin: 0;
+  }
+
+  .rule { border-left: 3px solid var(--seal); background: var(--err-wash); padding: 0.7rem 0.9rem; font-size: 0.88rem; border-radius: 0 4px 4px 0; }
+  .rule b { font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--seal); display: block; margin-bottom: 0.15rem; }
+
+  .rgroup { margin-bottom: 1.8rem; }
+  .rgroup h3 { font-size: 1rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .rrow { display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .rrow:last-child { border-bottom: none; }
+  .rrow .k { color: var(--ink-soft); font-size: 0.92rem; }
+  .rrow .v { font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+  .rrow .v.empty { color: var(--ink-faint); font-weight: 400; font-style: italic; }
+
+  .certbox { border: 1px solid var(--line-firm); border-radius: 6px; padding: 1rem 1.1rem; background: var(--field); margin-bottom: 1.5rem; }
+  .certbox p { margin: 0 0 0.6rem; font-size: 0.88rem; color: var(--ink-soft); }
+  .certbox p:last-child { margin-bottom: 0; }
+  .certbox .fixed { font-weight: 700; color: var(--ink); }
+
+  .hint { color: var(--ink-faint); font-size: 0.85rem; margin-top: 1rem; }
+
+  .foot { display: flex; justify-content: space-between; align-items: center; margin-top: 2.2rem; }
+  .btn-back { background: none; border: none; color: var(--ink-soft); font: inherit; font-size: 0.95rem; cursor: pointer; padding: 0.6rem 0.2rem; border-radius: 4px; }
+  .btn-back:hover { color: var(--ink); }
+  .btn-next { background: var(--seal); color: var(--seal-ink); border: none; border-radius: 6px; font: inherit; font-weight: 600; font-size: 0.95rem; padding: 0.7rem 1.5rem; cursor: pointer; }
+  .btn-next:hover { background: var(--seal-hover); }
+
+  .issued { text-align: center; padding: 1rem 0 0.5rem; }
+  .issued .seal {
+    width: 68px; height: 68px; margin: 0 auto 1rem;
+    border: 2px solid var(--ok); color: var(--ok); border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: "IBM Plex Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.06em; line-height: 1.2; text-transform: uppercase;
+  }
+  .issued h2 { font-size: 1.3rem; margin: 0 0 0.4rem; }
+  .issued p { color: var(--ink-soft); max-width: 34rem; margin: 0 auto 0.8rem; font-size: 0.95rem; }
+  .idline { font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; color: var(--ink-faint); word-break: break-all; }
+
+  /* consent gate */
+  .scrim { position: fixed; inset: 0; background: rgba(22,25,29,0.55); display: grid; place-items: center; padding: 1.2rem; z-index: 50; overflow-y: auto; }
+  .consent { background: var(--card); border-radius: 10px; box-shadow: 0 18px 50px rgba(0,0,0,0.28); width: min(34rem, 100%); padding: clamp(1.5rem, 4vw, 2.4rem); margin: auto; }
+  .consent h2 { font-size: clamp(1.3rem, 3vw, 1.6rem); font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.35rem; }
+  .consent > p.lede { color: var(--ink-soft); margin: 0 0 1.5rem; font-size: 0.98rem; }
+  .consent .panel { background: var(--field); border: 1px solid var(--line); border-radius: 8px; padding: 1.1rem 1.2rem; margin-bottom: 1.5rem; }
+  .consent .panel h3 { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.6rem; }
+  .consent .panel ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .consent .panel li { color: var(--ink-soft); font-size: 0.92rem; }
+  .agree { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.6rem; }
+  .agree label { display: flex; align-items: flex-start; gap: 0.7rem; cursor: pointer; font-size: 0.98rem; }
+  .agree input { accent-color: var(--seal); width: 18px; height: 18px; margin: 0.15rem 0 0; flex: none; }
+  .btn-sign { width: 100%; background: var(--seal); color: var(--seal-ink); border: none; border-radius: 8px; font: inherit; font-weight: 600; font-size: 1rem; padding: 0.85rem 1rem; cursor: pointer; }
+  .btn-sign:hover:not(:disabled) { background: var(--seal-hover); }
+  .btn-sign:disabled { opacity: 0.42; cursor: not-allowed; }
+  .consent .cancel { display: block; margin: 0.9rem auto 0; background: none; border: none; color: var(--ink-faint); font: inherit; font-size: 0.9rem; cursor: pointer; padding: 0.3rem; }
+  .consent .cancel:hover { color: var(--ink-soft); }
+
+  /* ---------- issue actions ---------- */
+  .actions { display: flex; flex-direction: column; gap: 0.9rem; max-width: 27rem; margin: 1.8rem auto 0; text-align: left; }
+  .action {
+    display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.2rem 0.75rem;
+    border: 1px solid var(--line); border-radius: 6px; padding: 0.95rem 1rem;
+  }
+  .action .n {
+    grid-row: 1 / span 2; align-self: start;
+    font-family: "IBM Plex Mono", monospace; font-size: 0.8rem;
+    color: var(--ink-faint); border: 1px solid var(--line-firm);
+    border-radius: 50%; width: 1.5rem; height: 1.5rem;
+    display: grid; place-items: center;
+  }
+  .action h4 { margin: 0; font-size: 0.95rem; font-weight: 700; }
+  .action p { margin: 0.1rem 0 0.7rem; font-size: 0.88rem; color: var(--ink-soft); }
+  .action .btn-next { padding: 0.55rem 1.1rem; font-size: 0.9rem; justify-self: start; }
+  .action .fields { margin-bottom: 0.8rem; }
+  .action.done { border-color: var(--ok); }
+  .action.done .n { border-color: var(--ok); color: var(--ok); }
+
+  /* ---------- printable document ---------- */
+  #printable { display: none; }
+
+  @media print {
+    
+    .shell { display: block; }
+    body { background: #fff; color: #111; font-size: 11pt; }
+    #printable { display: block; padding: 0; }
+    @page { margin: 18mm 16mm; }
+
+    #printable h1 { font-size: 17pt; margin: 0 0 0.1rem; letter-spacing: -0.02em; }
+    #printable .sub { font-size: 10pt; color: #444; margin: 0 0 0.25rem; }
+    #printable .draftline { font-size: 8.5pt; color: #7b2231; border-top: 2px solid #111; border-bottom: 1px solid #999; padding: 4pt 0; margin: 8pt 0 14pt; }
+    #printable h2 { font-size: 11.5pt; margin: 16pt 0 5pt; padding-bottom: 3pt; border-bottom: 1px solid #999; page-break-after: avoid; }
+    #printable table { width: 100%; border-collapse: collapse; margin-bottom: 4pt; }
+    #printable td { padding: 4pt 0; border-bottom: 1px solid #ddd; vertical-align: top; font-size: 10pt; }
+    #printable td.k { color: #444; width: 42%; padding-right: 10pt; }
+    #printable td.v { font-weight: 600; }
+    #printable .cert p { font-size: 9pt; color: #333; margin: 0 0 5pt; line-height: 1.45; }
+    #printable .cert p.fixed { font-weight: 700; color: #111; }
+    #printable .sigblock { margin-top: 14pt; page-break-inside: avoid; }
+    #printable .sigline { border-bottom: 1px solid #111; height: 26pt; margin-bottom: 3pt; }
+    #printable .foot { display: block; margin-top: 16pt; font-size: 8.5pt; color: #666; border-top: 1px solid #999; padding-top: 5pt; }
+  }
+
+  [hidden] { display: none !important; }
+
+  @media (max-width: 820px) {
+    .shell { grid-template-columns: 1fr; }
+    .rail { border-right: none; border-bottom: 1px solid var(--line); padding: 0.6rem 0; }
+    .row2, .choices.two { grid-template-columns: 1fr; }
+    .segs i { width: 34px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+</style>
+</head>
+<body>
+<header class="sitebar">
+  <a class="brand" href="index.html">
+    <span class="mark">P</span>
+    <span class="wordmark">PROOF</span>
+  </a>
+  <span class="tagline">a free standard KYC form</span>
+  <nav class="sitetabs" aria-label="Sections">
+      <a href="index.html">Standard</a>
+      <a href="rules.html">The Rules</a>
+      <a href="create.html" aria-current="page">Create a form</a>
+      <a href="practice.html">Practice note</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
+    <span id="themeLabel">Dark</span>
+  </button>
+</header>
+<div class="shell">
+  <nav class="rail"><a href="#" aria-current="page">Create a PROOF form</a></nav>
+
+  <main class="stage">
+    <div class="card">
+
+      <div class="card-head">
+        <button class="backarrow" id="arrow" aria-label="Previous step">&larr;</button>
+        <h1>Create my PROOF</h1>
+      </div>
+
+      <div id="wizard">
+        <div class="steprow">
+          <span class="label" id="stepLabel">Form</span>
+          <span class="count" id="stepCount">1/4</span>
+        </div>
+        <div class="segs" id="segs" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+
+        <!-- ============ STEP 1 ============ -->
+        <section class="step" data-step="1">
+          <h2 class="sect">Choose your form</h2>
+          <p class="sect">Every duty turns on one question first: is this assessed once, or does it carry on?</p>
+
+          <div class="choices" id="formChoices">
+            <label class="choice" data-val="PROOF-T">
+              <input type="radio" name="formtype" value="PROOF-T">
+              <span><span class="t">PROOF-T &middot; Single transaction</span><span class="d">A closing, a purchase, a one-off transfer or payment. Assessed once, as at its date.</span></span>
+            </label>
+            <label class="choice" data-val="PROOF-O">
+              <input type="radio" name="formtype" value="PROOF-O">
+              <span><span class="t">PROOF-O &middot; Ongoing relationship</span><span class="d">A fund investor, client, vendor or counterparty you will deal with again. Carries review cadence.</span></span>
+            </label>
+          </div>
+
+          <div class="fields" id="matterFields" hidden>
+            <div class="f">
+              <label class="k" for="matter">What kind of matter is this? <span class="req">*</span><span class="tip" title="Duties attach to the role and the facts, not to the label. This only decides which extra questions you are asked.">i</span></label>
+              <select id="matter" data-req>
+                <option value="">Select</option>
+                <option>Real estate transfer</option>
+                <option>Fund subscription or investor onboarding</option>
+                <option>Corporate counterparty onboarding</option>
+                <option>Vendor or supplier onboarding</option>
+                <option>Lending or credit facility</option>
+                <option>Other</option>
+              </select>
+              <div class="err">Select the kind of matter.</div>
+            </div>
+
+            <div class="row2">
+              <div class="f">
+                <label class="k" for="cparty">Counterparty <span class="req">*</span><span class="tip" title="The person or organisation on the other side. Full legal name.">i</span></label>
+                <input type="text" id="cparty" data-req placeholder="Meridian Holdings LLC">
+                <div class="err">Name the counterparty.</div>
+              </div>
+              <div class="f">
+                <label class="k" for="ref">Your matter reference<span class="tip" title="File number, deal code or account reference. Whatever you will search on later.">i</span></label>
+                <input type="text" id="ref" placeholder="2026-0841">
+              </div>
+            </div>
+
+            <!-- real estate only -->
+            <div class="sub-block" id="reBlock" hidden>
+              <p class="cap">Real estate detail</p>
+              <div class="f">
+                <label class="k" for="addr">Property address <span class="req">*</span></label>
+                <input type="text" id="addr" data-req-if="re" placeholder="1400 Fell Street, San Francisco">
+                <div class="err">Enter the property address.</div>
+              </div>
+              <div class="row2">
+                <div class="f">
+                  <label class="k" for="county">County and state <span class="req">*</span></label>
+                  <input type="text" id="county" data-req-if="re" placeholder="San Francisco County, CA">
+                  <div class="err">Enter the county and state.</div>
+                </div>
+                <div class="f">
+                  <label class="k" for="parcel">Parcel or land record reference</label>
+                  <input type="text" id="parcel" placeholder="APN 1234-567">
+                </div>
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="f">
+                <label class="k" for="effdate"><span id="dateLabel">Effective date</span> <span class="req">*</span><span class="tip" title="The date the matter is assessed as at: closing, subscription, or onboarding.">i</span></label>
+                <input type="date" id="effdate" data-req>
+                <div class="err">Enter the date this is assessed as at.</div>
+              </div>
+              <div class="f">
+                <label class="k" for="value"><span id="valueLabel">Value of the matter</span> <span class="req">*</span><span class="tip" title="Purchase price, commitment, facility size or expected annual spend.">i</span></label>
+                <div class="money"><span>$</span><input type="text" inputmode="numeric" id="value" data-req data-money placeholder="1,850,000"></div>
+                <div class="err">Enter the value.</div>
+              </div>
+            </div>
+
+            <div class="f">
+              <label class="k" for="cash">Received as currency or equivalent<span class="tip" title="Currency, cashier's cheques, money orders and similar. Over $10,000 in a trade or business triggers Form 8300.">i</span></label>
+              <div class="money"><span>$</span><input type="text" inputmode="numeric" id="cash" data-money placeholder="0"></div>
+              <div class="err" id="cashNote"></div>
+            </div>
+
+            <div class="row2">
+              <div class="f">
+                <label class="k" for="ctype">Counterparty is <span class="req">*</span></label>
+                <select id="ctype" data-req>
+                  <option value="">Select</option>
+                  <option>Individual</option><option>Entity</option><option>Trust</option><option>Estate</option>
+                </select>
+                <div class="err">Select the counterparty type.</div>
+              </div>
+              <div class="f">
+                <label class="k" for="role">Our role <span class="req">*</span></label>
+                <select id="role" data-req>
+                  <option value="">Select</option>
+                  <option>Settlement or title agent</option>
+                  <option>Escrow</option>
+                  <option>Fund manager or administrator</option>
+                  <option>Lender or credit</option>
+                  <option>Broker or intermediary</option>
+                  <option>Law firm</option>
+                  <option>Compliance or operations</option>
+                  <option>Other</option>
+                </select>
+                <div class="err">Select your role.</div>
+              </div>
+            </div>
+
+            <div class="f" id="cadenceWrap" hidden>
+              <label class="k" for="cadence">Review cadence <span class="req">*</span><span class="tip" title="An ongoing relationship carries periodic review and re-screening that a one-off does not.">i</span></label>
+              <select id="cadence" data-req-if="ongoing">
+                <option value="">Select</option>
+                <option>Annual</option><option>Every two years</option><option>Every three years</option><option>Event driven only</option>
+              </select>
+              <div class="err">Set the review cadence, or the relationship has no expiry.</div>
+            </div>
+
+            <div class="rule" id="eNotice" hidden>
+              <b>Rule 2</b>The counterparty is an entity or trust, so PROOF-E is attached. The ownership chain is collected on the next step.
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ STEP 2 ============ -->
+        <section class="step" data-step="2" hidden>
+          <h2 class="sect">Ownership and origin of funds</h2>
+          <p class="sect">Who is behind the counterparty, and where the money came from.</p>
+
+          <div class="fields">
+            <div class="f">
+              <label class="k" for="juris">Counterparty jurisdiction<span class="tip" title="Where the individual is resident, or where the entity or trust is formed.">i</span></label>
+              <input type="text" id="juris" placeholder="Delaware, United States">
+            </div>
+
+            <div id="ubo" hidden>
+              <div class="rule" style="margin-bottom:1.15rem">
+                <b>PROOF-E attached</b>Every natural person owning or controlling 25 percent or more, directly or indirectly, must be named. Ownership and control are separate prongs: a manager with no capital still controls.
+              </div>
+              <div class="fields">
+                <div class="row2">
+                  <div class="f">
+                    <label class="k" for="uboName">Beneficial owner <span class="req">*</span></label>
+                    <input type="text" id="uboName" data-req-if="ubo" placeholder="Jane Okonkwo">
+                    <div class="err">Name at least one beneficial owner, or the chain is a dead end.</div>
+                  </div>
+                  <div class="f">
+                    <label class="k" for="uboBasis">Held by way of</label>
+                    <select id="uboBasis"><option>Ownership</option><option>Control</option><option>Ownership and control</option></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="f">
+              <label class="k" for="sof">Source of the funds <span class="req">*</span></label>
+              <select id="sof" data-req>
+                <option value="">Select</option>
+                <option>Employment</option><option>Business ownership</option><option>Sale of a business</option>
+                <option>Sale of assets</option><option>Investment returns</option><option>Inheritance or gift</option>
+                <option>Loan or credit facility</option><option>Operating revenue</option>
+              </select>
+              <div class="err">Select the source of funds.</div>
+            </div>
+            <div class="f">
+              <label class="k" for="sofdesc">Description <span class="req">*</span><span class="tip" title="One or two sentences. This is certified after reasonable inquiry.">i</span></label>
+              <textarea id="sofdesc" data-req placeholder="Proceeds from the 2025 sale of the member's logistics business, held at the remitting institution since."></textarea>
+              <div class="err">Describe the source in one or two sentences.</div>
+            </div>
+            <div class="row2">
+              <div class="f">
+                <label class="k" for="remit">Remitting institution and country</label>
+                <input type="text" id="remit" placeholder="Wells Fargo, United States">
+              </div>
+              <div class="f">
+                <label class="k" for="thirdparty">Third party payer</label>
+                <select id="thirdparty"><option>No</option><option>Yes</option></select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ STEP 3 ============ -->
+        <section class="step" data-step="3" hidden>
+          <h2 class="sect">Screening and reports</h2>
+          <p class="sect">What was run, by whom, and what was concluded.</p>
+
+          <div class="fields">
+            <div class="row2">
+              <div class="f">
+                <label class="k" for="provider">Screening provider <span class="req">*</span></label>
+                <input type="text" id="provider" data-req placeholder="LSEG World-Check One">
+                <div class="err">Name the provider that ran the screening.</div>
+              </div>
+              <div class="f">
+                <label class="k" for="screendate">Date run <span class="req">*</span><span class="tip" title="Rule 6. Within 30 days before the effective date, never after.">i</span></label>
+                <input type="date" id="screendate" data-req>
+                <div class="err" id="screenErr">Enter the date the screening was run.</div>
+              </div>
+            </div>
+
+            <div class="f">
+              <label class="k">Lists checked</label>
+              <div class="checks">
+                <label><input type="checkbox" class="list" value="OFAC" checked> OFAC</label>
+                <label><input type="checkbox" class="list" value="Consolidated non-US"> Consolidated non-US</label>
+                <label><input type="checkbox" class="list" value="PEP"> PEP</label>
+                <label><input type="checkbox" class="list" value="Adverse media"> Adverse media</label>
+              </div>
+            </div>
+
+            <div class="choices two" id="resultChoices">
+              <label class="choice" data-val="No match"><input type="radio" name="result" value="No match" checked><span><span class="t">No match</span></span></label>
+              <label class="choice" data-val="Match"><input type="radio" name="result" value="Match"><span><span class="t">Match, to disposition</span></span></label>
+            </div>
+
+            <div id="matchWrap" hidden>
+              <div class="rule" style="margin-bottom:1.15rem"><b>Rule 7</b>A match cleared without a written reason is not a cleared match.</div>
+              <div class="fields">
+                <div class="row2">
+                  <div class="f">
+                    <label class="k" for="disp">Disposition</label>
+                    <select id="disp"><option>Cleared</option><option>Escalated</option></select>
+                  </div>
+                  <div class="f">
+                    <label class="k" for="decider">Decided by <span class="req">*</span></label>
+                    <input type="text" id="decider" data-req-if="match" placeholder="Ana Ferreira, Compliance Officer">
+                    <div class="err">Name the person who dispositioned the match.</div>
+                  </div>
+                </div>
+                <div class="f">
+                  <label class="k" for="reason">Reason for the conclusion <span class="req">*</span></label>
+                  <textarea id="reason" data-req-if="match" placeholder="Date of birth and nationality both differ from the listed individual; identity documents reviewed and retained."></textarea>
+                  <div class="err">A match cleared without a written reason is not a cleared match.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="f">
+              <label class="k" for="r8300">IRS Form 8300, cash over $10,000 <span class="req">*</span><span class="tip" title="Applies to any trade or business receiving more than $10,000 in currency or equivalent, not only real estate.">i</span></label>
+              <select id="r8300" data-req><option value="">Select</option><option>Filed</option><option>Not required</option><option>Pending</option></select>
+              <div class="err">Record a conclusion for Form 8300.</div>
+            </div>
+            <div class="f" id="r8300ReasonWrap" hidden>
+              <label class="k" for="r8300reason">Why not required <span class="req">*</span></label>
+              <input type="text" id="r8300reason" data-req-if="r8300" placeholder="No currency or equivalent received; funds wired from a US bank.">
+              <div class="err">A blank line and "not required" are not the same thing.</div>
+            </div>
+
+            <div id="gtoBlock" hidden>
+              <div class="f">
+                <label class="k" for="rgto">FinCEN geographic targeting order <span class="req">*</span><span class="tip" title="Non-financed, entity or trust transferee, covered metro, above threshold. Real estate only.">i</span></label>
+                <select id="rgto" data-req-if="re"><option value="">Select</option><option>Filed</option><option>Not required</option><option>Not in a covered area</option></select>
+                <div class="err">Record a conclusion for the GTO report.</div>
+              </div>
+              <div class="f" id="rgtoReasonWrap" hidden style="margin-top:1.15rem">
+                <label class="k" for="rgtoreason">Why not required <span class="req">*</span></label>
+                <input type="text" id="rgtoreason" data-req-if="rgto" placeholder="Purchase is financed by a BSA covered lender, so the order does not reach it.">
+                <div class="err">A blank line and "not required" are not the same thing.</div>
+              </div>
+            </div>
+
+            <div class="f">
+              <label class="k" for="rother">Any other report your regime requires<span class="tip" title="A SAR, a regulator filing, a sectoral report. Record the conclusion even when the answer is none.">i</span></label>
+              <input type="text" id="rother" placeholder="None considered applicable to this matter.">
+            </div>
+
+            <div class="rule" id="usNote" hidden>
+              <b>As at August 2026</b>The nationwide residential reporting rule is vacated and on appeal, so no filing is required while that order stands. Geographic targeting orders remain in force in certain metros. Confirm the position in force on your effective date.
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ STEP 4 ============ -->
+        <section class="step" data-step="4" hidden>
+          <h2 class="sect">Review and certify</h2>
+          <p class="sect">Confirm everything is right, then sign Part 6.</p>
+
+          <div id="review"></div>
+
+          <div class="certbox">
+            <p class="fixed">Part 6 is fixed. A form with an altered certification is not a PROOF form.</p>
+            <p>The Certifying Party certifies without qualification that the screening recorded was performed by the provider named on the dates stated, that each match was reviewed and dispositioned by the person named for the reason recorded, that each report was considered, that each document referenced is genuine and unaltered, and that nothing has been omitted that would make anything stated misleading.</p>
+            <p>It certifies after Reasonable Inquiry that every natural person owning or controlling 25 percent or more is identified, that no person holds their interest as an undisclosed nominee, and that the origin of funds is as described.</p>
+            <p>Reliance runs to the recipient named on delivery and ends at the earliest of the effective date, twelve months, or notice of change. Sanctions liability is strict and cannot be transferred by certificate.</p>
+          </div>
+
+          <div class="fields">
+            <div class="row2">
+              <div class="f">
+                <label class="k" for="signer">Signatory's legal name <span class="req">*</span></label>
+                <input type="text" id="signer" data-req placeholder="Ana Ferreira">
+                <div class="err">Enter the name of the person signing.</div>
+              </div>
+              <div class="f">
+                <label class="k" for="signerRole">Signatory's title <span class="req">*</span></label>
+                <input type="text" id="signerRole" data-req placeholder="Compliance Officer">
+                <div class="err">Enter the signatory's title.</div>
+              </div>
+            </div>
+            <div class="row2">
+              <div class="f">
+                <label class="k" for="party">Certifying Party <span class="req">*</span><span class="tip" title="The organisation bound by the certification. The individual is not personally liable beyond their authority.">i</span></label>
+                <input type="text" id="party" data-req placeholder="Bay Title &amp; Escrow, Inc.">
+                <div class="err">Name the organisation that is bound.</div>
+              </div>
+              <div class="f">
+                <label class="k" for="deliver">Delivered to <span class="req">*</span><span class="tip" title="Rule 10. Only the recipient named here, and the classes listed in 6.4, may rely.">i</span></label>
+                <input type="text" id="deliver" data-req placeholder="Pacific Underwriters, LLC">
+                <div class="err">Name the recipient. Reliance is limited to who is named here.</div>
+              </div>
+            </div>
+          </div>
+          <p class="hint">Nothing leaves this page. The form is built in your browser and never sent anywhere.</p>
+        </section>
+
+        <div class="foot">
+          <button class="btn-back" id="back">Back</button>
+          <button class="btn-next" id="next">Next</button>
+        </div>
+      </div>
+
+      <div id="done" hidden>
+        <div class="issued">
+          <div class="seal">Proof<br>issued</div>
+          <h2 id="doneTitle">PROOF complete</h2>
+          <p>Signed by <b id="doneSigner"></b> for <b id="doneParty"></b>, delivered to <b id="doneDeliver"></b>. <span id="doneReliance"></span></p>
+          <p class="idline" id="doneId"></p>
+
+          <div class="actions">
+            <div class="action" id="stepPdf">
+              <span class="n">1</span>
+              <div>
+                <h4>Save the form as a PDF</h4>
+                <p>Opens your print dialog. Choose Save as PDF as the destination. The app chrome is stripped out, so you get the form on its own.</p>
+                <button class="btn-next" id="printBtn">Save as PDF</button>
+              </div>
+            </div>
+
+            <div class="action" id="stepSign">
+              <span class="n">2</span>
+              <div>
+                <h4>Send it for signature</h4>
+                <p id="signCopy">Opens a draft in your mail client, addressed and written. Attach the PDF you just saved and send it.</p>
+                <div class="fields" id="signFields">
+                  <div class="f">
+                    <label class="k" for="sigEmail">Signatory's email <span class="req">*</span></label>
+                    <input type="email" id="sigEmail" placeholder="ana@baytitle.com">
+                    <div class="err">Enter the address the signing request goes to.</div>
+                  </div>
+                </div>
+                <button class="btn-next" id="sendBtn">Send for signature</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="foot" style="justify-content:center">
+            <button class="btn-back" id="restart">Start another</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="printable"></div>
+
+    </div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim" hidden role="dialog" aria-modal="true" aria-labelledby="consentTitle">
+  <div class="consent">
+    <h2 id="consentTitle">PROOF</h2>
+    <p class="lede">Before you review and sign, please agree to sign electronically.</p>
+    <div class="panel">
+      <h3>Electronic Signature Consent</h3>
+      <ul>
+        <li>By proceeding, you consent to sign this form electronically and to receive electronic records related to this matter.</li>
+        <li>You may withdraw consent by closing this page before completing.</li>
+        <li>Requires a modern web browser with JavaScript enabled.</li>
+      </ul>
+    </div>
+    <div class="agree">
+      <label><input type="checkbox" class="agreebox" id="agree1"> I agree to use electronic signatures for this certification.</label>
+      <label><input type="checkbox" class="agreebox" id="agree2"> I certify Part 6 as written and have not altered it.</label>
+    </div>
+    <button class="btn-sign" id="signBtn" disabled>Review &amp; sign document</button>
+    <button class="cancel" id="cancelSign">Cancel</button>
+  </div>
+</div>
+
+<script>
+  const STEPS = ["Form", "Ownership", "Checks", "Review"];
+  let step = 1;
+
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const val = id => ($(id) ? $(id).value.trim() : "");
+
+  /* ---- state helpers ---- */
+  const formType  = () => (($('input[name="formtype"]:checked') || {}).value || "PROOF");
+  const isOngoing = () => formType() === "PROOF-O";
+  const isRE      = () => val("#matter") === "Real estate transfer";
+  const num       = id => Number(val(id).replace(/[^\d]/g, "") || 0);
+
+  /* ---- choice cards ---- */
+  function wireChoices(wrapSel, onPick) {
+    const wrap = $(wrapSel);
+    $$(".choice", wrap).forEach(c => {
+      c.addEventListener("click", () => {
+        $("input", c).checked = true;
+        $$(".choice", wrap).forEach(o => {
+          o.classList.toggle("sel", o === c);
+          if (wrap.classList.contains("two")) return;
+          o.classList.toggle("collapsed", o !== c);
+          o.hidden = false;
+        });
+        onPick($("input", c).value);
+      });
+    });
+  }
+
+  wireChoices("#formChoices", () => {
+    $("#matterFields").hidden = false;
+    $$("#formChoices .choice").forEach(o => { o.hidden = !o.classList.contains("sel"); });
+    $("#cadenceWrap").hidden = !isOngoing();
+    $("#dateLabel").textContent = isOngoing() ? "Onboarding date" : "Effective date";
+    $("#valueLabel").textContent = isOngoing() ? "Expected annual value" : "Value of the matter";
+  });
+
+  wireChoices("#resultChoices", v => { $("#matchWrap").hidden = v !== "Match"; });
+
+  /* ---- matter type drives what else is asked ---- */
+  $("#matter").addEventListener("change", () => {
+    const re = isRE();
+    $("#reBlock").hidden = !re;
+    $("#gtoBlock").hidden = !re;
+    $("#usNote").hidden = !re;
+    if (!isOngoing()) $("#dateLabel").textContent = re ? "Closing date" : "Effective date";
+    $("#valueLabel").textContent = isOngoing() ? "Expected annual value" : (re ? "Total consideration" : "Value of the matter");
+  });
+
+  $("#ctype").addEventListener("change", e => {
+    const isEntity = e.target.value === "Entity" || e.target.value === "Trust";
+    $("#eNotice").hidden = !isEntity;
+    $("#ubo").hidden = !isEntity;
+  });
+
+  $$("[data-money]").forEach(inp => {
+    inp.addEventListener("input", () => {
+      const n = inp.value.replace(/[^\d]/g, "");
+      inp.value = n ? Number(n).toLocaleString("en-US") : "";
+    });
+  });
+
+  $("#cash").addEventListener("input", () => {
+    const e = $("#cashNote"), over = num("#cash") > 10000;
+    e.textContent = over ? "Over $10,000. Form 8300 must be considered on the next step." : "";
+    e.classList.toggle("show", over);
+    e.style.color = over ? "var(--ink-soft)" : "";
+  });
+
+  ["#r8300", "#rgto"].forEach(id => {
+    $(id).addEventListener("change", e => { $(id + "ReasonWrap").hidden = e.target.value !== "Not required"; });
+  });
+
+  /* ---- validation ---- */
+  function flag(el, on, msg) {
+    const f = el.closest(".f"); if (!f) return;
+    f.classList.toggle("bad", on);
+    const e = $(".err", f);
+    if (e) { e.classList.toggle("show", on); if (msg) e.textContent = msg; }
+  }
+
+  function validate(n) {
+    let ok = true;
+    const sec = $(`.step[data-step="${n}"]`);
+    if (n === 1 && !$('input[name="formtype"]:checked')) return false;
+
+    $$("[data-req], [data-req-if]", sec).forEach(el => {
+      if (el.closest("[hidden]")) return;
+      const bad = !el.value.trim();
+      flag(el, bad); if (bad) ok = false;
+    });
+
+    // Rule 6: within 30 days before the effective date, never after.
+    if (n === 3 && val("#screendate") && val("#effdate")) {
+      const days = (new Date(val("#effdate")) - new Date(val("#screendate"))) / 86400000;
+      if (days < 0) { flag($("#screendate"), true, "Screening was run after the effective date. Rule 6: never after."); ok = false; }
+      else if (days > 30) { flag($("#screendate"), true, "More than 30 days before the effective date. Rule 6: re-run it closer."); ok = false; }
+    }
+    return ok;
+  }
+
+  /* ---- review ---- */
+  const row = (k, v) => `<div class="rrow"><span class="k">${k}</span><span class="v ${v ? "" : "empty"}">${v || "not stated"}</span></div>`;
+  const group = (t, rows) => `<div class="rgroup"><h3>${t}</h3>${rows.filter(Boolean).join("")}</div>`;
+
+  function buildReview() {
+    const money = id => (num(id) ? "$" + num(id).toLocaleString("en-US") : "");
+    const dateLbl = $("#dateLabel").textContent, valLbl = $("#valueLabel").textContent;
+
+    let out = group("Form", [
+      row("Form", formType() + (isOngoing() ? ", ongoing relationship" : ", single transaction")),
+      row("Matter", val("#matter")),
+      row("Attachment", $("#ubo").hidden ? "None" : "PROOF-E, ownership chain")
+    ]);
+
+    out += group("The matter", [
+      row("Counterparty", val("#cparty")),
+      row("Our reference", val("#ref")),
+      isRE() ? row("Property", val("#addr")) : "",
+      isRE() ? row("County and state", val("#county")) : "",
+      isRE() ? row("Parcel reference", val("#parcel")) : "",
+      row(dateLbl, val("#effdate")),
+      row(valLbl, money("#value")),
+      row("Currency or equivalent", money("#cash") || "$0"),
+      row("Counterparty is", val("#ctype")),
+      row("Our role", val("#role")),
+      isOngoing() ? row("Review cadence", val("#cadence")) : ""
+    ]);
+
+    const own = [row("Jurisdiction", val("#juris"))];
+    if (!$("#ubo").hidden) own.push(row("Beneficial owner", [val("#uboName"), val("#uboBasis")].filter(Boolean).join(", ")));
+    own.push(row("Source of funds", val("#sof")), row("Description", val("#sofdesc")),
+             row("Remitting institution", val("#remit")), row("Third party payer", val("#thirdparty")));
+    out += group("Ownership and origin of funds", own);
+
+    const scr = [row("Provider", val("#provider")), row("Date run", val("#screendate")),
+                 row("Lists checked", $$(".list:checked").map(c => c.value).join(", ")),
+                 row("Result", ($('input[name="result"]:checked') || {}).value)];
+    if (!$("#matchWrap").hidden) scr.push(row("Disposition", val("#disp")), row("Decided by", val("#decider")), row("Reason", val("#reason")));
+    out += group("Screening", scr);
+
+    out += group("Reports considered", [
+      row("IRS Form 8300", [val("#r8300"), val("#r8300reason")].filter(Boolean).join(" — ")),
+      isRE() ? row("FinCEN GTO report", [val("#rgto"), val("#rgtoreason")].filter(Boolean).join(" — ")) : "",
+      row("Other reports", val("#rother"))
+    ]);
+
+    $("#review").innerHTML = out;
+  }
+
+  /* ---- consent gate ---- */
+  function openConsent() {
+    $("#consentTitle").textContent = formType() + " — " + (val("#party") || "your organisation");
+    $$(".agreebox").forEach(b => { b.checked = false; });
+    $("#signBtn").disabled = true;
+    $("#scrim").hidden = false;
+    document.body.style.overflow = "hidden";
+    $("#agree1").focus();
+  }
+  function closeConsent() {
+    $("#scrim").hidden = true;
+    document.body.style.overflow = "";
+    $("#next").focus();
+  }
+  $$(".agreebox").forEach(b => b.addEventListener("change", () => {
+    $("#signBtn").disabled = !$$(".agreebox").every(x => x.checked);
+  }));
+  $("#cancelSign").addEventListener("click", closeConsent);
+  $("#scrim").addEventListener("click", e => { if (e.target === $("#scrim")) closeConsent(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#scrim").hidden) closeConsent(); });
+  $("#signBtn").addEventListener("click", () => { closeConsent(); issue(); });
+
+  function issue() {
+    $("#wizard").hidden = true;
+    $("#done").hidden = false;
+    $("#doneTitle").textContent = formType() + " complete";
+    $("#doneSigner").textContent = val("#signer");
+    $("#doneParty").textContent = val("#party");
+    $("#doneDeliver").textContent = val("#deliver");
+    $("#doneReliance").textContent = isOngoing()
+      ? "Reliance ends at the earliest of the next review, twelve months from signature, or notice of change."
+      : "Reliance ends at the earliest of the effective date, twelve months from signature, or notice of change.";
+    const stamp = (val("#effdate") || "").replace(/-/g, "") || "draft";
+    $("#doneId").textContent = "proof:" + formType().toLowerCase() + ":" + stamp + " · not reviewed by US counsel, do not use in a live matter";
+    buildPrintable();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ---- the printable document ---- */
+  const esc = t => String(t == null ? "" : t).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const prow = (k, v) => v ? `<tr><td class="k">${esc(k)}</td><td class="v">${esc(v)}</td></tr>` : "";
+  const ptable = rows => { const r = rows.filter(Boolean).join(""); return r ? `<table>${r}</table>` : "<p>Nothing recorded.</p>"; };
+
+  function buildPrintable() {
+    const money = id => (num(id) ? "$" + num(id).toLocaleString("en-US") : "");
+    const dateLbl = $("#dateLabel").textContent, valLbl = $("#valueLabel").textContent;
+    const lists = $$(".list:checked").map(c => c.value).join(", ");
+
+    let h = `<h1>${esc(formType())}</h1>
+      <p class="sub">Portable Record of Ownership and Origin of Funds &middot; ${isOngoing() ? "ongoing relationship" : "single transaction"}</p>
+      <p class="draftline">Draft, version 0.1. Not reviewed by US counsel. Do not use in a live matter.</p>`;
+
+    h += `<h2>Part 1. The matter</h2>` + ptable([
+      prow("Kind of matter", val("#matter")),
+      prow("Counterparty", val("#cparty")),
+      prow("Our matter reference", val("#ref")),
+      prow(dateLbl, val("#effdate")),
+      prow(valLbl, money("#value")),
+      prow("Received as currency or equivalent", money("#cash") || "$0"),
+      prow("Counterparty is", val("#ctype")),
+      prow("Our role", val("#role")),
+      isOngoing() ? prow("Review cadence", val("#cadence")) : ""
+    ]);
+
+    if (isRE()) {
+      h += `<h2>Annex A. Real estate</h2>` + ptable([
+        prow("Property address", val("#addr")),
+        prow("County and state", val("#county")),
+        prow("Parcel or land record reference", val("#parcel"))
+      ]);
+    }
+
+    h += `<h2>Part 2. Ownership</h2>` + ptable([
+      prow("Counterparty jurisdiction", val("#juris")),
+      $("#ubo").hidden ? "" : prow("Beneficial owner", [val("#uboName"), val("#uboBasis")].filter(Boolean).join(", ")),
+      prow("PROOF-E attached", $("#ubo").hidden ? "No" : "Yes")
+    ]);
+
+    h += `<h2>Part 3. Origin of funds</h2>` + ptable([
+      prow("Source", val("#sof")),
+      prow("Description", val("#sofdesc")),
+      prow("Remitting institution", val("#remit")),
+      prow("Third party payer", val("#thirdparty"))
+    ]);
+
+    const scr = [prow("Provider", val("#provider")), prow("Date run", val("#screendate")),
+                 prow("Lists checked", lists), prow("Result", ($('input[name="result"]:checked') || {}).value)];
+    if (!$("#matchWrap").hidden) scr.push(prow("Disposition", val("#disp")), prow("Decided by", val("#decider")), prow("Reason for the conclusion", val("#reason")));
+    h += `<h2>Part 4. Screening</h2>` + ptable(scr);
+
+    h += `<h2>Part 5. Reports considered</h2>` + ptable([
+      prow("IRS Form 8300, cash over $10,000", [val("#r8300"), val("#r8300reason")].filter(Boolean).join(" — ")),
+      isRE() ? prow("FinCEN geographic targeting order", [val("#rgto"), val("#rgtoreason")].filter(Boolean).join(" — ")) : "",
+      prow("Other reports", val("#rother"))
+    ]);
+
+    h += `<h2>Part 6. Certification</h2><div class="cert">
+      <p class="fixed">This Part is fixed. A form with an altered Part 6 is not a PROOF form.</p>
+      <p><b>6.1 Certified without qualification.</b> The Certifying Party certifies that the screening recorded in Part 4 was performed by the provider named on the dates stated against the lists marked; that each match was reviewed and dispositioned by the person named and the reason recorded is that person's actual reason; that each report in Part 5 was considered and, where recorded as not required, the reason stated is the actual reason; that each document referenced is a genuine and unaltered copy of a document held by the Certifying Party; and that nothing has been omitted that would make anything stated misleading.</p>
+      <p><b>6.2 Certified after Reasonable Inquiry.</b> To its knowledge after Reasonable Inquiry: every natural person who owns or controls 25 percent or more of any entity or trust party, directly or indirectly, and every person who controls such a party by other means, is identified; no person identified holds their interest as nominee for, or under any undisclosed arrangement with, a person not identified; and the origin of the funds is as described in Part 3.</p>
+      <p><b>6.4 Reliance.</b> This form may be relied upon by the recipient named below, its affiliates, and its administrators, custodians, lenders, underwriters, insurers, auditors and regulators. Reliance runs until the earliest of the ${isOngoing() ? "next recorded review" : "effective date"}, twelve months from signature, and notice under 6.5. Reliance does not discharge any obligation the recipient owes in its own right. <b>Sanctions liability in particular is strict and cannot be transferred by certificate.</b></p>
+      <p><b>6.6 What this is not.</b> This form is not a warranty that any party is free of involvement in unlawful conduct. It is not legal advice. It is not a determination that any report is or is not required as a matter of law. Each recipient makes its own risk decision on its own responsibility.</p>
+      </div>`;
+
+    h += `<div class="sigblock"><div class="sigline"></div>` + ptable([
+      prow("Name", val("#signer")),
+      prow("Title", val("#signerRole")),
+      prow("Certifying Party", val("#party")),
+      prow("Date", val("#effdate")),
+      prow("Delivered to", val("#deliver"))
+    ]) + `</div>`;
+
+    h += `<p class="foot">${esc($("#doneId").textContent)}<br>PROOF is a free public form under Apache 2.0. It is not legal advice and does not replace a regulated professional's judgement.</p>`;
+
+    $("#printable").innerHTML = h;
+  }
+
+  /* ---- save as PDF, then send for signature ---- */
+  $("#printBtn").addEventListener("click", () => {
+    $("#stepPdf").classList.add("done");
+    window.print();
+  });
+
+  $("#sendBtn").addEventListener("click", () => {
+    const email = val("#sigEmail");
+    const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    flag($("#sigEmail"), !okEmail, okEmail ? "" : "Enter a valid email address for the signatory.");
+    if (!okEmail) return;
+
+    const subject = `${formType()} for signature — ${val("#cparty") || "matter"}`;
+    const body = [
+      `${val("#signer")},`,
+      ``,
+      `Attached is a ${formType()} form for your signature, covering ${val("#cparty") || "this matter"}${val("#ref") ? " (our reference " + val("#ref") + ")" : ""}.`,
+      ``,
+      `Certifying Party: ${val("#party")}`,
+      `Delivered to: ${val("#deliver")}`,
+      `${$("#dateLabel").textContent}: ${val("#effdate")}`,
+      ``,
+      `Part 6 is fixed. Signing it certifies the screening, the reports considered and the ownership recorded in the form as written. If anything in it is wrong, tell me rather than amending the certification, because an altered Part 6 is not a PROOF form.`,
+      ``,
+      `Reliance is limited to ${val("#deliver")} and ends at the earliest of the ${isOngoing() ? "next recorded review" : "effective date"}, twelve months from signature, or notice of change.`,
+      ``,
+      `${$("#doneId").textContent}`
+    ].join("\n");
+
+    window.location.href = "mailto:" + encodeURIComponent(email) +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    $("#stepSign").classList.add("done");
+    $("#signCopy").textContent = "Draft opened in your mail client. Attach the PDF you saved in step 1, then send it.";
+  });
+
+  /* ---- navigation ---- */
+  function show(n) {
+    step = n;
+    $$(".step").forEach(s => { s.hidden = Number(s.dataset.step) !== n; });
+    $("#stepLabel").textContent = STEPS[n - 1];
+    $("#stepCount").textContent = n + "/4";
+    $$("#segs i").forEach((s, i) => s.classList.toggle("on", i < n));
+    $("#next").textContent = n === 4 ? "Certify and issue" : "Next";
+    $("#arrow").hidden = n === 1;
+    if (n === 4) buildReview();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  const goBack = () => { if (step > 1) show(step - 1); };
+
+  $("#next").addEventListener("click", () => {
+    if (!validate(step)) return;
+    if (step < 4) return show(step + 1);
+    openConsent();
+  });
+  $("#back").addEventListener("click", goBack);
+  $("#arrow").addEventListener("click", goBack);
+  $("#restart").addEventListener("click", () => { $("#done").hidden = true; $("#wizard").hidden = false; show(1); });
+
+  show(1);
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

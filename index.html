@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROOF</title>
+<meta name="description" content="A free standard KYC form for the United States. Two forms, thirteen rules, no redlines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/page.css">
+<link rel="stylesheet" href="assets/nav.css">
+
+</head>
+<body>
+<header class="sitebar">
+  <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
+  <span class="tagline">a free standard KYC form</span>
+  <nav class="sitetabs" aria-label="Sections">
+      <a href="index.html" aria-current="page">Standard</a>
+      <a href="rules.html">The Rules</a>
+      <a href="create.html">Create a form</a>
+      <a href="practice.html">Practice note</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
+    <span id="themeLabel">Dark</span>
+  </button>
+</header>
+<div class="wrap">
+  <header class="mast">
+    <span class="eyebrow">Draft, version 0.3.0</span>
+    <h1>A free standard KYC form for the United States</h1>
+    <p class="standfirst">Two forms, thirteen rules, no redlines. Modelled on the SAFE, which did not win because it was clever. It won because it was short, free, and nobody marked it up.</p>
+    <a class="cta" href="create.html">Fill one in</a>
+  </header>
+
+  <div class="col">
+    <h2>The problem</h2>
+    <p>An investor committing to six US private funds fills in six different KYC packages asking the same forty questions in different orders, each drafted by different counsel, each reviewed by counsel on both sides. A title agency onboarding an entity buyer runs a different questionnaire for each underwriter. A fund administrator asks a new investor forty questions that three other administrators already asked.</p>
+    <p>None of that variation carries information. It is the seed round legal bill of private markets: weeks of elapsed time and real fees, spent producing a document a standard form would have produced in an afternoon.</p>
+    <p>The industry has a standard for what to ask. The ILPA Due Diligence Questionnaire reaches roughly 89 percent of private equity funds. It is a Word document. The industry has a standard for who an entity is, the LEI and now the verifiable LEI. Nobody has a standard for the thing in between: the completed, evidenced, certified pack. So every organisational boundary it crosses, somebody re-keys it.</p>
+    <blockquote><p>Every vendor calls their product a passport. A passport that only works in one country is not a passport.</p></blockquote>
+
+    <h2>What it copies from the SAFE</h2>
+    <p><strong>It is a form, not a framework.</strong> Blanks for facts, not clauses for lawyers. You fill it in, you do not draft it.</p>
+    <p><strong>Two documents, not a configurator.</strong> You pick the one that matches your situation. There is no options matrix and no "select applicable subsections".</p>
+    <p><strong>It is free and public.</strong> Apache 2.0. No licence fee, no gate, no account.</p>
+    <p><strong>It is not redlined.</strong> That is the entire value, and it is <a href="rules.html">rule 13</a>.</p>
+
+    <h2>The two forms</h2>
+    <p>The first question is not which asset is involved. It is whether the matter is assessed once or carries on, because that is what decides whether periodic review and re-screening apply at all.</p>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th scope="col">Your situation</th><th scope="col">Form</th></tr></thead>
+      <tbody>
+        <tr><td class="axis">Assessed once: a closing, a purchase, a one-off transfer or payment</td><td><strong>PROOF-T</strong></td></tr>
+        <tr><td class="axis">Carries on: fund investor, client, vendor, repeat counterparty</td><td><strong>PROOF-O</strong></td></tr>
+        <tr><td class="axis">Either, where a party is an entity or a trust</td><td>attach <strong>PROOF-E</strong></td></tr>
+        <tr><td class="axis">Either, where the matter is real estate</td><td>complete <strong>Annex A</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <p>Six parts: the matter, the parties, the origin of funds, screening, reports considered, and a fixed certification. The kind of matter, real estate or fund subscription or vendor onboarding, only decides which annex you complete. It never changes the certification.</p>
+
+    <h2>Scope</h2>
+    <p><strong>United States only.</strong> Any matter where one party has to satisfy itself about who the other is and where the money came from.</p>
+    <p>The mandatory federal floor is thinner than most practitioners believe. The nationwide residential real estate reporting rule was vacated by a federal court on 19 March 2026 and is on appeal. Domestic beneficial ownership reporting was permanently eliminated in August 2026. The investment adviser AML rule is delayed to 2028. Commercial real estate has never been regulated at all.</p>
+    <p>What still binds: OFAC, with strict liability and no de minimis; cash reporting over ten thousand dollars; and geographic targeting orders in certain metropolitan areas.</p>
+    <p>That is not an argument for doing less. It is the reason a voluntary standard has value right now. The obligations your counterparties impose contractually did not move, and when the appeal resolves, whoever already has the rails wins. The <a href="practice.html">practice note</a> works through what that means for a fund.</p>
+
+    <h2>What this deliberately does not do</h2>
+    <p>It does not define an identity scheme, replace the ILPA DDQ, tell you whether to trust a counterparty's certification, determine what the law requires of you, or constitute legal advice. Each recipient makes its own risk decision on its own responsibility.</p>
+
+    <h2>Governance</h2>
+    <p>Before version 1.0, PROOF moves to a legal shell separate from any implementer, with no vendor holding a controlling seat. Apache 2.0 inbound and outbound. No single vendor may carry a change over the objection of implementers. There is no 1.0 until at least eight organisations have committed to the working group, spanning at least four roles among fund manager, administrator, depositary, bank, screening provider, auditor, law firm and regulator as observer.</p>
+    <p>Publishing 1.0 without that is publishing marketing. The version number would be the only thing that changed.</p>
+
+    <h2>The machine readable version</h2>
+    <p>Most adopters will only ever touch the form, and the form works on paper. For anyone building software against it, every field maps one to one onto a JSON file, so the same facts travel as a signed PDF, as JSON, or both. That layer carries a JSON Schema, rule packs over a FATF core, a reference validator and a 35 case conformance suite. Conformance is defined by the test suite rather than by the reference code: an independent implementation that reproduces all 35 expected outputs is exactly as conformant.</p>
+    <a class="cta" href="create.html">Create a form</a>
+  </div>
+
+  <footer class="colophon">
+    <p><b>Status.</b> Draft, version 0.3.0. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
+    <p>PROOF is a free public form under Apache 2.0. It is not legal advice and does not replace a regulated professional's judgement. Statements about US obligations are as at August 2026 and the ground is moving; confirm the position in force on your own date.</p>
+  </footer>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>

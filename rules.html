@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The PROOF Rules</title>
+<meta name="description" content="Thirteen rules governing how a PROOF form is filled in, signed and relied upon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/page.css">
+<link rel="stylesheet" href="assets/nav.css">
+<style>
+  ol.rulelist { list-style: none; counter-reset: r; margin: 2rem 0 0; padding: 0; max-width: 40rem; }
+  ol.rulelist li { counter-increment: r; display: grid; grid-template-columns: 2.8rem 1fr; gap: 0 1rem; padding: 1.4rem 0; border-top: 1px solid var(--rule); }
+  ol.rulelist li::before { content: counter(r); font-family: "IBM Plex Mono", monospace; font-size: 0.9rem; color: var(--seal); padding-top: 0.35rem; }
+  ol.rulelist h4 { font-family: "Public Sans", system-ui, sans-serif; font-size: 1.05rem; font-weight: 700; margin: 0 0 0.35rem; letter-spacing: -0.01em; }
+  ol.rulelist p { margin: 0; font-size: 1rem; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+<header class="sitebar">
+  <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
+  <span class="tagline">a free standard KYC form</span>
+  <nav class="sitetabs" aria-label="Sections">
+      <a href="index.html">Standard</a>
+      <a href="rules.html" aria-current="page">The Rules</a>
+      <a href="create.html">Create a form</a>
+      <a href="practice.html">Practice note</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
+    <span id="themeLabel">Dark</span>
+  </button>
+</header>
+<div class="wrap">
+  <header class="mast">
+    <span class="eyebrow">The standard</span>
+    <h1>Thirteen rules</h1>
+    <p class="standfirst">They govern how a PROOF form is filled in, signed and relied upon. Nothing here is new. Every rule is drawn from the forms themselves and stated here so it can be read in one minute and quoted at a counterparty.</p>
+  </header>
+
+  <ol class="rulelist">
+    <li>
+      <h4>Pick one form.</h4>
+      <p>Two forms, one question between them: is the matter assessed once, or does it carry on? There is no configurator, no options matrix, no "select applicable subsections". The kind of matter does not change the certification. It only decides which annex you complete.</p>
+    </li>
+    <li>
+      <h4>Attach PROOF-E for every entity and trust.</h4>
+      <p>It is never used alone. It carries the ownership chain, and it is the part that takes real work, in the same way the cap table is the part of a financing that takes real work.</p>
+    </li>
+    <li>
+      <h4>Part 6 is fixed.</h4>
+      <p>A form with an altered certification is not a PROOF form. If a counterparty asks you to change it, they are asking you to leave the standard. Say so plainly and either use the bespoke document they want or decline.</p>
+    </li>
+    <li>
+      <h4>Everything outside Part 6 is data.</h4>
+      <p>Fill every field. A blank is not an answer.</p>
+    </li>
+    <li>
+      <h4>"Not required" needs a reason.</h4>
+      <p>Record every report you considered, including the ones you concluded were not required, and why. A blank line and "not required" are not the same thing.</p>
+    </li>
+    <li>
+      <h4>Screen within 30 days before the effective date, never after.</h4>
+      <p>The effective date is the closing, the subscription, or the date the counterparty is taken on. Screening run after it documents nothing about the decision that was made.</p>
+    </li>
+    <li>
+      <h4>A match cleared without a written reason is not a cleared match.</h4>
+      <p>Record every match, whether or not it was cleared, who dispositioned it, when, and the actual reason.</p>
+    </li>
+    <li>
+      <h4>Evidence stays with the certifier.</h4>
+      <p>The form references documents. It does not carry them. Four organisations should never end up emailing each other copies of the same passport.</p>
+    </li>
+    <li>
+      <h4>One named signer, with authority.</h4>
+      <p>The Certifying Party is bound. The individual signing assumes no personal liability beyond their assertion of authority.</p>
+    </li>
+    <li>
+      <h4>Reliance is named and time limited.</h4>
+      <p>Only the recipient named on delivery and the classes listed in 6.4 may rely. Reliance ends at the earliest of the effective date, the next review date, twelve months from signature, or notice of change.</p>
+    </li>
+    <li>
+      <h4>The recipient still decides.</h4>
+      <p>Reliance discharges nothing the recipient owes in its own right. Sanctions liability in particular is strict and cannot be transferred by certificate.</p>
+    </li>
+    <li>
+      <h4>If it becomes untrue, say so without delay.</h4>
+      <p>Notify every recipient in writing. For an ongoing relationship, provide a fresh form at each recorded review.</p>
+    </li>
+    <li>
+      <h4>Do not redline.</h4>
+      <p>If your situation does not fit, you are outside the standard, and that is a legitimate answer. A form that gets marked up costs more than the bespoke document it replaced, because now both sides argue about the deviation as well as the substance. A standard survives exactly as long as people refuse to bend it.</p>
+    </li>
+  </ol>
+
+  <div class="col">
+    <h2>Rule 13 is the load bearing one</h2>
+    <p>Everything above it is mechanics. A standard survives exactly as long as people refuse to bend it, which is why the certification is fixed and why "your situation does not fit" is a legitimate answer rather than a failure.</p>
+    <a class="cta" href="create.html">Create a form</a>
+  </div>
+
+  <footer class="colophon">
+    <p><b>Scope.</b> United States only. Any matter where one party has to satisfy itself about who the other is and where the money came from. Real estate is the annex that is most fully worked, because it is the workflow PROOF was built out of. It is an annex, not the spine.</p>
+    <p><b>Status.</b> Draft. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
+  </footer>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>

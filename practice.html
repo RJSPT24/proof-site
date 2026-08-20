@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compliance Runs Both Ways</title>
+<meta name="description" content="How funds should run compliance toward LPs and toward portfolio companies, and why the two need different depths.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/nav.css">
+<style>
+
+  :root {
+    --paper:     #f5f6f3;
+    --sheet:     #fffffe;
+    --ink:       #171a1d;
+    --ink-soft:  #4e545a;
+    --ink-faint: #868c92;
+    --rule:      #dcded8;
+    --rule-firm: #bfc3bb;
+    --seal:      #7b2231;
+    --seal-wash: #f2e5e6;
+    --keep:      #2c5b4c;
+    --keep-wash: #e2ebe6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #111316;
+      --sheet:     #181b1f;
+      --ink:       #e8eae6;
+      --ink-soft:  #a8aeb3;
+      --ink-faint: #7c8288;
+      --rule:      #2a2e33;
+      --rule-firm: #3f454b;
+      --seal:      #e39aa3;
+      --seal-wash: #2c1a1e;
+      --keep:      #85bda8;
+      --keep-wash: #182924;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:     #111316;
+    --sheet:     #181b1f;
+    --ink:       #e8eae6;
+    --ink-soft:  #a8aeb3;
+    --ink-faint: #7c8288;
+    --rule:      #2a2e33;
+    --rule-firm: #3f454b;
+    --seal:      #e39aa3;
+    --seal-wash: #2c1a1e;
+    --keep:      #85bda8;
+    --keep-wash: #182924;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Newsreader, Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 74rem; margin: 0 auto; padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 2.5rem) 6rem; }
+
+  .col { max-width: 36rem; }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- masthead ---------- */
+
+  header.mast { border-bottom: 2px solid var(--ink); padding-bottom: 1.8rem; margin-bottom: 2.8rem; }
+
+  h1 {
+    font-weight: 600;
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 1.1rem 0 0.9rem;
+    max-width: 16ch;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-size: clamp(1.12rem, 2.4vw, 1.4rem);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 40rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .byline {
+    font-family: "Public Sans", system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    display: flex; gap: 0.6rem; flex-wrap: wrap;
+  }
+  .byline b { color: var(--ink-soft); font-weight: 600; }
+
+  /* ---------- body ---------- */
+
+  h2 {
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3.4vw, 2.15rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin: 3.4rem 0 1rem;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: "Public Sans", system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 2.4rem 0 0.7rem;
+  }
+
+  p { margin: 0 0 1.15rem; }
+
+  strong { font-weight: 600; }
+
+  em.term { font-style: normal; font-weight: 600; color: var(--seal); }
+
+  .lede-rule { border: none; border-top: 1px solid var(--rule); margin: 3rem 0 0; }
+
+  /* ---------- pull ---------- */
+
+  blockquote {
+    margin: 2.2rem 0;
+    padding-left: 1.4rem;
+    border-left: 3px solid var(--seal);
+    font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+    line-height: 1.36;
+    color: var(--ink);
+    max-width: 34rem;
+  }
+  blockquote p { margin: 0; }
+
+  /* ---------- comparison ---------- */
+
+  .compare { margin: 2.2rem 0 1rem; overflow-x: auto; border: 1px solid var(--rule-firm); background: var(--sheet); }
+
+  table { border-collapse: collapse; width: 100%; min-width: 44rem; font-family: "Public Sans", system-ui, sans-serif; font-size: 0.9rem; }
+
+  th {
+    text-align: left; vertical-align: bottom;
+    padding: 0.9rem 1rem;
+    border-bottom: 2px solid var(--ink);
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 700;
+  }
+  th.lp { color: var(--seal); }
+  th.co { color: var(--keep); }
+
+  td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--rule); color: var(--ink-soft); vertical-align: top; line-height: 1.45; }
+  td.axis { color: var(--ink); font-weight: 600; width: 22%; }
+  tr:last-child td { border-bottom: none; }
+
+  caption { caption-side: bottom; text-align: left; padding: 0.8rem 1rem; font-family: "Public Sans", sans-serif; font-size: 0.82rem; color: var(--ink-faint); border-top: 1px solid var(--rule); }
+
+  /* ---------- practice list ---------- */
+
+  ol.practice { list-style: none; counter-reset: p; margin: 1.6rem 0 0; padding: 0; }
+
+  ol.practice li {
+    counter-increment: p;
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    gap: 0 1rem;
+    padding: 1.3rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  ol.practice li::before {
+    content: counter(p);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--seal);
+    padding-top: 0.42rem;
+  }
+  ol.practice h4 {
+    font-family: "Public Sans", system-ui, sans-serif;
+    font-size: 1.02rem; font-weight: 700; margin: 0 0 0.35rem;
+    letter-spacing: -0.01em;
+  }
+  ol.practice p { margin: 0 0 0.6rem; font-size: 0.97rem; }
+  ol.practice p:last-child { margin-bottom: 0; }
+  ol.practice .test {
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.86rem;
+    color: var(--ink);
+    background: var(--keep-wash);
+    border-left: 2px solid var(--keep);
+    padding: 0.5rem 0.7rem;
+    display: block;
+  }
+
+  /* ---------- tiers ---------- */
+
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1px; background: var(--rule-firm); border: 1px solid var(--rule-firm); margin: 1.8rem 0; }
+  .tiers article { background: var(--sheet); padding: 1.2rem 1.1rem 1.4rem; }
+  .tiers .cap { font-family: "IBM Plex Mono", monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+  .tiers h4 { font-family: "Public Sans", sans-serif; font-size: 1rem; margin: 0.3rem 0 0.5rem; }
+  .tiers p { font-family: "Public Sans", sans-serif; font-size: 0.88rem; color: var(--ink-soft); margin: 0 0 0.6rem; line-height: 1.5; }
+  .tiers .clock { font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: var(--seal); }
+
+  /* ---------- steps ---------- */
+
+  ol.steps { list-style: none; counter-reset: s; margin: 1.5rem 0 0; padding: 0; font-family: "Public Sans", sans-serif; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.3rem 1.2rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+  ol.steps li .when { font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--seal); }
+  ol.steps li .what { font-size: 0.97rem; color: var(--ink-soft); }
+  ol.steps li .what b { color: var(--ink); font-weight: 600; }
+
+  .callout {
+    background: var(--seal-wash);
+    border-left: 3px solid var(--seal);
+    padding: 1.1rem 1.2rem;
+    margin: 2rem 0;
+    font-size: 1rem;
+    max-width: 36rem;
+  }
+  .callout p { margin: 0 0 0.7rem; }
+  .callout p:last-child { margin: 0; }
+  .callout b { font-weight: 600; }
+
+  footer.colophon {
+    margin-top: 4.5rem;
+    padding-top: 1.4rem;
+    border-top: 2px solid var(--ink);
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    max-width: 44rem;
+  }
+  footer.colophon p { margin: 0 0 0.6rem; }
+
+  a { color: var(--seal); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--seal); outline-offset: 3px; }
+
+  @media (max-width: 700px) {
+    body { font-size: 17px; }
+    ol.steps li { grid-template-columns: 1fr; }
+    ol.practice li { grid-template-columns: 1.8rem 1fr; }
+  }
+
+</style>
+</head>
+<body>
+<header class="sitebar">
+  <a class="brand" href="index.html">
+    <span class="mark">P</span>
+    <span class="wordmark">PROOF</span>
+  </a>
+  <span class="tagline">a free standard KYC form</span>
+  <nav class="sitetabs" aria-label="Sections">
+      <a href="index.html">Standard</a>
+      <a href="rules.html">The Rules</a>
+      <a href="create.html">Create a form</a>
+      <a href="practice.html" aria-current="page">Practice note</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
+    <span id="themeLabel">Dark</span>
+  </button>
+</header>
+<div class="wrap">
+
+  <header class="mast">
+    <span class="eyebrow">Practice note</span>
+    <h1>Compliance Runs Both Ways</h1>
+    <p class="standfirst">A fund does diligence in two directions at once, on the money coming in and on the money going out. Most treat it as one job. It is two, and they need different depths.</p>
+    <p class="byline"><b>Rodolfo Santos</b> <span>20 August 2026</span> <span>PROOF</span></p>
+  </header>
+
+  <div class="col">
+
+    <p>Ask a fund manager how they run compliance and you will hear about their LP onboarding. Subscription documents, a KYC pack, a screening report from the administrator, a file that closes when the capital lands.</p>
+
+    <p>Ask the same manager what diligence they run on a company before wiring it two million dollars and the answer changes register. Now it is about the team, the market, the cap table. Somewhere in there, usually late, someone screens the founders against a sanctions list because a bank asked whether anyone had.</p>
+
+    <p>Both of those are compliance. They are not the same job, they do not carry the same risk, and running them at the same depth is a mistake in both directions: too much friction on the way in, too little rigour on the way out.</p>
+
+    <h2>What actually binds, and why that is the argument for a standard</h2>
+
+    <p>Start with an uncomfortable fact. In the United States, as at August 2026, most private funds are not covered financial institutions for anti money laundering purposes.</p>
+
+    <p>The FinCEN investment adviser rule, which would have brought many advisers inside the perimeter, is <strong>delayed to 1 January 2028</strong> and will be retailored before it lands. Beneficial ownership reporting for domestic entities was <strong>permanently eliminated</strong> in August 2026, so the corporate registry that funds were starting to lean on for ownership data no longer holds it for US companies. Neither of those changes makes the underlying risk smaller. They just remove the person who was going to tell you what to do about it.</p>
+
+    <p>What still binds, and binds absolutely:</p>
+
+    <p><em class="term">OFAC.</em> Sanctions liability is strict. There is no threshold, no de minimis, and no intent requirement. If you take money from a blocked person or send money to one, you are liable whether or not you knew, whether or not a form said otherwise, and whether or not your administrator screened. This is the single obligation that applies identically in both directions.</p>
+
+    <p><em class="term">Form 8300.</em> Any trade or business receiving more than ten thousand dollars in currency or equivalents reports it within fifteen days. It is not a real estate rule and it is not an AML programme rule. It reaches funds.</p>
+
+    <p>Everything else a fund does is contractual or voluntary. Your bank requires it. Your administrator requires it. Your institutional LPs impose it through operational due diligence and side letters. Your acquirer will test it in five years.</p>
+
+    <blockquote><p>Contractual obligations did not move when the rules did. What moved is that nobody is coming to tell you the shape of them.</p></blockquote>
+
+    <p>That is the case for standardising now rather than waiting. When there is a rule, you comply with the rule. When there is no rule but the risk is real and every counterparty has their own questionnaire, the sensible move is a shared form that everyone can accept, which is exactly the problem the SAFE solved for a different set of documents.</p>
+
+    <h2>Direction one: the money coming in</h2>
+
+    <p>An LP relationship is the higher-minucia side, and the reason is simple. You are accepting money from someone. If it is dirty, you now hold it, you may have commingled it, and unwinding a subscription two years later is a fund-level event, not a file-level one.</p>
+
+    <p>The depth that is actually required:</p>
+
+    <h3>Look through to natural persons</h3>
+
+    <p>Not to the subscribing entity. To the humans. A Cayman feeder holds a Luxembourg blocker which holds the interest, and none of those three tells you who bears the economic risk. Twenty five percent is the conventional threshold, but the threshold is a floor rather than a stopping point, and a chain that dead ends at another entity has not been resolved, it has merely been recorded.</p>
+
+    <p>Two things get conflated here and should never be. <strong>Ownership and control are separate prongs.</strong> A general partner with no capital commitment controls the vehicle absolutely and owns none of it. Recording that as full ownership produces a number that clears the threshold by being false. Record both, separately, or you have not described the structure.</p>
+
+    <h3>Source of funds, and source of wealth</h3>
+
+    <p>Source of funds is which account the wire came from. Source of wealth is how the person came to have it in the first place. The first is easy and nearly worthless on its own. The second is the one that matters, and for a high risk subscriber it needs corroboration rather than assertion: the sale agreement, the audited accounts, the tax filing, not a sentence in a form.</p>
+
+    <h3>Cadence, because a relationship is not a closing</h3>
+
+    <p>This is the part that gets missed. A transaction is assessed once, as at its date. A relationship carries a clock. Re-screening intervals of ninety, one hundred and eighty and three hundred and sixty five days by risk tier, a recorded date of last full review, a next review date, and a written list of events that trigger an immediate review regardless of the schedule. A politically exposed person who was clean at subscription and became a minister last year is a live problem sitting in a closed file.</p>
+
+    <h2>Direction two: the money going out</h2>
+
+    <p>Diligence on a portfolio company is not a lighter version of LP diligence. It is a different set of questions, and treating it as a reduced LP pack means you ask for things that do not matter and skip things that do.</p>
+
+    <p>Source of funds barely applies, because <strong>you are the source of funds</strong>. What replaces it:</p>
+
+    <h3>Identity and integrity of the people</h3>
+
+    <p>Founders screened against sanctions and, where the risk profile warrants it, adverse media. Not because a rule says so, but because you are about to make them custodians of your LPs' capital and put their name in your annual report.</p>
+
+    <h3>Where the company can and cannot sell</h3>
+
+    <p>This is the one most venture diligence skips. A company with a customer in a sanctioned jurisdiction is an OFAC exposure that becomes yours the moment you are on the cap table and, more sharply, the moment you take a board seat. For deep technology, export control classification belongs in diligence rather than in the panic after the first international order.</p>
+
+    <h3>Who else is on the cap table, and who is behind them</h3>
+
+    <p>Your co investors are your reputational counterparties. A syndicate with an unnamed vehicle in it is an unresolved chain in exactly the sense above. And where your own fund has foreign limited partners investing into US critical technology, the structure of your LP base can pull the investment into CFIUS territory. That is a live analysis rather than a filing exercise, and it is the clearest example of the two directions colliding: a question about your LPs that only surfaces when you deploy.</p>
+
+    <div class="callout">
+      <p><b>The inversion nobody runs.</b> The startup should be doing diligence on the fund. They are accepting money from a vehicle whose beneficial owners they cannot see, and they almost never ask.</p>
+      <p>A fund that can hand a founder a completed, certified record of who its investors are, at the moment of the wire, has a differentiator that costs it nothing. It already holds every fact in that record.</p>
+    </div>
+
+    <h2>The asymmetry, plainly</h2>
+
+  </div>
+
+  <div class="compare">
+    <table>
+      <caption>Depth is set by which way the money moves, not by how much of it there is.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Axis</th>
+          <th scope="col" class="lp">Toward LPs, money in</th>
+          <th scope="col" class="co">Toward companies, money out</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="axis">Core question</td>
+          <td>Whose money is this, and how did they come to have it</td>
+          <td>Who are these people, and where can this business legally operate</td>
+        </tr>
+        <tr>
+          <td class="axis">Look through</td>
+          <td>To natural persons, through every vehicle, ownership and control tracked separately</td>
+          <td>To founders and to any co investor vehicle that is not a named institution</td>
+        </tr>
+        <tr>
+          <td class="axis">Source of funds</td>
+          <td>Required. Corroborated for high risk, not merely asserted</td>
+          <td>Not applicable. You are the source</td>
+        </tr>
+        <tr>
+          <td class="axis">Sanctions screening</td>
+          <td>Every party and every beneficial owner, before capital is accepted</td>
+          <td>Founders, the entity, and the markets it sells into</td>
+        </tr>
+        <tr>
+          <td class="axis">The exposure you inherit</td>
+          <td>Tainted capital inside the fund, and an unwind that is a fund level event</td>
+          <td>The company's own counterparties, customers and export footprint</td>
+        </tr>
+        <tr>
+          <td class="axis">Cadence</td>
+          <td>Fixed clock. Re-screen at 90, 180 or 365 days by tier, with trigger events</td>
+          <td>Event driven. Each round, each board cycle, each material change of market</td>
+        </tr>
+        <tr>
+          <td class="axis">Who signs it</td>
+          <td>The manager or administrator, on a record the LP's own bank may later rely on</td>
+          <td>The deal partner, on a record that survives into the data room at exit</td>
+        </tr>
+        <tr>
+          <td class="axis">Retention</td>
+          <td>Five years past the end of the relationship, minimum</td>
+          <td>Life of the holding, plus the tail of any representation you gave at exit</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+
+    <h2>Five practices that hold in both directions</h2>
+
+    <p>The depth differs. The discipline does not. These five are what separate a compliance file that survives scrutiny from one that merely exists, and each has a test you can apply to a file in under a minute.</p>
+
+    <ol class="practice">
+      <li>
+        <div>
+          <h4>A risk tier without named factors is not an assessment</h4>
+          <p>Writing "medium risk" on a file records a conclusion and none of the reasoning. The tier has to carry the factors that produced it, because the person relying on your file later cannot review a number.</p>
+          <span class="test">Test: pick any file marked high risk. Can you say why, from the file alone, without asking anyone?</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h4>Evidence must precede the decision it supports</h4>
+          <p>An approval dated before the screening it cites is not a documentation defect. It is evidence that the approval was not based on the screening. Timestamps make this mechanical, which is why every record should carry them and every review should compare them.</p>
+          <span class="test">Test: sort any approved file by date. Does anything the approval relies on come after it?</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h4>A negative conclusion needs a reason</h4>
+          <p>"Not required" and a blank line look identical in a file six months later, and only one of them means somebody thought about it. Every report you considered and concluded was not required should say why not.</p>
+          <span class="test">Test: find a filing you decided against. Is the reason written down, or is it in someone's memory?</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h4>A match cleared without a written reason is not a cleared match</h4>
+          <p>Screening hits are common and most are false. The clearing is the compliance work, not the screening. Record who dispositioned it, when, and their actual reason, which is usually a specific mismatch of date of birth, nationality or middle name.</p>
+          <span class="test">Test: take your last cleared hit. Does the file name the person who cleared it and say what convinced them?</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h4>Reliance is named and time limited</h4>
+          <p>A compliance record that anyone may rely on forever is a liability with no edges. Name who may rely on it, cap it at the earlier of the next review and twelve months, and commit to telling them if it stops being true. Then hold the line that sanctions liability is strict and cannot be transferred by certificate, whatever the recipient would prefer.</p>
+          <span class="test">Test: does your standard KYC pack say who may rely on it and until when? Most do not say either.</span>
+        </div>
+      </li>
+    </ol>
+
+    <h2>Tier the work, then hold the floor</h2>
+
+    <p>Tiering is where most fund compliance goes wrong in both directions at once: everyone gets the same treatment, so the pension fund is annoyed and the opaque vehicle is under examined. Three tiers is enough, provided the floor is genuinely a floor.</p>
+
+  </div>
+
+  <div class="tiers">
+    <article>
+      <span class="cap">Tier one</span>
+      <h4>Simplified</h4>
+      <p>Regulated institutions, listed companies, sovereign and supranational investors, US persons investing their own capital in modest size.</p>
+      <p>Verify identity and regulated status. Screen. Record the basis for the tier.</p>
+      <span class="clock">Re-screen 365 days</span>
+    </article>
+    <article>
+      <span class="cap">Tier two</span>
+      <h4>Standard</h4>
+      <p>Most private subscribers, family offices with a visible structure, ordinary operating companies.</p>
+      <p>Full look through to natural persons, source of funds stated and plausible, full screening of every named party.</p>
+      <span class="clock">Re-screen 180 days</span>
+    </article>
+    <article>
+      <span class="cap">Tier three</span>
+      <h4>Enhanced</h4>
+      <p>Politically exposed persons and their associates, higher risk jurisdictions, complex or opaque chains, any third party payer, any structure whose purpose you cannot state in a sentence.</p>
+      <p>Corroborated source of wealth, documented rationale, approval by someone with named compliance authority.</p>
+      <span class="clock">Re-screen 90 days</span>
+    </article>
+  </div>
+
+  <div class="col">
+
+    <p>The floor, which no tier goes below: every named party and every beneficial owner screened against sanctions before money moves, in either direction, with the result recorded and every hit dispositioned in writing. Simplified diligence is a reduction in depth. It is never a reduction to zero, and OFAC has no small subscriber exemption.</p>
+
+    <h2>What to standardise, and what to leave alone</h2>
+
+    <p>The instinct when writing a standard is to standardise the judgment. Resist it. What belongs in a standard is the shape of the record: the questions asked, in what order, with what evidence attached, certified by whom, relied on by whom and for how long. What does not belong is whether to accept a given investor. That is the manager's call, on their own responsibility, and a standard that pretends otherwise will be rejected by the first person whose judgment it overrides.</p>
+
+    <p>The practical version of this is three documents rather than a policy manual:</p>
+
+    <ol class="steps">
+      <li>
+        <span class="when">One off</span>
+        <span class="what"><b>A single transaction record.</b> One investment, one closing, one payment. Assessed once, as at its date, and then it is done.</span>
+      </li>
+      <li>
+        <span class="when">Ongoing</span>
+        <span class="what"><b>A relationship record.</b> An LP, a managed account, a repeat counterparty. Identical to the first except that it carries the review schedule, which is the whole difference.</span>
+      </li>
+      <li>
+        <span class="when">Attached</span>
+        <span class="what"><b>An ownership chain.</b> One per entity or trust, attached to either of the above, never used alone. This is the part that takes real work, in the same way the cap table is the part of a financing that takes real work.</span>
+      </li>
+    </ol>
+
+    <p>That is the structure of <strong>PROOF</strong>, a free public form set for exactly this, and the reason it is two forms rather than eight is that the only structural distinction that changes the work is one off against ongoing. Everything else is an annex.</p>
+
+    <h2>Where to start on Monday</h2>
+
+    <ol class="steps">
+      <li>
+        <span class="when">Week one</span>
+        <span class="what">Pull ten LP files at random and run the five tests above. Count how many pass all five. The number will be lower than you expect and it is your actual baseline, not the one in the policy.</span>
+      </li>
+      <li>
+        <span class="when">Week two</span>
+        <span class="what">Write the tier definitions and the floor on one page. If it does not fit on one page, it will not be applied consistently by the person doing it at speed on a Friday.</span>
+      </li>
+      <li>
+        <span class="when">Week three</span>
+        <span class="what">Put a next review date on every open relationship. Most funds cannot produce this list at all, which means nobody has been re-screening anything.</span>
+      </li>
+      <li>
+        <span class="when">Week four</span>
+        <span class="what">Build the outbound pack: founder screening, market and export footprint, cap table look through. Run it on your last three investments to see what you would have missed.</span>
+      </li>
+      <li>
+        <span class="when">Then</span>
+        <span class="what">Adopt one form for each direction and stop redlining it. A standard that gets marked up costs more than the bespoke document it replaced, because now both sides argue about the deviation as well as the substance.</span>
+      </li>
+    </ol>
+
+    <h2>The point of all of it</h2>
+
+    <p>Compliance in a fund is not a defensive function that exists to be shown to a regulator. In this market there frequently is no regulator to show it to, which is precisely why the standard has to come from practice rather than from a rulebook.</p>
+
+    <p>It exists so that when an LP's bank asks a question in year four, the answer takes an hour instead of a fortnight. So that a diligence request at exit does not turn into an archaeology project. So that the one file that turns out to matter was done properly on a Tuesday two years ago, by someone following a form, who wrote down why.</p>
+
+    <p>Depth should follow the direction the money moves. The discipline should not vary at all.</p>
+
+  </div>
+
+  <footer class="colophon">
+    <p><b>On the legal position.</b> Statements about US obligations are as at August 2026 and the ground is moving. The investment adviser AML rule is delayed to 1 January 2028 and under revision. Domestic beneficial ownership reporting was eliminated with effect from 14 August 2026. Confirm the position in force on your own date before relying on any of it.</p>
+    <p>This is a practice note, not legal advice, and it does not replace a regulated professional's judgement. CFIUS exposure in particular turns on facts specific to your LP base and the target's technology, and is a question for counsel rather than a checklist.</p>
+  </footer>
+
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>
