@@ -20,10 +20,16 @@
   var btn = document.getElementById("themeToggle");
   if (btn) {
     btn.addEventListener("click", function () {
-      document.documentElement.setAttribute("data-theme", current() === "dark" ? "light" : "dark");
+      var next = current() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("proof-theme", next); } catch (e) {}
       paint();
     });
   }
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint);
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+    var stored = null;
+    try { stored = localStorage.getItem("proof-theme"); } catch (e) {}
+    if (!stored) paint();
+  });
   paint();
 })();

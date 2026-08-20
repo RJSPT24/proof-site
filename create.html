@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/nav.css">
+<script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <style>
 
   :root {
@@ -299,6 +300,87 @@
     #printable .sigline { border-bottom: 1px solid #111; height: 26pt; margin-bottom: 3pt; }
     #printable .foot { display: block; margin-top: 16pt; font-size: 8.5pt; color: #666; border-top: 1px solid #999; padding-top: 5pt; }
   }
+
+
+  /* ---------- signing view, document tool layout ---------- */
+  #signview { margin: -1px 0 0; }
+
+  .docbar {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    background: var(--card); border-bottom: 1px solid var(--line);
+    padding: 0 1.1rem; height: 45px;
+    font-family: "Public Sans", system-ui, sans-serif; font-size: 0.9rem;
+  }
+  .docbar .docname { font-weight: 600; }
+  .docbar .docwho { color: var(--ink-faint); font-size: 0.85rem; }
+
+  .signgrid { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100vh - 46px - 45px); }
+
+  .signrail {
+    background: var(--card); border-right: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    font-family: "Public Sans", system-ui, sans-serif;
+  }
+  .railhead { font-size: 1rem; font-weight: 700; margin: 0; padding: 1.4rem 1.3rem; border-bottom: 1px solid var(--line); }
+  .raillist { padding: 0.5rem 1.3rem 1.5rem; flex: 1; overflow-y: auto; }
+  .railrow { padding: 0.85rem 0; }
+  .railrow .k { display: block; font-size: 0.78rem; color: var(--ink-faint); margin-bottom: 0.15rem; }
+  .railrow .v { display: block; font-size: 0.95rem; color: var(--ink); overflow-wrap: anywhere; }
+  .railrow .v.empty { color: var(--ink-faint); font-style: italic; }
+
+  .railfoot { padding: 1rem 1.3rem 1.5rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.4rem; }
+  .btn-signing {
+    width: 100%; background: var(--seal); color: var(--seal-ink);
+    border: none; border-radius: 6px; font: inherit; font-family: "Public Sans", sans-serif;
+    font-weight: 600; font-size: 0.98rem; padding: 0.8rem 1rem; cursor: pointer;
+  }
+  .btn-signing:hover { background: var(--seal-hover); }
+  #signBack { text-align: center; }
+
+  .doccanvas { background: var(--ground); padding: 1.5rem 1.5rem 4rem; overflow-x: auto; position: relative; }
+
+  .zoomchip {
+    display: inline-flex; align-items: center; gap: 0.15rem;
+    background: var(--card); border: 1px solid var(--line-firm); border-radius: 7px;
+    padding: 0.2rem 0.3rem; margin: 0 auto 1.1rem; width: fit-content;
+    font-family: "Public Sans", sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .zoomchip button {
+    background: none; border: none; color: var(--ink-soft); cursor: pointer;
+    font-size: 1rem; line-height: 1; padding: 0.3rem 0.55rem; border-radius: 4px;
+  }
+  .zoomchip button:hover { background: var(--ground); color: var(--ink); }
+  .zoomchip #zoomLabel { font-size: 0.82rem; color: var(--ink); padding: 0 0.5rem; min-width: 5.2rem; text-align: center; }
+
+  /* the document is paper: it stays light in either theme, and says so */
+  .docpage {
+    background: #ffffff; color: #16181b;
+    width: min(52rem, 100%); margin: 0 auto;
+    padding: 3.2rem 3.4rem 3.6rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10), 0 8px 24px rgba(0,0,0,0.10);
+    font-family: "Public Sans", system-ui, sans-serif;
+  }
+  .docpage h1 { font-size: 1.45rem; margin: 0 0 0.15rem; letter-spacing: -0.02em; color: #16181b; }
+  .docpage .sub { font-size: 0.92rem; color: #555b61; margin: 0 0 0.3rem; }
+  .docpage .draftline { font-size: 0.78rem; color: #7b2231; border-top: 2px solid #16181b; border-bottom: 1px solid #bfc3bb; padding: 0.4rem 0; margin: 0.8rem 0 1.6rem; }
+  .docpage h2 { font-size: 1.02rem; margin: 1.7rem 0 0.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid #bfc3bb; color: #16181b; }
+  .docpage table { width: 100%; border-collapse: collapse; margin-bottom: 0.4rem; min-width: 0; }
+  .docpage td { padding: 0.4rem 0; border-bottom: 1px solid #e4e6e1; font-size: 0.9rem; vertical-align: top; color: #16181b; }
+  .docpage td.k { color: #555b61; width: 42%; padding-right: 1rem; }
+  .docpage td.v { font-weight: 600; }
+  .docpage .cert p { font-size: 0.84rem; color: #3c4147; margin: 0 0 0.5rem; line-height: 1.5; }
+  .docpage .cert p.fixed { font-weight: 700; color: #16181b; }
+  .docpage .sigblock { margin-top: 1.6rem; }
+  .docpage .sigline { border-bottom: 1px solid #16181b; height: 2.4rem; margin-bottom: 0.3rem; }
+  .docpage .foot { display: block; margin-top: 1.6rem; font-size: 0.78rem; color: #6b7178; border-top: 1px solid #bfc3bb; padding-top: 0.5rem; }
+
+  @media (max-width: 900px) {
+    .signgrid { grid-template-columns: 1fr; }
+    .signrail { border-right: none; border-bottom: 1px solid var(--line); }
+    .docpage { padding: 1.6rem 1.4rem 2rem; }
+  }
+
+  @media print { .docbar, .signrail, .zoomchip, .doccanvas { display: none !important; } }
 
   [hidden] { display: none !important; }
 
@@ -623,17 +705,8 @@
 
         <!-- ============ STEP 4 ============ -->
         <section class="step" data-step="4" hidden>
-          <h2 class="sect">Review and certify</h2>
-          <p class="sect">Confirm everything is right, then sign Part 6.</p>
-
-          <div id="review"></div>
-
-          <div class="certbox">
-            <p class="fixed">Part 6 is fixed. A form with an altered certification is not a PROOF form.</p>
-            <p>The Certifying Party certifies without qualification that the screening recorded was performed by the provider named on the dates stated, that each match was reviewed and dispositioned by the person named for the reason recorded, that each report was considered, that each document referenced is genuine and unaltered, and that nothing has been omitted that would make anything stated misleading.</p>
-            <p>It certifies after Reasonable Inquiry that every natural person owning or controlling 25 percent or more is identified, that no person holds their interest as an undisclosed nominee, and that the origin of funds is as described.</p>
-            <p>Reliance runs to the recipient named on delivery and ends at the earliest of the effective date, twelve months, or notice of change. Sanctions liability is strict and cannot be transferred by certificate.</p>
-          </div>
+          <h2 class="sect">Your details</h2>
+          <p class="sect">Who the certification binds, and who is entitled to rely on it. You will see the whole form before you sign it.</p>
 
           <div class="fields">
             <div class="row2">
@@ -669,6 +742,31 @@
           <button class="btn-next" id="next">Next</button>
         </div>
       </div>
+
+      <section id="signview" hidden>
+        <div class="docbar">
+          <span class="docname" id="docName">PROOF</span>
+          <span class="docwho" id="docWho"></span>
+        </div>
+        <div class="signgrid">
+          <aside class="signrail">
+            <h2 class="railhead">Your details</h2>
+            <div class="raillist" id="railList"></div>
+            <div class="railfoot">
+              <button class="btn-signing" id="startSigning">Start signing</button>
+              <button class="btn-back" id="signBack">Back to the form</button>
+            </div>
+          </aside>
+          <div class="doccanvas">
+            <div class="zoomchip">
+              <button id="zoomOut" aria-label="Zoom out">&minus;</button>
+              <span id="zoomLabel">Fit width</span>
+              <button id="zoomIn" aria-label="Zoom in">&plus;</button>
+            </div>
+            <div class="docpage" id="docPage"></div>
+          </div>
+        </div>
+      </section>
 
       <div id="done" hidden>
         <div class="issued">
@@ -840,93 +938,6 @@
     return ok;
   }
 
-  /* ---- review ---- */
-  const row = (k, v) => `<div class="rrow"><span class="k">${k}</span><span class="v ${v ? "" : "empty"}">${v || "not stated"}</span></div>`;
-  const group = (t, rows) => `<div class="rgroup"><h3>${t}</h3>${rows.filter(Boolean).join("")}</div>`;
-
-  function buildReview() {
-    const money = id => (num(id) ? "$" + num(id).toLocaleString("en-US") : "");
-    const dateLbl = $("#dateLabel").textContent, valLbl = $("#valueLabel").textContent;
-
-    let out = group("Form", [
-      row("Form", formType() + (isOngoing() ? ", ongoing relationship" : ", single transaction")),
-      row("Matter", val("#matter")),
-      row("Attachment", $("#ubo").hidden ? "None" : "PROOF-E, ownership chain")
-    ]);
-
-    out += group("The matter", [
-      row("Counterparty", val("#cparty")),
-      row("Our reference", val("#ref")),
-      isRE() ? row("Property", val("#addr")) : "",
-      isRE() ? row("County and state", val("#county")) : "",
-      isRE() ? row("Parcel reference", val("#parcel")) : "",
-      row(dateLbl, val("#effdate")),
-      row(valLbl, money("#value")),
-      row("Currency or equivalent", money("#cash") || "$0"),
-      row("Counterparty is", val("#ctype")),
-      row("Our role", val("#role")),
-      isOngoing() ? row("Review cadence", val("#cadence")) : ""
-    ]);
-
-    const own = [row("Jurisdiction", val("#juris"))];
-    if (!$("#ubo").hidden) own.push(row("Beneficial owner", [val("#uboName"), val("#uboBasis")].filter(Boolean).join(", ")));
-    own.push(row("Source of funds", val("#sof")), row("Description", val("#sofdesc")),
-             row("Remitting institution", val("#remit")), row("Third party payer", val("#thirdparty")));
-    out += group("Ownership and origin of funds", own);
-
-    const scr = [row("Provider", val("#provider")), row("Date run", val("#screendate")),
-                 row("Lists checked", $$(".list:checked").map(c => c.value).join(", ")),
-                 row("Result", ($('input[name="result"]:checked') || {}).value)];
-    if (!$("#matchWrap").hidden) scr.push(row("Disposition", val("#disp")), row("Decided by", val("#decider")), row("Reason", val("#reason")));
-    out += group("Screening", scr);
-
-    out += group("Reports considered", [
-      row("IRS Form 8300", [val("#r8300"), val("#r8300reason")].filter(Boolean).join(" — ")),
-      isRE() ? row("FinCEN GTO report", [val("#rgto"), val("#rgtoreason")].filter(Boolean).join(" — ")) : "",
-      row("Other reports", val("#rother"))
-    ]);
-
-    $("#review").innerHTML = out;
-  }
-
-  /* ---- consent gate ---- */
-  function openConsent() {
-    $("#consentTitle").textContent = formType() + " — " + (val("#party") || "your organisation");
-    $$(".agreebox").forEach(b => { b.checked = false; });
-    $("#signBtn").disabled = true;
-    $("#scrim").hidden = false;
-    document.body.style.overflow = "hidden";
-    $("#agree1").focus();
-  }
-  function closeConsent() {
-    $("#scrim").hidden = true;
-    document.body.style.overflow = "";
-    $("#next").focus();
-  }
-  $$(".agreebox").forEach(b => b.addEventListener("change", () => {
-    $("#signBtn").disabled = !$$(".agreebox").every(x => x.checked);
-  }));
-  $("#cancelSign").addEventListener("click", closeConsent);
-  $("#scrim").addEventListener("click", e => { if (e.target === $("#scrim")) closeConsent(); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#scrim").hidden) closeConsent(); });
-  $("#signBtn").addEventListener("click", () => { closeConsent(); issue(); });
-
-  function issue() {
-    $("#wizard").hidden = true;
-    $("#done").hidden = false;
-    $("#doneTitle").textContent = formType() + " complete";
-    $("#doneSigner").textContent = val("#signer");
-    $("#doneParty").textContent = val("#party");
-    $("#doneDeliver").textContent = val("#deliver");
-    $("#doneReliance").textContent = isOngoing()
-      ? "Reliance ends at the earliest of the next review, twelve months from signature, or notice of change."
-      : "Reliance ends at the earliest of the effective date, twelve months from signature, or notice of change.";
-    const stamp = (val("#effdate") || "").replace(/-/g, "") || "draft";
-    $("#doneId").textContent = "proof:" + formType().toLowerCase() + ":" + stamp + " · not reviewed by US counsel, do not use in a live matter";
-    buildPrintable();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
   /* ---- the printable document ---- */
   const esc = t => String(t == null ? "" : t).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
   const prow = (k, v) => v ? `<tr><td class="k">${esc(k)}</td><td class="v">${esc(v)}</td></tr>` : "";
@@ -1050,21 +1061,59 @@
     $("#stepLabel").textContent = STEPS[n - 1];
     $("#stepCount").textContent = n + "/4";
     $$("#segs i").forEach((s, i) => s.classList.toggle("on", i < n));
-    $("#next").textContent = n === 4 ? "Certify and issue" : "Next";
+    $("#next").textContent = n === 4 ? "Review and sign" : "Next";
     $("#arrow").hidden = n === 1;
-    if (n === 4) buildReview();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
   const goBack = () => { if (step > 1) show(step - 1); };
 
+  /* ---- signing view ---- */
+  const railRow = (k, v) => `<div class="railrow"><span class="k">${esc(k)}</span><span class="v ${v ? "" : "empty"}">${esc(v || "not stated")}</span></div>`;
+
+  function openSignView() {
+    buildPrintable();
+    $("#docPage").innerHTML = $("#printable").innerHTML;
+    $("#docName").textContent = formType() + " \u2014 " + (val("#party") || "your organisation");
+    $("#docWho").textContent = val("#signer") || "";
+    $("#railList").innerHTML = [
+      railRow("Certifying Party", val("#party")),
+      railRow("Your signatory's legal name", val("#signer")),
+      railRow("Your signatory's title", val("#signerRole")),
+      railRow("Delivered to", val("#deliver")),
+      railRow($("#dateLabel").textContent, val("#effdate")),
+      railRow("Counterparty", val("#cparty"))
+    ].join("");
+    $("#wizard").hidden = true;
+    $("#signview").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  $("#signBack").addEventListener("click", () => {
+    $("#signview").hidden = true;
+    $("#wizard").hidden = false;
+    show(4);
+  });
+
+  $("#startSigning").addEventListener("click", openConsent);
+
+  /* zoom */
+  const ZOOMS = [0.8, 0.9, 1, 1.15, 1.3];
+  let zi = 2;
+  function applyZoom() {
+    $("#docPage").style.zoom = ZOOMS[zi];
+    $("#zoomLabel").textContent = zi === 2 ? "Fit width" : Math.round(ZOOMS[zi] * 100) + "%";
+  }
+  $("#zoomOut").addEventListener("click", () => { if (zi > 0) { zi--; applyZoom(); } });
+  $("#zoomIn").addEventListener("click", () => { if (zi < ZOOMS.length - 1) { zi++; applyZoom(); } });
+
   $("#next").addEventListener("click", () => {
     if (!validate(step)) return;
     if (step < 4) return show(step + 1);
-    openConsent();
+    openSignView();
   });
   $("#back").addEventListener("click", goBack);
   $("#arrow").addEventListener("click", goBack);
-  $("#restart").addEventListener("click", () => { $("#done").hidden = true; $("#wizard").hidden = false; show(1); });
+  $("#restart").addEventListener("click", () => { $("#done").hidden = true; $("#signview").hidden = true; $("#wizard").hidden = false; show(1); });
 
   show(1);
 </script>
