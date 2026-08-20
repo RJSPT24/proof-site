@@ -303,7 +303,6 @@
 
 
   /* ---------- signing view, document tool layout ---------- */
-  #signview { margin: -1px 0 0; }
 
   .docbar {
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -743,30 +742,7 @@
         </div>
       </div>
 
-      <section id="signview" hidden>
-        <div class="docbar">
-          <span class="docname" id="docName">PROOF</span>
-          <span class="docwho" id="docWho"></span>
-        </div>
-        <div class="signgrid">
-          <aside class="signrail">
-            <h2 class="railhead">Your details</h2>
-            <div class="raillist" id="railList"></div>
-            <div class="railfoot">
-              <button class="btn-signing" id="startSigning">Start signing</button>
-              <button class="btn-back" id="signBack">Back to the form</button>
-            </div>
-          </aside>
-          <div class="doccanvas">
-            <div class="zoomchip">
-              <button id="zoomOut" aria-label="Zoom out">&minus;</button>
-              <span id="zoomLabel">Fit width</span>
-              <button id="zoomIn" aria-label="Zoom in">&plus;</button>
-            </div>
-            <div class="docpage" id="docPage"></div>
-          </div>
-        </div>
-      </section>
+
 
       <div id="done" hidden>
         <div class="issued">
@@ -813,6 +789,32 @@
     </div>
   </main>
 </div>
+
+      <section id="signview" hidden>
+  <div class="docbar">
+    <span class="docname" id="docName">PROOF</span>
+    <span class="docwho" id="docWho"></span>
+  </div>
+  <div class="signgrid">
+    <aside class="signrail">
+      <h2 class="railhead">Your details</h2>
+      <div class="raillist" id="railList"></div>
+      <div class="railfoot">
+        <button class="btn-signing" id="startSigning">Start signing</button>
+        <button class="btn-back" id="signBack">Back to the form</button>
+      </div>
+    </aside>
+    <div class="doccanvas">
+      <div class="zoomchip">
+        <button id="zoomOut" aria-label="Zoom out">&minus;</button>
+        <span id="zoomLabel">Fit width</span>
+        <button id="zoomIn" aria-label="Zoom in">&plus;</button>
+      </div>
+      <div class="docpage" id="docPage"></div>
+    </div>
+  </div>
+</section>
+
 
 <div class="scrim" id="scrim" hidden role="dialog" aria-modal="true" aria-labelledby="consentTitle">
   <div class="consent">
@@ -1077,8 +1079,9 @@
   $("#signBtn").addEventListener("click", () => { closeConsent(); issue(); });
 
   function issue() {
-    $("#wizard").hidden = true;
     $("#signview").hidden = true;
+    $(".stage").hidden = false;
+    $("#wizard").hidden = true;
     $("#done").hidden = false;
     $("#doneTitle").textContent = formType() + " complete";
     $("#doneSigner").textContent = val("#signer");
@@ -1122,14 +1125,14 @@
       railRow($("#dateLabel").textContent, val("#effdate")),
       railRow("Counterparty", val("#cparty"))
     ].join("");
-    $("#wizard").hidden = true;
+    $(".stage").hidden = true;
     $("#signview").hidden = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   $("#signBack").addEventListener("click", () => {
     $("#signview").hidden = true;
-    $("#wizard").hidden = false;
+    $(".stage").hidden = false;
     show(4);
   });
 
@@ -1152,7 +1155,7 @@
   });
   $("#back").addEventListener("click", goBack);
   $("#arrow").addEventListener("click", goBack);
-  $("#restart").addEventListener("click", () => { $("#done").hidden = true; $("#signview").hidden = true; $("#wizard").hidden = false; show(1); });
+  $("#restart").addEventListener("click", () => { $("#done").hidden = true; $("#signview").hidden = true; $(".stage").hidden = false; $("#wizard").hidden = false; show(1); });
 
   show(1);
 </script>
