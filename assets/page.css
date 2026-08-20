@@ -2,18 +2,21 @@
   --paper:#f5f6f3; --sheet:#fffffe; --ink:#171a1d; --ink-soft:#4e545a; --ink-faint:#868c92;
   --rule:#dcded8; --rule-firm:#bfc3bb; --seal:#7b2231; --seal-wash:#f2e5e6;
   --keep:#2c5b4c; --keep-wash:#e2ebe6;
+  --cta-bg:#7b2231; --cta-ink:#ffffff;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper:#111316; --sheet:#181b1f; --ink:#e8eae6; --ink-soft:#a8aeb3; --ink-faint:#7c8288;
     --rule:#2a2e33; --rule-firm:#3f454b; --seal:#e39aa3; --seal-wash:#2c1a1e;
     --keep:#85bda8; --keep-wash:#182924;
+    --cta-bg:#b8404f; --cta-ink:#ffffff;
   }
 }
 :root[data-theme="dark"] {
   --paper:#111316; --sheet:#181b1f; --ink:#e8eae6; --ink-soft:#a8aeb3; --ink-faint:#7c8288;
   --rule:#2a2e33; --rule-firm:#3f454b; --seal:#e39aa3; --seal-wash:#2c1a1e;
   --keep:#85bda8; --keep-wash:#182924;
+  --cta-bg:#b8404f; --cta-ink:#ffffff;
 }
 
 * { box-sizing: border-box; }
@@ -53,7 +56,7 @@ tr:last-child td { border-bottom: none; }
 .callout { background: var(--seal-wash); border-left: 3px solid var(--seal); padding: 1.1rem 1.2rem; margin: 2rem 0; font-size: 1rem; max-width: 36rem; }
 .callout p { margin: 0 0 0.7rem; } .callout p:last-child { margin: 0; }
 
-.cta { display: inline-block; background: var(--seal); color: #fff; font-family: "Public Sans", sans-serif; font-weight: 600; font-size: 0.95rem; text-decoration: none; padding: 0.7rem 1.4rem; border-radius: 6px; margin-top: 0.6rem; }
+.cta { display: inline-block; background: var(--cta-bg); color: var(--cta-ink); font-family: "Public Sans", sans-serif; font-weight: 600; font-size: 0.95rem; text-decoration: none; padding: 0.7rem 1.4rem; border-radius: 6px; margin-top: 0.6rem; }
 .cta:hover { filter: brightness(1.12); }
 
 footer.colophon { margin-top: 4rem; padding-top: 1.4rem; border-top: 2px solid var(--ink); font-family: "Public Sans", sans-serif; font-size: 0.85rem; color: var(--ink-faint); max-width: 44rem; }
