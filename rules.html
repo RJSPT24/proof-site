@@ -14,8 +14,9 @@
   ol.rulelist { list-style: none; counter-reset: r; margin: 2rem 0 0; padding: 0; max-width: 40rem; }
   ol.rulelist li { counter-increment: r; display: grid; grid-template-columns: 2.8rem 1fr; gap: 0 1rem; padding: 1.4rem 0; border-top: 1px solid var(--rule); }
   ol.rulelist li::before { content: counter(r); font-family: "IBM Plex Mono", monospace; font-size: 0.9rem; color: var(--seal); padding-top: 0.35rem; }
-  ol.rulelist h4 { font-family: "Public Sans", system-ui, sans-serif; font-size: 1.05rem; font-weight: 700; margin: 0 0 0.35rem; letter-spacing: -0.01em; }
-  ol.rulelist p { margin: 0; font-size: 1rem; color: var(--ink-soft); }
+  ol.rulelist li::before { grid-column: 1; grid-row: 1 / span 2; }
+  ol.rulelist h4 { grid-column: 2; font-family: "Public Sans", system-ui, sans-serif; font-size: 1.05rem; font-weight: 700; margin: 0 0 0.35rem; letter-spacing: -0.01em; }
+  ol.rulelist p { grid-column: 2; margin: 0; font-size: 1rem; color: var(--ink-soft); }
 </style>
 </head>
 <body>
