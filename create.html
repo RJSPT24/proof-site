@@ -756,7 +756,7 @@
         <div class="issued">
           <div class="seal">Proof<br>issued</div>
           <h2 id="doneTitle">PROOF complete</h2>
-          <p>Signed by <b id="doneSigner"></b> for <b id="doneParty"></b>, delivered to <b id="doneDeliver"></b>. <span id="doneReliance"></span></p>
+          <p>Signed by <b id="doneSigner"></b> for <b id="doneParty"></b>, delivered to <b id="doneDeliver"></b><span id="deliverDot">.</span> <span id="doneReliance"></span></p>
           <p class="idline" id="doneId"></p>
 
           <div class="actions">
@@ -1095,6 +1095,7 @@
     $("#doneSigner").textContent = val("#signer");
     $("#doneParty").textContent = val("#party");
     $("#doneDeliver").textContent = val("#deliver");
+    $("#deliverDot").hidden = /\.$/.test(val("#deliver"));
     $("#doneReliance").textContent = isOngoing()
       ? "Reliance ends at the earliest of the next review, twelve months from signature, or notice of change."
       : "Reliance ends at the earliest of the effective date, twelve months from signature, or notice of change.";
