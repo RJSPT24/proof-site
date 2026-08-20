@@ -1054,6 +1054,45 @@
     $("#signCopy").textContent = "Draft opened in your mail client. Attach the PDF you saved in step 1, then send it.";
   });
 
+  /* ---- consent gate ---- */
+  function openConsent() {
+    $("#consentTitle").textContent = formType() + " — " + (val("#party") || "your organisation");
+    $$(".agreebox").forEach(b => { b.checked = false; });
+    $("#signBtn").disabled = true;
+    $("#scrim").hidden = false;
+    document.body.style.overflow = "hidden";
+    $("#agree1").focus();
+  }
+  function closeConsent() {
+    $("#scrim").hidden = true;
+    document.body.style.overflow = "";
+    $("#next").focus();
+  }
+  $$(".agreebox").forEach(b => b.addEventListener("change", () => {
+    $("#signBtn").disabled = !$$(".agreebox").every(x => x.checked);
+  }));
+  $("#cancelSign").addEventListener("click", closeConsent);
+  $("#scrim").addEventListener("click", e => { if (e.target === $("#scrim")) closeConsent(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#scrim").hidden) closeConsent(); });
+  $("#signBtn").addEventListener("click", () => { closeConsent(); issue(); });
+
+  function issue() {
+    $("#wizard").hidden = true;
+    $("#signview").hidden = true;
+    $("#done").hidden = false;
+    $("#doneTitle").textContent = formType() + " complete";
+    $("#doneSigner").textContent = val("#signer");
+    $("#doneParty").textContent = val("#party");
+    $("#doneDeliver").textContent = val("#deliver");
+    $("#doneReliance").textContent = isOngoing()
+      ? "Reliance ends at the earliest of the next review, twelve months from signature, or notice of change."
+      : "Reliance ends at the earliest of the effective date, twelve months from signature, or notice of change.";
+    const stamp = (val("#effdate") || "").replace(/-/g, "") || "draft";
+    $("#doneId").textContent = "proof:" + formType().toLowerCase() + ":" + stamp + " · not reviewed by US counsel, do not use in a live matter";
+    buildPrintable();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   /* ---- navigation ---- */
   function show(n) {
     step = n;
