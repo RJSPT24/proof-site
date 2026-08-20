@@ -304,6 +304,14 @@
 
   /* ---------- signing view, document tool layout ---------- */
 
+  #signview {
+    position: fixed;
+    top: var(--navh, 46px); left: 0; right: 0; bottom: 0;
+    z-index: 20;
+    background: var(--ground);
+    overflow-y: auto;
+  }
+
   .docbar {
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     background: var(--card); border-bottom: 1px solid var(--line);
@@ -313,7 +321,7 @@
   .docbar .docname { font-weight: 600; }
   .docbar .docwho { color: var(--ink-faint); font-size: 0.85rem; }
 
-  .signgrid { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100vh - 46px - 45px); }
+  .signgrid { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100% - 45px); }
 
   .signrail {
     background: var(--card); border-right: 1px solid var(--line);
@@ -1125,6 +1133,8 @@
       railRow($("#dateLabel").textContent, val("#effdate")),
       railRow("Counterparty", val("#cparty"))
     ].join("");
+    const bar = $(".sitebar");
+    if (bar) document.documentElement.style.setProperty("--navh", bar.offsetHeight + "px");
     $(".stage").hidden = true;
     $("#signview").hidden = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
