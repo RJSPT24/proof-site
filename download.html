@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download the PROOF forms</title>
+<meta name="description" content="PROOF-T, PROOF-O and PROOF-E as PDF and Word, plus the full toolkit. Apache 2.0, free, no account needed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/page.css">
+<link rel="stylesheet" href="assets/nav.css">
+<style>
+  .dl { font-family: "Public Sans", sans-serif; font-size: .82rem; font-weight: 600;
+        white-space: nowrap; }
+  .dl a { text-decoration: none; border-bottom: 1.5px solid currentColor; }
+  .dl span { opacity: .35; margin: 0 .45rem; font-weight: 400; }
+  td .meta { display: block; font-family: "IBM Plex Mono", monospace; font-size: .7rem;
+        opacity: .5; margin-top: .25rem; font-weight: 400; white-space: nowrap; }
+</style>
+<script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+</head>
+<body>
+<header class="sitebar">
+  <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
+  <span class="tagline">a free standard KYC form for funds</span>
+  <nav class="sitetabs" aria-label="Sections">
+      <a href="index.html">Standard</a>
+      <a href="rules.html">The Rules</a>
+      <a href="download.html" aria-current="page">Download</a>
+      <a href="create.html">Create a form</a>
+      <a href="practice.html">Practice note</a>
+      <a href="background.html">Background</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
+    <span id="themeLabel">Dark</span>
+  </button>
+</header>
+<div class="wrap">
+  <header class="mast">
+    <span class="eyebrow">Draft, version 0.3.0</span>
+    <h1>Download the forms</h1>
+    <p class="standfirst">Every form as a PDF and as a Word document. Apache 2.0, free to use and to modify for your own purposes. No licence fee, no account, no email required.</p>
+  </header>
+
+  <div class="col">
+    <p>Pick the form that matches your situation. If any party is an entity or a trust, attach PROOF-E as well, one per entity. Where the matter is real estate, complete Annex A inside PROOF-T.</p>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th scope="col">Form</th><th scope="col">Use it when</th><th scope="col">Download</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="axis"><strong>PROOF-T</strong><span class="meta">5 pages</span></td>
+          <td>The matter is assessed once: a single investment, a closing, a one-off transfer or payment. Includes Annex A for real estate.</td>
+          <td class="dl"><a href="forms/PROOF-T.pdf" download>PDF</a><span>&middot;</span><a href="forms/PROOF-T.docx" download>Word</a></td>
+        </tr>
+        <tr>
+          <td class="axis"><strong>PROOF-O</strong><span class="meta">4 pages</span></td>
+          <td>The relationship carries on: an LP, a managed account, a portfolio company, a client, a vendor, a repeat counterparty. Carries a review schedule.</td>
+          <td class="dl"><a href="forms/PROOF-O.pdf" download>PDF</a><span>&middot;</span><a href="forms/PROOF-O.docx" download>Word</a></td>
+        </tr>
+        <tr>
+          <td class="axis"><strong>PROOF-E</strong><span class="meta">3 pages</span></td>
+          <td>Any party is an entity or a trust. Attached to PROOF-T or PROOF-O, never used alone. One per entity.</td>
+          <td class="dl"><a href="forms/PROOF-E.pdf" download>PDF</a><span>&middot;</span><a href="forms/PROOF-E.docx" download>Word</a></td>
+        </tr>
+        <tr>
+          <td class="axis"><strong>The toolkit</strong><span class="meta">15 pages</span></td>
+          <td>All three forms in one document, with the standard explained and the thirteen rules up front. The version to send to a colleague.</td>
+          <td class="dl"><a href="forms/PROOF-toolkit.pdf" download>PDF</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col">
+    <h2>Before you use one</h2>
+    <p><strong>Part 6 is fixed.</strong> The certification is the part that makes a PROOF form worth something to the person receiving it. A form with an altered Part 6 is not a PROOF form. Everything outside Part 6 is data: fill it in, and a blank is not an answer.</p>
+    <p><strong>Fill every field.</strong> Where a report was not required, record the reason. A blank line and &ldquo;not required&rdquo; are not the same thing. The <a href="rules.html">thirteen rules</a> take one minute to read and explain why each of those matters.</p>
+    <p><strong>The Word versions are there to be filled in, not redrafted.</strong> Editable is the point, so you can type into the tables and add rows where a party list runs long. It is not an invitation to rewrite the certification. That is <a href="rules.html">rule 13</a>, and it is the whole reason a standard is worth having.</p>
+  </div>
+
+  <div class="callout">
+    <p>Prefer to fill one in without downloading anything? The <a href="create.html">browser version</a> walks through the same form step by step and nothing is sent anywhere.</p>
+  </div>
+
+  <footer class="colophon">
+    <p><b>Status.</b> Draft, version 0.3.0. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
+    <p>PROOF is a free public form under Apache 2.0. It is not legal advice and does not replace a regulated professional's judgement.</p>
+  </footer>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>

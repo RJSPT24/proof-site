@@ -63,3 +63,5 @@ footer.colophon { margin-top: 4rem; padding-top: 1.4rem; border-top: 2px solid v
 footer.colophon p { margin: 0 0 0.6rem; }
 
 @media (max-width: 700px) { body { font-size: 17px; } }
+
+.mast .alt { font-family: "Public Sans", sans-serif; font-size: .84rem; color: var(--ink-faint); margin: .7rem 0 0; }
