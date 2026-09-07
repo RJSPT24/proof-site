@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Create My PROOF</title>
-<meta name="description" content="Fill in a PROOF form step by step, in your browser. Nothing is sent anywhere.">
+<meta name="description" content="Fill in a PROOF KYC form for a fund step by step, in your browser. Nothing is sent anywhere.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -407,12 +407,13 @@
     <span class="mark">P</span>
     <span class="wordmark">PROOF</span>
   </a>
-  <span class="tagline">a free standard KYC form</span>
+  <span class="tagline">a free standard KYC form for funds</span>
   <nav class="sitetabs" aria-label="Sections">
       <a href="index.html">Standard</a>
       <a href="rules.html">The Rules</a>
       <a href="create.html" aria-current="page">Create a form</a>
       <a href="practice.html">Practice note</a>
+      <a href="background.html">Background</a>
   </nav>
   <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
     <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
@@ -445,11 +446,11 @@
           <div class="choices" id="formChoices">
             <label class="choice" data-val="PROOF-T">
               <input type="radio" name="formtype" value="PROOF-T">
-              <span><span class="t">PROOF-T &middot; Single transaction</span><span class="d">A closing, a purchase, a one-off transfer or payment. Assessed once, as at its date.</span></span>
+              <span><span class="t">PROOF-T &middot; Single transaction</span><span class="d">A single investment, a closing, a one-off transfer or payment. Assessed once, as at its date.</span></span>
             </label>
             <label class="choice" data-val="PROOF-O">
               <input type="radio" name="formtype" value="PROOF-O">
-              <span><span class="t">PROOF-O &middot; Ongoing relationship</span><span class="d">A fund investor, client, vendor or counterparty you will deal with again. Carries review cadence.</span></span>
+              <span><span class="t">PROOF-O &middot; Ongoing relationship</span><span class="d">An LP, a managed account, a portfolio company, a client, a vendor or a counterparty you will deal with again. Carries review cadence.</span></span>
             </label>
           </div>
 
@@ -731,12 +732,12 @@
             <div class="row2">
               <div class="f">
                 <label class="k" for="party">Certifying Party <span class="req">*</span><span class="tip" title="The organisation bound by the certification. The individual is not personally liable beyond their authority.">i</span></label>
-                <input type="text" id="party" data-req placeholder="Bay Title &amp; Escrow, Inc.">
+                <input type="text" id="party" data-req placeholder="Alder Creek Capital Management, LLC">
                 <div class="err">Name the organisation that is bound.</div>
               </div>
               <div class="f">
                 <label class="k" for="deliver">Delivered to <span class="req">*</span><span class="tip" title="Rule 10. Only the recipient named here, and the classes listed in 6.4, may rely.">i</span></label>
-                <input type="text" id="deliver" data-req placeholder="Pacific Underwriters, LLC">
+                <input type="text" id="deliver" data-req placeholder="Northgate Fund Services, LLC">
                 <div class="err">Name the recipient. Reliance is limited to who is named here.</div>
               </div>
             </div>
@@ -777,7 +778,7 @@
                 <div class="fields" id="signFields">
                   <div class="f">
                     <label class="k" for="sigEmail">Signatory's email <span class="req">*</span></label>
-                    <input type="email" id="sigEmail" placeholder="ana@baytitle.com">
+                    <input type="email" id="sigEmail" placeholder="ana@aldercreek.vc">
                     <div class="err">Enter the address the signing request goes to.</div>
                   </div>
                 </div>

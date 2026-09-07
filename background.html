@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROOF, background</title>
+<meta name="description" content="Why a KYC standard is needed, what actually binds a US fund, how PROOF is governed, and the machine readable layer underneath the form.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/page.css">
+<link rel="stylesheet" href="assets/nav.css">
+<script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+
+</head>
+<body>
+<header class="sitebar">
+  <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
+  <span class="tagline">a free standard KYC form for funds</span>
+  <nav class="sitetabs" aria-label="Sections">
+      <a href="index.html">Standard</a>
+      <a href="rules.html">The Rules</a>
+      <a href="create.html">Create a form</a>
+      <a href="practice.html">Practice note</a>
+      <a href="background.html" aria-current="page">Background</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
+    <span id="themeLabel">Dark</span>
+  </button>
+</header>
+<div class="wrap">
+  <header class="mast">
+    <span class="eyebrow">Background</span>
+    <h1>Why this exists, and what holds it up</h1>
+    <p class="standfirst">The problem PROOF is answering, the scope it claims, what actually binds a US fund today, how the standard is governed, and the machine readable layer underneath the form.</p>
+  </header>
+
+  <div class="col">
+    <h2>The problem</h2>
+    <p>An LP committing to six US funds fills in six different KYC packages asking the same forty questions in different orders, each drafted by different counsel, each reviewed by counsel on both sides. A fund administrator asks a new investor forty questions that three other administrators already asked. On the other side of the same fund, a deal partner screens the founders late, by email, because a bank asked whether anyone had.</p>
+    <p>None of that variation carries information. It is the seed round legal bill of private markets: weeks of elapsed time and real fees, spent producing a document a standard form would have produced in an afternoon.</p>
+    <p>The industry has a standard for what to ask. The ILPA Due Diligence Questionnaire reaches roughly 89 percent of private equity funds. It is a Word document. The industry has a standard for who an entity is, the LEI and now the verifiable LEI. Nobody has a standard for the thing in between: the completed, evidenced, certified pack. So every organisational boundary it crosses, somebody re-keys it.</p>
+    <blockquote><p>Every vendor calls their product a passport. A passport that only works in one country is not a passport.</p></blockquote>
+
+    <h2>Scope</h2>
+    <p><strong>United States funds, in both directions.</strong> The capital you accept and the capital you deploy. Any matter where one party has to satisfy itself about who the other is and where the money came from.</p>
+    <p>The mandatory federal floor is thinner than most managers believe. A US venture or private fund is generally not a covered financial institution for anti money laundering purposes, so there is no AML programme, no customer identification programme and no suspicious activity report to file. The FinCEN investment adviser rule that would have changed that is delayed to 1 January 2028 and will be retailored before it lands, and most venture advisers are exempt reporting advisers in any case. Domestic beneficial ownership reporting was permanently eliminated in August 2026, so the registry funds were starting to lean on no longer holds ownership data for US companies.</p>
+    <p>What still binds: OFAC, with strict liability, no de minimis and no intent requirement, identically on the way in and on the way out; Rule 506(d) bad actor diligence, mandatory at every offering and again at each sale; accredited investor and qualified purchaser verification; cash reporting over ten thousand dollars; CFIUS, where a foreign LP base meets US critical technology; and the Outbound Investment Security Program, live since January 2025, on covered transactions.</p>
+    <p>That is not an argument for doing less. It is the reason a voluntary standard has value right now. Nothing that your bank, your administrator and your institutional LPs impose contractually moved when the rules did. What moved is that nobody is coming to tell you the shape of it, and when the rulemaking lands, whoever already has the rails wins. The <a href="practice.html">practice note</a> works through what that means in both directions.</p>
+
+    <h2>What this deliberately does not do</h2>
+    <p>It does not define an identity scheme, replace the ILPA DDQ, tell you whether to accept an investor or make an investment, tell you whether to trust a counterparty's certification, determine what the law requires of you, or constitute legal advice. Whether to take the money, or send it, is the manager's call on the manager's own responsibility. Each recipient makes its own risk decision the same way.</p>
+
+    <h2>Governance</h2>
+    <p>Before version 1.0, PROOF moves to a legal shell separate from any implementer, with no vendor holding a controlling seat. Apache 2.0 inbound and outbound. No single vendor may carry a change over the objection of implementers. There is no 1.0 until at least eight organisations have committed to the working group, spanning at least four roles among fund manager, administrator, depositary, bank, screening provider, auditor, law firm and regulator as observer.</p>
+    <p>Publishing 1.0 without that is publishing marketing. The version number would be the only thing that changed.</p>
+
+    <h2>The machine readable version</h2>
+    <p>Most adopters will only ever touch the form, and the form works on paper. For anyone building software against it, every field maps one to one onto a JSON file, so the same facts travel as a signed PDF, as JSON, or both. That layer carries a JSON Schema, rule packs over a FATF core, a reference validator and a 35 case conformance suite. Conformance is defined by the test suite rather than by the reference code: an independent implementation that reproduces all 35 expected outputs is exactly as conformant.</p>
+    <a class="cta" href="index.html">Back to the standard</a>
+  </div>
+
+  <footer class="colophon">
+    <p><b>Status.</b> Draft, version 0.3.0. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
+    <p>PROOF is a free public form under Apache 2.0. It is not legal advice and does not replace a regulated professional's judgement. Statements about US obligations are as at August 2026 and the ground is moving; confirm the position in force on your own date.</p>
+  </footer>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>
