@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="assets/nav.css">
-<script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>(function(){var t=null;try{t=localStorage.getItem("proof-theme");}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark");})();</script>
 <link rel="stylesheet" href="assets/page.css">
 <style>
   header.mast h1 { white-space: nowrap; font-size: clamp(2rem, 4.6vw, 3.25rem); }

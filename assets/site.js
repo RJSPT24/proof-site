@@ -5,7 +5,7 @@
   function current() {
     var set = document.documentElement.getAttribute("data-theme");
     if (set === "dark" || set === "light") return set;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return "dark";
   }
   function paint() {
     var dark = current() === "dark";

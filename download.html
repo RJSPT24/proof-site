@@ -20,7 +20,7 @@
   .dl span { opacity: .35; margin: 0 .45rem; font-weight: 400; }
   td .meta { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-foreground); margin-top: .3rem; font-weight: 400; white-space: nowrap; }
 </style>
-<script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>(function(){var t=null;try{t=localStorage.getItem("proof-theme");}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark");})();</script>
 
 </head>
 <body>
@@ -94,9 +94,6 @@
     <p><strong>The Word versions are there to be filled in, not redrafted.</strong> Editable is the point, so you can type into the tables and add rows where a party list runs long. It is not an invitation to rewrite the certification. That is <a href="rules.html">rule 13</a>, and it is the whole reason a standard is worth having.</p>
   </div>
 
-  <div class="callout">
-    <p>Prefer to fill one in without downloading anything? The <a href="create.html">browser version</a> walks through the same form step by step and nothing is sent anywhere.</p>
-  </div>
 
   <footer class="colophon">
     <p><b>Status.</b> Draft, version 0.3.0. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
