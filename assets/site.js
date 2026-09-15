@@ -32,4 +32,19 @@
     if (!stored) paint();
   });
   paint();
+
+  // header gains a blurred ground once the page scrolls; hamburger on small screens
+  var bar = document.querySelector(".sitebar");
+  if (bar) {
+    var onScroll = function () { bar.classList.toggle("scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    var menu = document.getElementById("menuToggle");
+    if (menu) {
+      menu.addEventListener("click", function () {
+        var open = bar.classList.toggle("open");
+        menu.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
+  }
 })();

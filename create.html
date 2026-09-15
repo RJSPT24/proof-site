@@ -4,77 +4,83 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Create My PROOF</title>
-<meta name="description" content="Fill in a PROOF KYC form for a fund step by step, in your browser. Nothing is sent anywhere.">
+<meta name="description" content="Fill in a PROOF KYC form for a fund or asset manager step by step, in your browser. Nothing is sent anywhere.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="assets/nav.css">
 <script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <style>
 
   :root {
-    --ground:     #f2f3ef;
+    --ground:     #ffffff;
     --card:       #ffffff;
-    --ink:        #16191d;
-    --ink-soft:   #5b6167;
-    --ink-faint:  #8b9198;
-    --line:       #e0e2dd;
-    --line-firm:  #c7cac3;
+    --ink:        #111827;
+    --ink-soft:   #6b7280;
+    --ink-faint:  #9ca3af;
+    --line:       #e5e7eb;
+    --line-firm:  #d1d5db;
     --field:      #ffffff;
-    --field-line: #cfd2cb;
-    --seal:       #7b2231;
-    --seal-hover: #63161f;
+    --field-line: #e5e7eb;
+    --seal:       #111827;
+    --seal-hover: #1f2937;
     --seal-ink:   #ffffff;
-    --bar:        #1b1e22;
-    --bar-ink:    #f2f3ef;
-    --err:        #a3242f;
-    --err-wash:   #fbeff0;
-    --ok:         #2c5b4c;
-    --focus:      #7b2231;
+    --bar:        #ffffff;
+    --bar-ink:    #111827;
+    --err:        #dc2626;
+    --err-wash:   #fef2f2;
+    --ok:         #10b981;
+    --focus:      #111827;
+    --background: var(--ground); --foreground: var(--ink); --muted-foreground: var(--ink-soft);
+    --border: var(--line); --secondary: #f8fafc; --brand: #111827; --bg-rgb: 255,255,255;
+    --font-sans: Outfit, "Outfit Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --ground:     #101215;
-      --card:       #191c20;
-      --ink:        #e7e9e5;
-      --ink-soft:   #a5abb0;
-      --ink-faint:  #7d838a;
-      --line:       #2a2e33;
-      --line-firm:  #3d434a;
-      --field:      #14171a;
-      --field-line: #3a4046;
-      --seal:       #b8404f;
-      --seal-hover: #cc5261;
-      --seal-ink:   #ffffff;
-      --bar:        #0b0d0f;
-      --bar-ink:    #e7e9e5;
-      --err:        #ef94a0;
-      --err-wash:   #2e1a1e;
-      --ok:         #86bda9;
-      --focus:      #d4808c;
+    --ground:     #070b16;
+    --card:       #0e1424;
+    --ink:        #f1f5f9;
+    --ink-soft:   #94a3b8;
+    --ink-faint:  #64748b;
+    --line:       rgba(255,255,255,0.1);
+    --line-firm:  rgba(255,255,255,0.18);
+    --field:      #121a2b;
+    --field-line: rgba(255,255,255,0.14);
+    --seal:       #3b82f6;
+    --seal-hover: #2563eb;
+    --seal-ink:   #ffffff;
+    --bar:        #070b16;
+    --bar-ink:    #f1f5f9;
+    --err:        #ef4444;
+    --err-wash:   #2a1215;
+    --ok:         #34d399;
+    --focus:      #3b82f6;
+    --secondary: #111827; --brand: #3b82f6; --bg-rgb: 7,11,22;
     }
   }
 
   :root[data-theme="dark"] {
-    --ground:     #101215;
-    --card:       #191c20;
-    --ink:        #e7e9e5;
-    --ink-soft:   #a5abb0;
-    --ink-faint:  #7d838a;
-    --line:       #2a2e33;
-    --line-firm:  #3d434a;
-    --field:      #14171a;
-    --field-line: #3a4046;
-    --seal:       #b8404f;
-    --seal-hover: #cc5261;
+    --ground:     #070b16;
+    --card:       #0e1424;
+    --ink:        #f1f5f9;
+    --ink-soft:   #94a3b8;
+    --ink-faint:  #64748b;
+    --line:       rgba(255,255,255,0.1);
+    --line-firm:  rgba(255,255,255,0.18);
+    --field:      #121a2b;
+    --field-line: rgba(255,255,255,0.14);
+    --seal:       #3b82f6;
+    --seal-hover: #2563eb;
     --seal-ink:   #ffffff;
-    --bar:        #0b0d0f;
-    --bar-ink:    #e7e9e5;
-    --err:        #ef94a0;
-    --err-wash:   #2e1a1e;
-    --ok:         #86bda9;
-    --focus:      #d4808c;
+    --bar:        #070b16;
+    --bar-ink:    #f1f5f9;
+    --err:        #ef4444;
+    --err-wash:   #2a1215;
+    --ok:         #34d399;
+    --focus:      #3b82f6;
+    --secondary: #111827; --brand: #3b82f6; --bg-rgb: 7,11,22;
   }
 
   * { box-sizing: border-box; }
@@ -83,7 +89,7 @@
     margin: 0;
     background: var(--ground);
     color: var(--ink);
-    font-family: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+    font-family: var(--font-sans);
     font-size: 15px;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
@@ -91,27 +97,12 @@
 
   
 
-  .mark {
-    width: 30px; height: 30px; background: var(--seal); color: #fff;
-    display: grid; place-items: center;
-    font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 0.95rem;
-    border-radius: 3px;
-  }
 
   
   
 
-  .theme-toggle {
-    margin-left: auto;
-    display: inline-flex; align-items: center; gap: 0.45rem;
-    background: transparent; border: 1px solid #3a4046; color: var(--bar-ink);
-    border-radius: 999px; font: inherit; font-size: 0.82rem;
-    padding: 0.3rem 0.75rem; cursor: pointer;
-  }
-  .theme-toggle:hover { border-color: #5a6169; }
-  .theme-toggle svg { width: 14px; height: 14px; flex: none; }
 
-  .shell { display: grid; grid-template-columns: 15rem 1fr; min-height: calc(100vh - 46px); }
+  .shell { display: grid; grid-template-columns: 15rem 1fr; min-height: 100vh; padding-top: 4rem; }
   .rail { border-right: 1px solid var(--line); padding: 1.4rem 0; }
   .rail a {
     display: block; padding: 0.55rem 1.1rem;
@@ -122,7 +113,7 @@
   .stage { padding: clamp(1.2rem, 4vw, 3rem) 1.1rem 5rem; }
 
   .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 1rem;
     max-width: 44rem; margin: 0 auto; padding: clamp(1.4rem, 3.5vw, 2.6rem);
   }
 
@@ -147,7 +138,7 @@
 
   .choice {
     display: flex; gap: 0.75rem; align-items: flex-start;
-    border: 1px solid var(--field-line); border-radius: 6px;
+    border: 1px solid var(--field-line); border-radius: 0.625rem;
     padding: 0.85rem 0.95rem; cursor: pointer; background: var(--card);
   }
   .choice:hover { border-color: var(--line-firm); }
@@ -168,13 +159,13 @@
     width: 15px; height: 15px; border-radius: 50%;
     border: 1px solid var(--ink-faint); color: var(--ink-faint);
     font-size: 10px; line-height: 13px; text-align: center;
-    cursor: help; font-weight: 700; flex: none; font-family: "IBM Plex Mono", monospace;
+    cursor: help; font-weight: 700; flex: none; font-family: var(--font-mono);
   }
 
   input[type="text"], input[type="date"], input[type="email"], select, textarea {
     width: 100%; font: inherit; font-size: 0.95rem;
     color: var(--ink); background: var(--field);
-    border: 1px solid var(--field-line); border-radius: 6px;
+    border: 1px solid var(--field-line); border-radius: 0.625rem;
     padding: 0.6rem 0.75rem;
   }
   textarea { resize: vertical; min-height: 4.5rem; }
@@ -193,17 +184,17 @@
   .f.bad input, .f.bad select, .f.bad textarea { border-color: var(--err); }
 
   .sub-block {
-    border: 1px solid var(--line); border-radius: 6px;
+    border: 1px solid var(--line); border-radius: 0.625rem;
     padding: 1.1rem; display: flex; flex-direction: column; gap: 1.15rem;
   }
   .sub-block > .cap {
-    font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
+    font-family: var(--font-mono); font-size: 0.72rem;
     letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint);
     margin: 0;
   }
 
   .rule { border-left: 3px solid var(--seal); background: var(--err-wash); padding: 0.7rem 0.9rem; font-size: 0.88rem; border-radius: 0 4px 4px 0; }
-  .rule b { font-family: "IBM Plex Mono", monospace; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--seal); display: block; margin-bottom: 0.15rem; }
+  .rule b { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--seal); display: block; margin-bottom: 0.15rem; }
 
   .rgroup { margin-bottom: 1.8rem; }
   .rgroup h3 { font-size: 1rem; font-weight: 700; margin: 0 0 0.5rem; }
@@ -213,7 +204,7 @@
   .rrow .v { font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
   .rrow .v.empty { color: var(--ink-faint); font-weight: 400; font-style: italic; }
 
-  .certbox { border: 1px solid var(--line-firm); border-radius: 6px; padding: 1rem 1.1rem; background: var(--field); margin-bottom: 1.5rem; }
+  .certbox { border: 1px solid var(--line-firm); border-radius: 0.625rem; padding: 1rem 1.1rem; background: var(--field); margin-bottom: 1.5rem; }
   .certbox p { margin: 0 0 0.6rem; font-size: 0.88rem; color: var(--ink-soft); }
   .certbox p:last-child { margin-bottom: 0; }
   .certbox .fixed { font-weight: 700; color: var(--ink); }
@@ -223,7 +214,7 @@
   .foot { display: flex; justify-content: space-between; align-items: center; margin-top: 2.2rem; }
   .btn-back { background: none; border: none; color: var(--ink-soft); font: inherit; font-size: 0.95rem; cursor: pointer; padding: 0.6rem 0.2rem; border-radius: 4px; }
   .btn-back:hover { color: var(--ink); }
-  .btn-next { background: var(--seal); color: var(--seal-ink); border: none; border-radius: 6px; font: inherit; font-weight: 600; font-size: 0.95rem; padding: 0.7rem 1.5rem; cursor: pointer; }
+  .btn-next { background: var(--seal); color: var(--seal-ink); border: none; border-radius: 9999px; font: inherit; font-weight: 600; font-size: 0.95rem; padding: 0.7rem 1.5rem; cursor: pointer; }
   .btn-next:hover { background: var(--seal-hover); }
 
   .issued { text-align: center; padding: 1rem 0 0.5rem; }
@@ -231,26 +222,26 @@
     width: 68px; height: 68px; margin: 0 auto 1rem;
     border: 2px solid var(--ok); color: var(--ok); border-radius: 50%;
     display: grid; place-items: center;
-    font-family: "IBM Plex Mono", monospace; font-size: 0.62rem;
+    font-family: var(--font-mono); font-size: 0.62rem;
     letter-spacing: 0.06em; line-height: 1.2; text-transform: uppercase;
   }
   .issued h2 { font-size: 1.3rem; margin: 0 0 0.4rem; }
   .issued p { color: var(--ink-soft); max-width: 34rem; margin: 0 auto 0.8rem; font-size: 0.95rem; }
-  .idline { font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; color: var(--ink-faint); word-break: break-all; }
+  .idline { font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-faint); word-break: break-all; }
 
   /* consent gate */
   .scrim { position: fixed; inset: 0; background: rgba(22,25,29,0.55); display: grid; place-items: center; padding: 1.2rem; z-index: 50; overflow-y: auto; }
-  .consent { background: var(--card); border-radius: 10px; box-shadow: 0 18px 50px rgba(0,0,0,0.28); width: min(34rem, 100%); padding: clamp(1.5rem, 4vw, 2.4rem); margin: auto; }
+  .consent { background: var(--card); border-radius: 1rem; box-shadow: 0 18px 50px rgba(0,0,0,0.28); width: min(34rem, 100%); padding: clamp(1.5rem, 4vw, 2.4rem); margin: auto; }
   .consent h2 { font-size: clamp(1.3rem, 3vw, 1.6rem); font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.35rem; }
   .consent > p.lede { color: var(--ink-soft); margin: 0 0 1.5rem; font-size: 0.98rem; }
-  .consent .panel { background: var(--field); border: 1px solid var(--line); border-radius: 8px; padding: 1.1rem 1.2rem; margin-bottom: 1.5rem; }
+  .consent .panel { background: var(--field); border: 1px solid var(--line); border-radius: 1rem; padding: 1.1rem 1.2rem; margin-bottom: 1.5rem; }
   .consent .panel h3 { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.6rem; }
   .consent .panel ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
   .consent .panel li { color: var(--ink-soft); font-size: 0.92rem; }
   .agree { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.6rem; }
   .agree label { display: flex; align-items: flex-start; gap: 0.7rem; cursor: pointer; font-size: 0.98rem; }
   .agree input { accent-color: var(--seal); width: 18px; height: 18px; margin: 0.15rem 0 0; flex: none; }
-  .btn-sign { width: 100%; background: var(--seal); color: var(--seal-ink); border: none; border-radius: 8px; font: inherit; font-weight: 600; font-size: 1rem; padding: 0.85rem 1rem; cursor: pointer; }
+  .btn-sign { width: 100%; background: var(--seal); color: var(--seal-ink); border: none; border-radius: 9999px; font: inherit; font-weight: 600; font-size: 1rem; padding: 0.85rem 1rem; cursor: pointer; }
   .btn-sign:hover:not(:disabled) { background: var(--seal-hover); }
   .btn-sign:disabled { opacity: 0.42; cursor: not-allowed; }
   .consent .cancel { display: block; margin: 0.9rem auto 0; background: none; border: none; color: var(--ink-faint); font: inherit; font-size: 0.9rem; cursor: pointer; padding: 0.3rem; }
@@ -260,11 +251,11 @@
   .actions { display: flex; flex-direction: column; gap: 0.9rem; max-width: 27rem; margin: 1.8rem auto 0; text-align: left; }
   .action {
     display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.2rem 0.75rem;
-    border: 1px solid var(--line); border-radius: 6px; padding: 0.95rem 1rem;
+    border: 1px solid var(--line); border-radius: 0.625rem; padding: 0.95rem 1rem;
   }
   .action .n {
     grid-row: 1 / span 2; align-self: start;
-    font-family: "IBM Plex Mono", monospace; font-size: 0.8rem;
+    font-family: var(--font-mono); font-size: 0.8rem;
     color: var(--ink-faint); border: 1px solid var(--line-firm);
     border-radius: 50%; width: 1.5rem; height: 1.5rem;
     display: grid; place-items: center;
@@ -306,7 +297,7 @@
 
   #signview {
     position: fixed;
-    top: var(--navh, 46px); left: 0; right: 0; bottom: 0;
+    top: var(--navh, 64px); left: 0; right: 0; bottom: 0;
     z-index: 20;
     background: var(--ground);
     overflow-y: auto;
@@ -316,7 +307,7 @@
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     background: var(--card); border-bottom: 1px solid var(--line);
     padding: 0 1.1rem; height: 45px;
-    font-family: "Public Sans", system-ui, sans-serif; font-size: 0.9rem;
+    font-family: var(--font-sans); font-size: 0.9rem;
   }
   .docbar .docname { font-weight: 600; }
   .docbar .docwho { color: var(--ink-faint); font-size: 0.85rem; }
@@ -326,7 +317,7 @@
   .signrail {
     background: var(--card); border-right: 1px solid var(--line);
     display: flex; flex-direction: column;
-    font-family: "Public Sans", system-ui, sans-serif;
+    font-family: var(--font-sans);
   }
   .railhead { font-size: 1rem; font-weight: 700; margin: 0; padding: 1.4rem 1.3rem; border-bottom: 1px solid var(--line); }
   .raillist { padding: 0.5rem 1.3rem 1.5rem; flex: 1; overflow-y: auto; }
@@ -338,7 +329,7 @@
   .railfoot { padding: 1rem 1.3rem 1.5rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.4rem; }
   .btn-signing {
     width: 100%; background: var(--seal); color: var(--seal-ink);
-    border: none; border-radius: 6px; font: inherit; font-family: "Public Sans", sans-serif;
+    border: none; border-radius: 0.625rem; font: inherit; font-family: var(--font-sans);
     font-weight: 600; font-size: 0.98rem; padding: 0.8rem 1rem; cursor: pointer;
   }
   .btn-signing:hover { background: var(--seal-hover); }
@@ -350,7 +341,7 @@
     display: inline-flex; align-items: center; gap: 0.15rem;
     background: var(--card); border: 1px solid var(--line-firm); border-radius: 7px;
     padding: 0.2rem 0.3rem; margin: 0 auto 1.1rem; width: fit-content;
-    font-family: "Public Sans", sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    font-family: var(--font-sans); box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   }
   .zoomchip button {
     background: none; border: none; color: var(--ink-soft); cursor: pointer;
@@ -365,7 +356,7 @@
     width: min(52rem, 100%); margin: 0 auto;
     padding: 3.2rem 3.4rem 3.6rem;
     box-shadow: 0 1px 2px rgba(0,0,0,0.10), 0 8px 24px rgba(0,0,0,0.10);
-    font-family: "Public Sans", system-ui, sans-serif;
+    font-family: var(--font-sans);
   }
   .docpage h1 { font-size: 1.45rem; margin: 0 0 0.15rem; letter-spacing: -0.02em; color: #16181b; }
   .docpage .sub { font-size: 0.92rem; color: #555b61; margin: 0 0 0.3rem; }
@@ -403,23 +394,27 @@
 </head>
 <body>
 <header class="sitebar">
-  <a class="brand" href="index.html">
-    <span class="mark">P</span>
-    <span class="wordmark">PROOF</span>
-  </a>
-  <span class="tagline">a free standard KYC form for funds</span>
-  <nav class="sitetabs" aria-label="Sections">
+  <div class="inner">
+    <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
+    <nav class="sitetabs" aria-label="Sections"><div class="links">
       <a href="index.html">Standard</a>
       <a href="rules.html">The Rules</a>
       <a href="download.html">Download</a>
       <a href="create.html" aria-current="page">Create a form</a>
       <a href="practice.html">Practice note</a>
       <a href="background.html">Background</a>
-  </nav>
-  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
-    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
-    <span id="themeLabel">Dark</span>
-  </button>
+    </div></nav>
+    <div class="right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
+        <span id="themeLabel">Dark</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a class="nav-glass-cta" href="download.html"><span>Download the forms</span></a>
+    </div>
+  </div>
 </header>
 <div class="shell">
   <nav class="rail"><a href="#" aria-current="page">Create a PROOF form</a></nav>
@@ -462,6 +457,7 @@
                 <option value="">Select</option>
                 <option>Real estate transfer</option>
                 <option>Fund subscription or investor onboarding</option>
+                <option>Managed account or advisory client onboarding</option>
                 <option>Corporate counterparty onboarding</option>
                 <option>Vendor or supplier onboarding</option>
                 <option>Lending or credit facility</option>
@@ -537,7 +533,7 @@
                   <option value="">Select</option>
                   <option>Settlement or title agent</option>
                   <option>Escrow</option>
-                  <option>Fund manager or administrator</option>
+                  <option>Fund manager, asset manager or administrator</option>
                   <option>Lender or credit</option>
                   <option>Broker or intermediary</option>
                   <option>Law firm</option>

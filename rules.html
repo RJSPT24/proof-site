@@ -4,44 +4,52 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The PROOF Rules</title>
-<meta name="description" content="Thirteen rules governing how a PROOF form is filled in, signed and relied upon by a fund, toward its LPs and toward the companies it invests in.">
+<meta name="description" content="Thirteen rules governing how a PROOF form is filled in, signed and relied upon by a fund or asset manager, toward its investors and toward the companies it invests in.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="assets/page.css">
 <link rel="stylesheet" href="assets/nav.css">
 <script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <style>
-  ol.rulelist { list-style: none; counter-reset: r; margin: 2rem 0 0; padding: 0; max-width: 40rem; }
-  ol.rulelist li { counter-increment: r; display: grid; grid-template-columns: 2.8rem 1fr; gap: 0 1rem; padding: 1.4rem 0; border-top: 1px solid var(--rule); }
-  ol.rulelist li::before { content: counter(r); font-family: "IBM Plex Mono", monospace; font-size: 0.9rem; color: var(--seal); padding-top: 0.35rem; }
-  ol.rulelist li::before { grid-column: 1; grid-row: 1 / span 2; }
-  ol.rulelist h4 { grid-column: 2; font-family: "Public Sans", system-ui, sans-serif; font-size: 1.05rem; font-weight: 700; margin: 0 0 0.35rem; letter-spacing: -0.01em; }
-  ol.rulelist p { grid-column: 2; margin: 0; font-size: 1rem; color: var(--ink-soft); }
+  ol.rulelist { list-style: none; counter-reset: r; margin: 2rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+  ol.rulelist li { counter-increment: r; display: grid; grid-template-columns: 2.5rem 1fr; gap: .25rem 1.25rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 1rem; background: color-mix(in srgb, var(--card) 60%, transparent); }
+  ol.rulelist li::before { content: counter(r, decimal-leading-zero); grid-column: 1; grid-row: 1 / span 2; display: flex; width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center; border-radius: .75rem; background: var(--secondary); font-family: var(--font-mono); font-size: .75rem; font-weight: 600; letter-spacing: .05em; color: var(--foreground); }
+  :root[data-theme="dark"] ol.rulelist li::before { background: rgba(255,255,255,.05); color: var(--brand); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) ol.rulelist li::before { background: rgba(255,255,255,.05); color: var(--brand); } }
+  ol.rulelist h4 { grid-column: 2; font-size: 1rem; font-weight: 600; margin: .6rem 0 0; }
+  ol.rulelist p { grid-column: 2; margin: .25rem 0 0; font-size: .875rem; line-height: 1.625; color: var(--muted-foreground); }
 </style>
 </head>
 <body>
 <header class="sitebar">
-  <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
-  <span class="tagline">a free standard KYC form for funds</span>
-  <nav class="sitetabs" aria-label="Sections">
+  <div class="inner">
+    <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
+    <nav class="sitetabs" aria-label="Sections"><div class="links">
       <a href="index.html">Standard</a>
       <a href="rules.html" aria-current="page">The Rules</a>
       <a href="download.html">Download</a>
       <a href="create.html">Create a form</a>
       <a href="practice.html">Practice note</a>
       <a href="background.html">Background</a>
-  </nav>
-  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
-    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
-    <span id="themeLabel">Dark</span>
-  </button>
+    </div></nav>
+    <div class="right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"></svg>
+        <span id="themeLabel">Dark</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a class="nav-glass-cta" href="download.html"><span>Download the forms</span></a>
+    </div>
+  </div>
 </header>
 <div class="wrap">
   <header class="mast">
     <span class="eyebrow">The standard</span>
     <h1>Thirteen rules</h1>
-    <p class="standfirst">They govern how a PROOF form is filled in, signed and relied upon, on the capital a fund accepts and the capital it deploys. Nothing here is new. Every rule is drawn from the forms themselves and stated here so it can be read in one minute and quoted at an administrator, a bank or an LP.</p>
+    <p class="standfirst">They govern how a PROOF form is filled in, signed and relied upon, on the capital a fund or asset manager accepts and the capital it deploys. Nothing here is new. Every rule is drawn from the forms themselves and stated here so it can be read in one minute and quoted at an administrator, a bank or an LP.</p>
   </header>
 
   <ol class="rulelist">
@@ -54,11 +62,11 @@
       <p>It is never used alone. It carries the ownership chain, and it is the part that takes real work, in the same way the cap table is the part of a financing that takes real work.</p>
     </li>
     <li>
-      <h4>Part 6 is fixed.</h4>
-      <p>A form with an altered certification is not a PROOF form. If a counterparty asks you to change it, they are asking you to leave the standard. Say so plainly and either use the bespoke document they want or decline.</p>
+      <h4>The certification is fixed.</h4>
+      <p>Part 6 of PROOF-T and PROOF-O is the certification. A form with an altered certification is not a PROOF form. If a counterparty asks you to change it, they are asking you to leave the standard. Say so plainly and either use the bespoke document they want or decline.</p>
     </li>
     <li>
-      <h4>Everything outside Part 6 is data.</h4>
+      <h4>Everything outside the certification is data.</h4>
       <p>Fill every field. A blank is not an answer.</p>
     </li>
     <li>
@@ -106,10 +114,54 @@
   </div>
 
   <footer class="colophon">
-    <p><b>Scope.</b> United States funds, in both directions: the LPs whose capital you accept and the companies you deploy it into. More broadly, any matter where one party has to satisfy itself about who the other is and where the money came from. Real estate is the annex that is most fully worked, because it is the workflow PROOF was built out of. It is an annex, not the spine.</p>
+    <p><b>Scope.</b> United States funds and asset managers, in both directions: the investors whose capital you accept and the companies and assets you deploy it into. More broadly, any matter where one party has to satisfy itself about who the other is and where the money came from. Real estate is the annex that is most fully worked, because it is the workflow PROOF was built out of. It is an annex, not the spine.</p>
     <p><b>Status.</b> Draft. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
   </footer>
 </div>
+<footer class="sitefoot">
+  <div class="inner">
+    <div class="grid">
+      <div>
+        <a class="brand" href="index.html"><span class="mark">P</span>PROOF</a>
+        <p class="blurb">A free standard KYC form for funds and asset managers. Two forms, thirteen rules, no redlines.</p>
+      </div>
+      <div class="cols">
+        <div>
+          <p>Standard</p>
+          <ul>
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="rules.html">The thirteen rules</a></li>
+            <li><a href="background.html">Background</a></li>
+            <li><a href="practice.html">Practice note</a></li>
+          </ul>
+        </div>
+        <div>
+          <p>Forms</p>
+          <ul>
+            <li><a href="download.html">Download PDF and Word</a></li>
+            <li><a href="create.html">Create a form in your browser</a></li>
+            <li><a href="download.html">The toolkit</a></li>
+          </ul>
+        </div>
+        <div>
+          <p>Legal</p>
+          <ul>
+            <li><a href="background.html">Scope</a></li>
+            <li><a href="rules.html">Certification is fixed</a></li>
+            <li><a href="background.html">Not legal advice</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <p>PROOF is a free public form under Apache 2.0. Draft, version 0.3.0.</p>
+      <div class="badges">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z"/></svg>Apache 2.0</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Nothing sent anywhere</span>
+      </div>
+    </div>
+  </div>
+</footer>
 <script src="assets/site.js"></script>
 </body>
 </html>
