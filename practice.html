@@ -12,6 +12,8 @@
 <script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <link rel="stylesheet" href="assets/page.css">
 <style>
+  header.mast h1 { white-space: nowrap; font-size: clamp(2rem, 4.6vw, 3.25rem); }
+  @media (max-width: 640px) { header.mast h1 { white-space: normal; } }
   .byline { font-size: .875rem; color: var(--muted-foreground); display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
   .byline b { color: var(--foreground); font-weight: 500; }
   em.term { font-style: normal; font-weight: 600; color: var(--foreground); }
