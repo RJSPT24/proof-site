@@ -450,7 +450,7 @@
 
           <div class="fields" id="matterFields" hidden>
             <div class="f">
-              <label class="k" for="matter">What kind of matter is this? <span class="req">*</span><span class="tip" title="Duties attach to the role and the facts, not to the label. This only decides which extra questions you are asked.">i</span></label>
+              <label title="Duties attach to the role and the facts, not to the label. This only decides which extra questions you are asked." class="k" for="matter">What kind of transaction is this? <span class="req">*</span></label>
               <select id="matter" data-req>
                 <option value="">Select</option>
                 <option>Real estate transfer</option>
@@ -461,17 +461,17 @@
                 <option>Lending or credit facility</option>
                 <option>Other</option>
               </select>
-              <div class="err">Select the kind of matter.</div>
+              <div class="err">Select the kind of transaction.</div>
             </div>
 
             <div class="row2">
               <div class="f">
-                <label class="k" for="cparty">Counterparty <span class="req">*</span><span class="tip" title="The person or organisation on the other side. Full legal name.">i</span></label>
+                <label title="The person or organisation on the other side. Full legal name." class="k" for="cparty">Counterparty <span class="req">*</span></label>
                 <input type="text" id="cparty" data-req placeholder="Meridian Holdings LLC">
                 <div class="err">Name the counterparty.</div>
               </div>
               <div class="f">
-                <label class="k" for="ref">Your matter reference<span class="tip" title="File number, deal code or account reference. Whatever you will search on later.">i</span></label>
+                <label title="File number, deal code or account reference. Whatever you will search on later." class="k" for="ref">Your transaction reference</label>
                 <input type="text" id="ref" placeholder="2026-0841">
               </div>
             </div>
@@ -499,19 +499,19 @@
 
             <div class="row2">
               <div class="f">
-                <label class="k" for="effdate"><span id="dateLabel">Effective date</span> <span class="req">*</span><span class="tip" title="The date the matter is assessed as at: closing, subscription, or onboarding.">i</span></label>
+                <label title="The date the transaction is assessed as at: closing, subscription, or onboarding." class="k" for="effdate"><span id="dateLabel">Effective date</span> <span class="req">*</span></label>
                 <input type="date" id="effdate" data-req>
                 <div class="err">Enter the date this is assessed as at.</div>
               </div>
               <div class="f">
-                <label class="k" for="value"><span id="valueLabel">Value of the matter</span> <span class="req">*</span><span class="tip" title="Purchase price, commitment, facility size or expected annual spend.">i</span></label>
+                <label title="Purchase price, commitment, facility size or expected annual spend." class="k" for="value"><span id="valueLabel">Value of the transaction</span> <span class="req">*</span></label>
                 <div class="money"><span>$</span><input type="text" inputmode="numeric" id="value" data-req data-money placeholder="1,850,000"></div>
                 <div class="err">Enter the value.</div>
               </div>
             </div>
 
             <div class="f">
-              <label class="k" for="cash">Received as currency or equivalent<span class="tip" title="Currency, cashier's cheques, money orders and similar. Over $10,000 in a trade or business triggers Form 8300.">i</span></label>
+              <label title="Currency, cashier's cheques, money orders and similar. Over $10,000 in a trade or business triggers Form 8300." class="k" for="cash">Received as currency or equivalent</label>
               <div class="money"><span>$</span><input type="text" inputmode="numeric" id="cash" data-money placeholder="0"></div>
               <div class="err" id="cashNote"></div>
             </div>
@@ -543,7 +543,7 @@
             </div>
 
             <div class="f" id="cadenceWrap" hidden>
-              <label class="k" for="cadence">Review cadence <span class="req">*</span><span class="tip" title="An ongoing relationship carries periodic review and re-screening that a one-off does not.">i</span></label>
+              <label title="An ongoing relationship carries periodic review and re-screening that a one-off does not." class="k" for="cadence">Review cadence <span class="req">*</span></label>
               <select id="cadence" data-req-if="ongoing">
                 <option value="">Select</option>
                 <option>Annual</option><option>Every two years</option><option>Every three years</option><option>Event driven only</option>
@@ -564,7 +564,7 @@
 
           <div class="fields">
             <div class="f">
-              <label class="k" for="juris">Counterparty jurisdiction<span class="tip" title="Where the individual is resident, or where the entity or trust is formed.">i</span></label>
+              <label title="Where the individual is resident, or where the entity or trust is formed." class="k" for="juris">Counterparty jurisdiction</label>
               <input type="text" id="juris" placeholder="Delaware, United States">
             </div>
 
@@ -598,7 +598,7 @@
               <div class="err">Select the source of funds.</div>
             </div>
             <div class="f">
-              <label class="k" for="sofdesc">Description <span class="req">*</span><span class="tip" title="One or two sentences. This is certified after reasonable inquiry.">i</span></label>
+              <label title="One or two sentences. This is certified after reasonable inquiry." class="k" for="sofdesc">Description <span class="req">*</span></label>
               <textarea id="sofdesc" data-req placeholder="Proceeds from the 2025 sale of the member's logistics business, held at the remitting institution since."></textarea>
               <div class="err">Describe the source in one or two sentences.</div>
             </div>
@@ -628,7 +628,7 @@
                 <div class="err">Name the provider that ran the screening.</div>
               </div>
               <div class="f">
-                <label class="k" for="screendate">Date run <span class="req">*</span><span class="tip" title="Rule 6. Within 30 days before the effective date, never after.">i</span></label>
+                <label title="Rule 6. Within 30 days before the effective date, never after." class="k" for="screendate">Date run <span class="req">*</span></label>
                 <input type="date" id="screendate" data-req>
                 <div class="err" id="screenErr">Enter the date the screening was run.</div>
               </div>
@@ -672,7 +672,7 @@
             </div>
 
             <div class="f">
-              <label class="k" for="r8300">IRS Form 8300, cash over $10,000 <span class="req">*</span><span class="tip" title="Applies to any trade or business receiving more than $10,000 in currency or equivalent, not only real estate.">i</span></label>
+              <label title="Applies to any trade or business receiving more than $10,000 in currency or equivalent, not only real estate." class="k" for="r8300">IRS Form 8300, cash over $10,000 <span class="req">*</span></label>
               <select id="r8300" data-req><option value="">Select</option><option>Filed</option><option>Not required</option><option>Pending</option></select>
               <div class="err">Record a conclusion for Form 8300.</div>
             </div>
@@ -684,7 +684,7 @@
 
             <div id="gtoBlock" hidden>
               <div class="f">
-                <label class="k" for="rgto">FinCEN geographic targeting order <span class="req">*</span><span class="tip" title="Non-financed, entity or trust transferee, covered metro, above threshold. Real estate only.">i</span></label>
+                <label title="Non-financed, entity or trust transferee, covered metro, above threshold. Real estate only." class="k" for="rgto">FinCEN geographic targeting order <span class="req">*</span></label>
                 <select id="rgto" data-req-if="re"><option value="">Select</option><option>Filed</option><option>Not required</option><option>Not in a covered area</option></select>
                 <div class="err">Record a conclusion for the GTO report.</div>
               </div>
@@ -696,8 +696,8 @@
             </div>
 
             <div class="f">
-              <label class="k" for="rother">Any other report your regime requires<span class="tip" title="A SAR, a regulator filing, a sectoral report. Record the conclusion even when the answer is none.">i</span></label>
-              <input type="text" id="rother" placeholder="None considered applicable to this matter.">
+              <label title="A SAR, a regulator filing, a sectoral report. Record the conclusion even when the answer is none." class="k" for="rother">Any other report your regime requires</label>
+              <input type="text" id="rother" placeholder="None considered applicable to this transaction.">
             </div>
 
             <div class="rule" id="usNote" hidden>
@@ -726,12 +726,12 @@
             </div>
             <div class="row2">
               <div class="f">
-                <label class="k" for="party">Certifying Party <span class="req">*</span><span class="tip" title="The organisation bound by the certification. The individual is not personally liable beyond their authority.">i</span></label>
+                <label title="The organisation bound by the certification. The individual is not personally liable beyond their authority." class="k" for="party">Certifying Party <span class="req">*</span></label>
                 <input type="text" id="party" data-req placeholder="Alder Creek Capital Management, LLC">
                 <div class="err">Name the organisation that is bound.</div>
               </div>
               <div class="f">
-                <label class="k" for="deliver">Delivered to <span class="req">*</span><span class="tip" title="Rule 10. Only the recipient named here, and the classes listed in 6.4, may rely.">i</span></label>
+                <label title="Rule 10. Only the recipient named here, and the classes listed in 6.4, may rely." class="k" for="deliver">Delivered to <span class="req">*</span></label>
                 <input type="text" id="deliver" data-req placeholder="Northgate Fund Services, LLC">
                 <div class="err">Name the recipient. Reliance is limited to who is named here.</div>
               </div>
@@ -827,7 +827,7 @@
     <div class="panel">
       <h3>Electronic Signature Consent</h3>
       <ul>
-        <li>By proceeding, you consent to sign this form electronically and to receive electronic records related to this matter.</li>
+        <li>By proceeding, you consent to sign this form electronically and to receive electronic records related to this transaction.</li>
         <li>You may withdraw consent by closing this page before completing.</li>
         <li>Requires a modern web browser with JavaScript enabled.</li>
       </ul>
@@ -877,7 +877,7 @@
     $$("#formChoices .choice").forEach(o => { o.hidden = !o.classList.contains("sel"); });
     $("#cadenceWrap").hidden = !isOngoing();
     $("#dateLabel").textContent = isOngoing() ? "Onboarding date" : "Effective date";
-    $("#valueLabel").textContent = isOngoing() ? "Expected annual value" : "Value of the matter";
+    $("#valueLabel").textContent = isOngoing() ? "Expected annual value" : "Value of the transaction";
   });
 
   wireChoices("#resultChoices", v => { $("#matchWrap").hidden = v !== "Match"; });
@@ -889,7 +889,7 @@
     $("#gtoBlock").hidden = !re;
     $("#usNote").hidden = !re;
     if (!isOngoing()) $("#dateLabel").textContent = re ? "Closing date" : "Effective date";
-    $("#valueLabel").textContent = isOngoing() ? "Expected annual value" : (re ? "Total consideration" : "Value of the matter");
+    $("#valueLabel").textContent = isOngoing() ? "Expected annual value" : (re ? "Total consideration" : "Value of the transaction");
   });
 
   $("#ctype").addEventListener("change", e => {
@@ -956,12 +956,12 @@
 
     let h = `<h1>${esc(formType())}</h1>
       <p class="sub">Portable Record of Ownership and Origin of Funds &middot; ${isOngoing() ? "ongoing relationship" : "single transaction"}</p>
-      <p class="draftline">Draft, version 0.1. Not reviewed by US counsel. Do not use in a live matter.</p>`;
+      <p class="draftline">Draft, version 0.1. Not reviewed by US counsel. Do not use in a live transaction.</p>`;
 
-    h += `<h2>Part 1. The matter</h2>` + ptable([
-      prow("Kind of matter", val("#matter")),
+    h += `<h2>Part 1. The transaction</h2>` + ptable([
+      prow("Kind of transaction", val("#matter")),
       prow("Counterparty", val("#cparty")),
-      prow("Our matter reference", val("#ref")),
+      prow("Our transaction reference", val("#ref")),
       prow(dateLbl, val("#effdate")),
       prow(valLbl, money("#value")),
       prow("Received as currency or equivalent", money("#cash") || "$0"),
@@ -1035,11 +1035,11 @@
     flag($("#sigEmail"), !okEmail, okEmail ? "" : "Enter a valid email address for the signatory.");
     if (!okEmail) return;
 
-    const subject = `${formType()} for signature — ${val("#cparty") || "matter"}`;
+    const subject = `${formType()} for signature — ${val("#cparty") || "transaction"}`;
     const body = [
       `${val("#signer")},`,
       ``,
-      `Attached is a ${formType()} form for your signature, covering ${val("#cparty") || "this matter"}${val("#ref") ? " (our reference " + val("#ref") + ")" : ""}.`,
+      `Attached is a ${formType()} form for your signature, covering ${val("#cparty") || "this transaction"}${val("#ref") ? " (our reference " + val("#ref") + ")" : ""}.`,
       ``,
       `Certifying Party: ${val("#party")}`,
       `Delivered to: ${val("#deliver")}`,
@@ -1096,7 +1096,7 @@
       ? "Reliance ends at the earliest of the next review, twelve months from signature, or notice of change."
       : "Reliance ends at the earliest of the effective date, twelve months from signature, or notice of change.";
     const stamp = (val("#effdate") || "").replace(/-/g, "") || "draft";
-    $("#doneId").textContent = "proof:" + formType().toLowerCase() + ":" + stamp + " · not reviewed by US counsel, do not use in a live matter";
+    $("#doneId").textContent = "proof:" + formType().toLowerCase() + ":" + stamp + " · not reviewed by US counsel, do not use in a live transaction";
     buildPrintable();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
