@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="assets/page.css">
 <link rel="stylesheet" href="assets/nav.css">
 <style>
+  .toplink { display: inline-flex; align-items: center; gap: .4rem; margin-bottom: 1.5rem; padding: .45rem 1rem; border-radius: 9999px; border: 1px solid var(--border); background: color-mix(in srgb, var(--card) 70%, transparent); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--foreground); text-decoration: none; transition: border-color .15s, background-color .15s; }
+  .toplink:hover { border-color: var(--foreground); }
+  .toplink::after { content: "\2192"; }
   .dl { font-size: .8125rem; font-weight: 600; white-space: nowrap; }
   .dl a { color: var(--foreground); }
   .dl span { opacity: .35; margin: 0 .45rem; font-weight: 400; }
@@ -29,7 +32,6 @@
       <a href="practice.html">Practice Note</a>
       <a href="download.html" aria-current="page">Forms</a>
       <a href="background.html">Specification</a>
-      <a href="create.html">Create</a>
     </div></nav>
     <div class="right">
       <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
@@ -45,6 +47,7 @@
 </header>
 <div class="wrap">
   <header class="mast">
+    <a class="toplink" href="create.html">Fill out an online form</a>
     <span class="eyebrow">Draft, version 0.3.0</span>
     <h1>Download the forms</h1>
     <p class="standfirst">Every form as a PDF and as a Word document. Apache 2.0, free to use and to modify for your own purposes. No licence fee, no account, no email required.</p>
