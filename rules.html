@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The PROOF Rules</title>
-<meta name="description" content="Thirteen rules governing how a PROOF form is filled in, signed and relied upon by a fund or asset manager, toward its investors and toward the companies it invests in.">
+<meta name="description" content="The thirteen rules that define how a PROOF form is completed, certified and used.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap">
@@ -13,12 +13,13 @@
 <script>try{var t=localStorage.getItem("proof-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <style>
   ol.rulelist { list-style: none; counter-reset: r; margin: 2rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
-  ol.rulelist li { counter-increment: r; display: grid; grid-template-columns: 2.5rem 1fr; gap: .25rem 1.25rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 1rem; background: color-mix(in srgb, var(--card) 60%, transparent); }
-  ol.rulelist li::before { content: counter(r, decimal-leading-zero); grid-column: 1; grid-row: 1 / span 2; display: flex; width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center; border-radius: .75rem; background: var(--secondary); font-family: var(--font-mono); font-size: .75rem; font-weight: 600; letter-spacing: .05em; color: var(--foreground); }
-  :root[data-theme="dark"] ol.rulelist li::before { background: rgba(255,255,255,.05); color: var(--brand); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) ol.rulelist li::before { background: rgba(255,255,255,.05); color: var(--brand); } }
+  ol.rulelist > li { counter-increment: r; display: grid; grid-template-columns: 2.5rem 1fr; gap: .25rem 1.25rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 1rem; background: color-mix(in srgb, var(--card) 60%, transparent); }
+  ol.rulelist > li::before { content: counter(r, decimal-leading-zero); grid-column: 1; grid-row: 1 / span 2; display: flex; width: 2.5rem; height: 2.5rem; align-items: center; justify-content: center; border-radius: .75rem; background: var(--secondary); font-family: var(--font-mono); font-size: .75rem; font-weight: 600; letter-spacing: .05em; color: var(--foreground); }
+  :root[data-theme="dark"] ol.rulelist > li::before { background: rgba(255,255,255,.05); color: var(--brand); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) ol.rulelist > li::before { background: rgba(255,255,255,.05); color: var(--brand); } }
   ol.rulelist h4 { grid-column: 2; font-size: 1rem; font-weight: 600; margin: .6rem 0 0; }
-  ol.rulelist p { grid-column: 2; margin: .25rem 0 0; font-size: .875rem; line-height: 1.625; color: var(--muted-foreground); }
+  ol.rulelist p { grid-column: 2; margin: .5rem 0 0; font-size: .875rem; line-height: 1.625; color: var(--muted-foreground); }
+  ol.rulelist ul.dots { grid-column: 2; margin-top: .5rem; }
 </style>
 </head>
 <body>
@@ -27,11 +28,11 @@
     <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
     <nav class="sitetabs" aria-label="Sections"><div class="links">
       <a href="index.html">Standard</a>
-      <a href="rules.html" aria-current="page">The Rules</a>
-      <a href="download.html">Download</a>
-      <a href="create.html">Create a form</a>
-      <a href="practice.html">Practice note</a>
-      <a href="background.html">Background</a>
+      <a href="rules.html" aria-current="page">Rules</a>
+      <a href="practice.html">Practice Note</a>
+      <a href="download.html">Forms</a>
+      <a href="background.html">Specification</a>
+      <a href="create.html">Create</a>
     </div></nav>
     <div class="right">
       <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
@@ -46,76 +47,86 @@
   </div>
 </header>
 <div class="wrap">
+  <nav class="subnav nums" aria-label="Rules">
+    <span class="lbl">Rule</span>
+      <a href="#rule-1">1</a>
+      <a href="#rule-2">2</a>
+      <a href="#rule-3">3</a>
+      <a href="#rule-4">4</a>
+      <a href="#rule-5">5</a>
+      <a href="#rule-6">6</a>
+      <a href="#rule-7">7</a>
+      <a href="#rule-8">8</a>
+      <a href="#rule-9">9</a>
+      <a href="#rule-10">10</a>
+      <a href="#rule-11">11</a>
+      <a href="#rule-12">12</a>
+      <a href="#rule-13">13</a>
+  </nav>
   <header class="mast">
     <span class="eyebrow">The standard</span>
     <h1>Thirteen rules</h1>
-    <p class="standfirst">They govern how a PROOF form is filled in, signed and relied upon, on the capital a fund or asset manager accepts and the capital it deploys. Nothing here is new. Every rule is drawn from the forms themselves and stated here so it can be read in one minute and quoted at an administrator, a bank or an LP.</p>
+    <p class="standfirst">These thirteen rules define how a PROOF form should be completed, certified and used. They are intentionally simple: the aim is to keep every PROOF record consistent, clear and reliable without dictating the underlying compliance decision.</p>
   </header>
 
   <ol class="rulelist">
-    <li>
-      <h4>Pick one form.</h4>
-      <p>Two forms, one question between them: is the matter assessed once, or does it carry on? There is no configurator, no options matrix, no "select applicable subsections". The kind of matter does not change the certification. It only decides which annex you complete.</p>
+    <li id="rule-1">
+      <h4>Pick one core form</h4>
+      <p>Use PROOF One-Time where the matter is assessed once. Use PROOF Ongoing where the relationship continues and requires future review.</p><p>The details may vary, but the choice of core form does not.</p>
     </li>
-    <li>
-      <h4>Attach PROOF-E for every entity and trust.</h4>
-      <p>It is never used alone. It carries the ownership chain, and it is the part that takes real work, in the same way the cap table is the part of a financing that takes real work.</p>
+    <li id="rule-2">
+      <h4>Complete PROOF Entity for every relevant entity or trust</h4>
+      <p>PROOF Entity is an additional form used whenever a party is an entity or trust. It records who owns and controls that entity, including the ownership chain where relevant.</p><p>Complete a separate PROOF Entity form for each entity or trust, and use it alongside either PROOF One-Time or PROOF Ongoing.</p>
     </li>
-    <li>
-      <h4>The certification is fixed.</h4>
-      <p>Part 6 of PROOF-T and PROOF-O is the certification. A form with an altered certification is not a PROOF form. If a counterparty asks you to change it, they are asking you to leave the standard. Say so plainly and either use the bespoke document they want or decline.</p>
+    <li id="rule-3">
+      <h4>The certification is fixed</h4>
+      <p>Part 6 contains the standard PROOF certification and must not be changed.</p><p>If a recipient requires additional wording, conditions or representations, these should be added separately rather than altering the PROOF form.</p><p>Once the certification is changed, it is no longer a standard PROOF form.</p>
     </li>
-    <li>
-      <h4>Everything outside the certification is data.</h4>
-      <p>Fill every field. A blank is not an answer.</p>
+    <li id="rule-4">
+      <h4>Enter the data</h4>
+      <p>Outside the fixed certification, the form is a record of facts, evidence and conclusions.</p><p>Complete every applicable field. If something does not apply, say why. A blank field leaves the record incomplete.</p>
     </li>
-    <li>
-      <h4>"Not required" needs a reason.</h4>
-      <p>Record every report you considered, including the ones you concluded were not required, and why. A blank line and "not required" are not the same thing.</p>
+    <li id="rule-5">
+      <h4>“Not required” needs a reason</h4>
+      <p>If you considered a report, check or piece of evidence and decided it was not required, record the reason.</p><p>“Not required” means a decision was made. A blank field does not. The record should make that distinction clear.</p>
     </li>
-    <li>
-      <h4>Screen within 30 days before the effective date, never after.</h4>
-      <p>The effective date is the closing, the subscription, or the date the counterparty is taken on. Screening run after it documents nothing about the decision that was made.</p>
+    <li id="rule-6">
+      <h4>Screen first, decide after</h4>
+      <p>Screening must be completed before the decision. The record should clearly show:</p><ul class="dots"><li>When the screening was completed</li><li>What was checked</li><li>Which provider was used</li><li>The result</li><li>The date of the decision</li></ul>
     </li>
-    <li>
-      <h4>A match cleared without a written reason is not a cleared match.</h4>
-      <p>Record every match, whether or not it was cleared, who dispositioned it, when, and the actual reason.</p>
+    <li id="rule-7">
+      <h4>Explain every cleared match</h4>
+      <p>Screening matches are common. What matters is how they are resolved. For every match, record:</p><ul class="dots"><li>What matched</li><li>Who reviewed it</li><li>When it was reviewed</li><li>The outcome</li><li>Why that outcome was reached</li></ul><p>A match marked “cleared” without a reason is not a complete record.</p>
     </li>
-    <li>
-      <h4>Evidence stays with the certifier.</h4>
-      <p>The form references documents. It does not carry them. Four organisations should never end up emailing each other copies of the same passport.</p>
+    <li id="rule-8">
+      <h4>Keep the evidence</h4>
+      <p>PROOF can reference supporting documents without requiring every document to be sent to every recipient. The Certifying Party remains responsible for retaining the evidence it relied on.</p><p>This keeps the record auditable without unnecessarily circulating sensitive documents.</p>
     </li>
-    <li>
-      <h4>One named signer, with authority.</h4>
-      <p>The Certifying Party is bound. The individual signing assumes no personal liability beyond their assertion of authority.</p>
+    <li id="rule-9">
+      <h4>Name who is signing</h4>
+      <p>Every PROOF record must identify the person signing and the organisation they represent.</p><p>By signing, they confirm that they are authorised to certify the record on that organisation’s behalf.</p>
     </li>
-    <li>
-      <h4>Reliance is named and time limited.</h4>
-      <p>Only the recipient named on delivery and the classes listed in 6.4 may rely. Reliance ends at the earliest of the effective date, the next review date, twelve months from signature, or notice of change.</p>
+    <li id="rule-10">
+      <h4>Define who can rely on it, and for how long</h4>
+      <p>A PROOF record should clearly state who it is delivered to and how long it may be relied on. Reliance should end when the earliest relevant limit is reached, such as:</p><ul class="dots"><li>The effective date for a one-time matter</li><li>The next review date</li><li>The end of the permitted reliance period</li><li>Notice that the information has changed</li></ul><p>A PROOF record should never create unlimited reliance for unidentified parties.</p>
     </li>
-    <li>
-      <h4>The recipient still decides.</h4>
-      <p>Reliance discharges nothing the recipient owes in its own right. Sanctions liability in particular is strict and cannot be transferred by certificate.</p>
+    <li id="rule-11">
+      <h4>The recipient still makes the decision</h4>
+      <p>PROOF records the diligence that was carried out. It does not transfer responsibility for the decision. The recipient must still decide:</p><ul class="dots"><li>Whether the information is sufficient</li><li>Whether further diligence is required</li><li>Whether the risk is acceptable</li><li>Whether the relationship or transaction should proceed</li></ul><p>The certification supports the decision. It does not replace it.</p>
     </li>
-    <li>
-      <h4>If it becomes untrue, say so without delay.</h4>
-      <p>Notify every recipient in writing. For an ongoing relationship, provide a fresh form at each recorded review.</p>
+    <li id="rule-12">
+      <h4>Keep it current</h4>
+      <p>If material information changes, update the record and notify anyone relying on it.</p><p>For ongoing relationships, refresh PROOF at each review or sooner if something material changes.</p>
     </li>
-    <li>
-      <h4>Do not redline.</h4>
-      <p>If your situation does not fit, you are outside the standard, and that is a legitimate answer. A form that gets marked up costs more than the bespoke document it replaced, because now both sides argue about the deviation as well as the substance. A standard survives exactly as long as people refuse to bend it.</p>
+    <li id="rule-13">
+      <h4>Keep PROOF standard</h4>
+      <p>PROOF only works if everyone uses the same form.</p><p>If a recipient needs something extra, add it separately. Do not rewrite the PROOF certification. Change the certification, and it is no longer PROOF.</p>
     </li>
   </ol>
 
-  <div class="col">
-    <h2>Rule 13 is the load bearing one</h2>
-    <p>Everything above it is mechanics. A standard survives exactly as long as people refuse to bend it, which is why the certification is fixed and why "your situation does not fit" is a legitimate answer rather than a failure.</p>
-    <a class="cta" href="create.html">Create a form</a>
-  </div>
-
   <footer class="colophon">
-    <p><b>Scope.</b> United States funds and asset managers, in both directions: the investors whose capital you accept and the companies and assets you deploy it into. More broadly, any matter where one party has to satisfy itself about who the other is and where the money came from. Real estate is the annex that is most fully worked, because it is the workflow PROOF was built out of. It is an annex, not the spine.</p>
-    <p><b>Status.</b> Draft. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
+    <p><b>Status.</b> Draft, version 0.3.0. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
+    <p>PROOF is not legal advice and does not replace professional judgment.</p>
   </footer>
 </div>
 <footer class="sitefoot">
@@ -130,24 +141,24 @@
           <p>Standard</p>
           <ul>
             <li><a href="index.html">Overview</a></li>
-            <li><a href="rules.html">The thirteen rules</a></li>
-            <li><a href="background.html">Background</a></li>
-            <li><a href="practice.html">Practice note</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="practice.html">Practice Note</a></li>
+            <li><a href="background.html">Specification</a></li>
           </ul>
         </div>
         <div>
           <p>Forms</p>
           <ul>
             <li><a href="download.html">Download PDF and Word</a></li>
-            <li><a href="create.html">Create a form in your browser</a></li>
+            <li><a href="create.html">Create a PROOF form</a></li>
             <li><a href="download.html">The toolkit</a></li>
           </ul>
         </div>
         <div>
           <p>Legal</p>
           <ul>
-            <li><a href="background.html">Scope</a></li>
-            <li><a href="rules.html">Certification is fixed</a></li>
+            <li><a href="index.html#does-not">What PROOF does not do</a></li>
+            <li><a href="rules.html#rule-3">The certification is fixed</a></li>
             <li><a href="background.html">Not legal advice</a></li>
           </ul>
         </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PROOF, a KYC standard for funds and asset managers</title>
+<title>PROOF, a common KYC standard for funds and asset managers</title>
 <meta name="description" content="A free, open standard for collecting, evidencing and certifying KYC for US funds and asset managers, on the capital you accept and the capital you deploy. Two core forms, thirteen rules, no redlines.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,6 +54,12 @@
   .prose h3 { margin: 0; }
   .prose p { font-size: .875rem; line-height: 1.625; color: var(--muted-foreground); }
   .prose p a { color: var(--foreground); font-weight: 500; }
+  .hero .standfirst.strong { color: var(--foreground); font-weight: 500; margin-top: .5rem; }
+  .hero .subnav { margin-bottom: 2rem; }
+  .formcards .card { min-height: 0; }
+  .formcards .cta-row { justify-content: flex-start; margin-top: auto; padding-top: 1.25rem; gap: .5rem; }
+  .formcards .cta, .formcards .cta-ghost { height: 2.5rem; padding: 0 1.1rem; font-size: .8125rem; margin-top: 0; }
+  .card ul.dots { margin-top: .25rem; }
   @media (max-width: 900px) { .steps { grid-template-columns: 1fr; } }
   @media (max-width: 700px) { .hero { padding: 6rem 0 3.5rem; } }
 </style>
@@ -64,11 +70,11 @@
     <a class="brand" href="index.html"><span class="mark">P</span><span class="wordmark">PROOF</span></a>
     <nav class="sitetabs" aria-label="Sections"><div class="links">
       <a href="index.html" aria-current="page">Standard</a>
-      <a href="rules.html">The Rules</a>
-      <a href="download.html">Download</a>
-      <a href="create.html">Create a form</a>
-      <a href="practice.html">Practice note</a>
-      <a href="background.html">Background</a>
+      <a href="rules.html">Rules</a>
+      <a href="practice.html">Practice Note</a>
+      <a href="download.html">Forms</a>
+      <a href="background.html">Specification</a>
+      <a href="create.html">Create</a>
     </div></nav>
     <div class="right">
       <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
@@ -83,26 +89,55 @@
   </div>
 </header>
 <main>
-<section class="hero">
+<section class="hero" id="overview">
   <div class="wash"></div>
   <div class="container-page">
+    <nav class="subnav" aria-label="On this page">
+      <a href="#overview">Overview</a>
+      <a href="#why">Why PROOF</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#principles">Principles</a>
+      <a href="#forms">Forms</a>
+    </nav>
     <span class="pill shiny badge">Draft, version 0.3.0 &middot; Free under Apache 2.0</span>
-    <h1>A KYC standard for funds and asset managers. <span class="text-gradient">Fill it in. Do not negotiate it.</span></h1>
-    <p class="standfirst">Two core forms. Thirteen rules. No redlines. A common format for collecting, evidencing and certifying KYC on both sides of a manager's diligence: the capital you accept, and the capital you deploy.</p>
+    <h1>A common KYC standard for <span class="text-gradient">funds and asset managers</span></h1>
+    <p class="standfirst">Funds, administrators and advisers repeatedly collect much of the same KYC information in different forms, different orders and different terminology. PROOF provides a common format for collecting, evidencing and certifying that information.</p>
+    <p class="standfirst strong">Two core forms. Thirteen rules. No redlines. Free to use.</p>
     <div class="cta-row">
       <a class="cta" href="download.html">Download the forms</a>
-      <a class="cta-ghost" href="#how-it-works">How it works</a>
+      <a class="cta-ghost" href="create.html">Create a PROOF form</a>
     </div>
-    <p class="under">PDF and Word, free, no account. Or <a href="create.html">fill one in your browser</a>.</p>
+    <p class="under">PDF and Word. No licence fee. No account required.</p>
   </div>
 </section>
 
-<section class="sec section-pad" id="how-it-works">
+<section class="sec section-pad" id="why">
   <div class="container-page">
     <div class="sec-head">
-      <span class="eyebrow">How it works</span>
-      <h2>PROOF in three steps</h2>
-      <p class="sub">Pick the form, fill in six parts, certify. The same record travels to the next relationship.</p>
+      <span class="eyebrow">Why PROOF?</span>
+      <h2>A common starting point</h2>
+      <p class="sub">KYC is governed by a mix of legal requirements, regulatory expectations, contractual obligations and industry practice. But none of that has produced a widely accepted standard for how the underlying KYC record should be collected and documented.</p>
+    </div>
+    <div class="cards two">
+      <div class="card">
+        <h3>The problem</h3>
+        <p>So every fund, administrator and adviser ends up maintaining its own version of essentially the same process.</p>
+      </div>
+      <div class="card">
+        <h3>What PROOF changes</h3>
+        <p>PROOF creates a common starting point. The format is standard. The compliance decision remains yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec washed section-pad" id="how-it-works">
+  <div class="wash"></div>
+  <div class="container-page">
+    <div class="sec-head">
+      <span class="eyebrow">How PROOF works</span>
+      <h2>Choose, build, certify</h2>
+      <p class="sub">Three steps, the same every time.</p>
     </div>
     <div class="steps">
       <ol>
@@ -110,35 +145,34 @@
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l4 4v14H5V3h4z"/><path d="M9 12h6M9 16h6"/></svg></span>
           <div>
             <p class="n">01</p>
-            <h3>Pick the form</h3>
-            <p>Assessed once, or carries on. That is the only question. A single investment or closing takes PROOF-T; an LP, client or portfolio company takes PROOF-O. Any entity or trust attaches PROOF-E.</p>
+            <h3>Choose the form</h3>
+            <p>There are two core forms. If any relevant party is an entity or trust, an additional PROOF Entity form must also be completed.</p>
           </div>
         </li>
         <li>
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg></span>
           <div>
             <p class="n">02</p>
-            <h3>Fill in six parts</h3>
-            <p>The matter, the parties, the origin of funds, screening, reports considered. Facts and evidence, not clauses. Every field is filled, and a blank is not an answer.</p>
+            <h3>Build the record</h3>
+            <p>Each PROOF form creates a complete KYC record covering the parties, ownership and control, source of funds, screening, supporting evidence and certification.</p>
           </div>
         </li>
         <li>
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
           <div>
             <p class="n">03</p>
-            <h3>Certify and hand it over</h3>
-            <p>Part 6 is a fixed certification. It is the part that makes the form worth something to the person receiving it, and it is the part nobody redlines.</p>
+            <h3>Certify and share</h3>
+            <p>The completed record is certified and delivered to the intended recipient.</p>
           </div>
         </li>
       </ol>
       <div class="tablewrap">
         <table>
-          <thead><tr><th scope="col">Your situation</th><th scope="col">Form</th></tr></thead>
+          <thead><tr><th scope="col">Form</th><th scope="col">Use it for</th></tr></thead>
           <tbody>
-            <tr><td class="axis">Assessed once: a single investment, a closing, a one-off transfer or payment</td><td><strong>PROOF-T</strong></td></tr>
-            <tr><td class="axis">Carries on: an LP, a managed account, a portfolio company, a client, a vendor, a repeat counterparty</td><td><strong>PROOF-O</strong></td></tr>
-            <tr><td class="axis">Either, where a party is an entity or a trust</td><td>attach <strong>PROOF-E</strong></td></tr>
-            <tr><td class="axis">Either, where the matter is real estate</td><td>complete <strong>Annex A</strong></td></tr>
+            <tr><td class="axis">PROOF One-Time</td><td>KYC that is completed once for a specific investment, closing, transfer or transaction.</td></tr>
+            <tr><td class="axis">PROOF Ongoing</td><td>A continuing relationship that requires future review or monitoring.</td></tr>
+            <tr><td class="axis">PROOF Entity</td><td>An additional form, completed for each relevant entity or trust and used with either core form.</td></tr>
           </tbody>
         </table>
       </div>
@@ -146,75 +180,80 @@
   </div>
 </section>
 
-<section class="sec washed section-pad">
+<section class="sec section-pad" id="principles">
+  <div class="container-page">
+    <div class="sec-head">
+      <span class="eyebrow">Four principles</span>
+      <h2>Four principles, <span class="text-gradient">one standard</span></h2>
+    </div>
+    <div class="cards two">
+      <div class="card"><span class="num">01</span><h3>A common framework</h3><p>You provide facts and evidence. You do not draft clauses or negotiate wording.</p></div>
+      <div class="card"><span class="num">02</span><h3>Standardised</h3><p>The same core structure is used each time instead of rebuilding the process for every onboarding or transaction.</p></div>
+      <div class="card"><span class="num">03</span><h3>Free and open</h3><p>Anyone can use or implement PROOF. There is no licence fee and no requirement to use VeriKYC.</p></div>
+      <div class="card"><span class="num">04</span><h3>No redlines</h3><p>A standard only works if it remains standard. Additional diligence can always be requested. The underlying PROOF certification is not rewritten to suit each recipient.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec washed section-pad" id="does-not">
   <div class="wash"></div>
   <div class="container-page">
-    <div class="sec-head">
-      <span class="eyebrow">Why PROOF</span>
-      <h2>Four properties, <span class="text-gradient">one standard.</span></h2>
-      <p class="sub">A standard form is not adopted because it is well drafted. It is adopted because of four properties, and dropping any one of them is what kills the others.</p>
-    </div>
     <div class="cards two">
-      <div class="card"><span class="num">01</span><h3>A form, not a framework</h3><p>You provide facts and evidence. You do not draft clauses or negotiate wording.</p></div>
-      <div class="card"><span class="num">02</span><h3>Standardised</h3><p>The same core format across funds and asset managers, rather than rebuilt for every onboarding. No options matrix, no "select applicable subsections".</p></div>
-      <div class="card"><span class="num">03</span><h3>Free and open</h3><p>Apache 2.0. No licence fee, no gate, no account.</p></div>
-      <div class="card"><span class="num">04</span><h3>Not designed to be redlined</h3><p>The value of a standard disappears if every organisation creates its own version. That is the entire point, and it is <a href="rules.html">rule 13</a>.</p></div>
+      <div class="card">
+        <h3>What PROOF does</h3>
+        <p>PROOF standardises the structure of the KYC record:</p>
+        <ul class="dots">
+          <li>Who is being assessed</li>
+          <li>Ownership and control</li>
+          <li>Origin of funds</li>
+          <li>Screening</li>
+          <li>Evidence considered</li>
+          <li>Conclusions recorded</li>
+          <li>Certification</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What PROOF doesn't do</h3>
+        <p>PROOF does not:</p>
+        <ul class="dots">
+          <li>Decide whether a party should be accepted</li>
+          <li>Replace a fund's AML or compliance policy</li>
+          <li>Determine the appropriate level of enhanced diligence</li>
+          <li>Make an underlying fact true simply because it appears on a form</li>
+          <li>Transfer sanctions or regulatory liability</li>
+          <li>Replace legal advice</li>
+        </ul>
+        <p style="margin-top:1rem">Each recipient remains responsible for its own legal obligations, risk assessment and decision.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="sec section-pad">
+<section class="section-pad" id="forms">
   <div class="container-page">
     <div class="sec-head">
-      <span class="eyebrow">The problem</span>
-      <h2>The seed round legal bill of private markets</h2>
-      <p class="sub">Talk to fund managers, asset managers, compliance teams and lawyers across the United States and the same frustration comes up.</p>
+      <span class="eyebrow">Download</span>
+      <h2>Download the PROOF form</h2>
     </div>
-    <div class="cards two">
+    <div class="cards three formcards">
       <div class="card">
-        <h3>What it looks like today</h3>
-        <p>KYC is governed by a patchwork of legal requirements, regulatory expectations and industry practice. That patchwork has never produced a clear, widely accepted standard for how KYC should be collected, evidenced and documented. So every fund, asset manager, administrator and adviser spends time building and maintaining its own version of essentially the same process.</p>
+        <h3>PROOF One-Time</h3>
+        <p>For a transaction or matter assessed on a defined date.</p>
+        <div class="cta-row"><a class="cta" href="forms/PROOF-T.pdf" download>Download PDF</a><a class="cta-ghost" href="forms/PROOF-T.docx" download>Download Word</a></div>
       </div>
       <div class="card">
-        <h3>What PROOF does instead</h3>
-        <p>Do for KYC what standardised documents such as the YC SAFE did for early stage financing. Instead of every organisation creating its own version of the same process, establish a common format that everyone can understand and use: a consistent set of information, evidence and certifications that moves with a party from one relationship to the next.</p>
+        <h3>PROOF Ongoing</h3>
+        <p>For a continuing relationship with a review schedule.</p>
+        <div class="cta-row"><a class="cta" href="forms/PROOF-O.pdf" download>Download PDF</a><a class="cta-ghost" href="forms/PROOF-O.docx" download>Download Word</a></div>
       </div>
       <div class="card">
-        <h3>What PROOF standardises</h3>
-        <p>How core information, ownership details, origin of funds evidence, screening results and supporting documentation are collected and recorded. It applies in both directions: the LPs whose capital you accept, and the companies you send it to. The record stays consistent even when the fund, manager, administrator or adviser changes.</p>
-      </div>
-      <div class="card">
-        <h3>What PROOF does not do</h3>
-        <p>It does not replace a fund's or asset manager's legal or compliance judgement. Each manager remains responsible for deciding what diligence is required, how risk is assessed, and whether a party is accepted. Whether to take the money, or send it, is the manager's call on the manager's own responsibility. It is not legal advice.</p>
-      </div>
-    </div>
-    <div class="prose">
-      <h3>Every PROOF form includes</h3>
-      <ul class="dots">
-        <li>The matter: what is being assessed, once or on an ongoing basis, and which annex applies.</li>
-        <li>The parties: every natural person, entity and trust, with PROOF-E attached for each entity.</li>
-        <li>The origin of funds, with the evidence relied on.</li>
-        <li>Screening results, with the reports considered and a reason wherever a report was not required.</li>
-        <li>A fixed certification. The circumstances may change; the underlying KYC record should not.</li>
-      </ul>
-      <p style="margin-top:1.5rem">Scope, what actually binds in the United States, and the machine readable layer are set out in the <a href="background.html">background</a>. The <a href="practice.html">practice note</a> works through what diligence in both directions looks like in practice. The <a href="rules.html">thirteen rules</a> take one minute to read.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section-pad">
-  <div class="container-page">
-    <div class="ctablock">
-      <h2>Ready to stop redlining KYC?</h2>
-      <p>Every form is available as a PDF and a Word document, free, with no account. Or fill one in your browser; nothing is sent anywhere.</p>
-      <div class="cta-row">
-        <a class="cta" href="download.html">Download the forms</a>
-        <a class="cta-ghost" href="create.html">Create a form</a>
+        <h3>PROOF Entity</h3>
+        <p>An additional form required for each relevant entity or trust. It records ownership and control and is used with either core form.</p>
+        <div class="cta-row"><a class="cta" href="forms/PROOF-E.pdf" download>Download PDF</a><a class="cta-ghost" href="forms/PROOF-E.docx" download>Download Word</a></div>
       </div>
     </div>
     <footer class="colophon">
-      <p><b>Status.</b> Draft, version 0.3.0. Not reviewed by US counsel. Do not use in a live matter until it has been.</p>
-      <p>PROOF is a free public form under Apache 2.0. It is not legal advice and does not replace a regulated professional's judgement.</p>
+      <p>PROOF is not legal advice and does not replace professional judgment.</p>
     </footer>
   </div>
 </section>
@@ -231,24 +270,24 @@
           <p>Standard</p>
           <ul>
             <li><a href="index.html">Overview</a></li>
-            <li><a href="rules.html">The thirteen rules</a></li>
-            <li><a href="background.html">Background</a></li>
-            <li><a href="practice.html">Practice note</a></li>
+            <li><a href="rules.html">Rules</a></li>
+            <li><a href="practice.html">Practice Note</a></li>
+            <li><a href="background.html">Specification</a></li>
           </ul>
         </div>
         <div>
           <p>Forms</p>
           <ul>
             <li><a href="download.html">Download PDF and Word</a></li>
-            <li><a href="create.html">Create a form in your browser</a></li>
+            <li><a href="create.html">Create a PROOF form</a></li>
             <li><a href="download.html">The toolkit</a></li>
           </ul>
         </div>
         <div>
           <p>Legal</p>
           <ul>
-            <li><a href="background.html">Scope</a></li>
-            <li><a href="rules.html">Certification is fixed</a></li>
+            <li><a href="index.html#does-not">What PROOF does not do</a></li>
+            <li><a href="rules.html#rule-3">The certification is fixed</a></li>
             <li><a href="background.html">Not legal advice</a></li>
           </ul>
         </div>

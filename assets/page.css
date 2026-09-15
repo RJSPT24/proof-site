@@ -47,6 +47,14 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-r
 .wrap { max-width: 48rem; margin: 0 auto; padding: 7.5rem 1.25rem 5rem; }
 .col { max-width: none; }
 
+/* in-page navigation under the header */
+.subnav { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .25rem .5rem; margin: 0 auto 2rem; }
+.subnav a { font-size: .8125rem; font-weight: 500; color: var(--muted-foreground); text-decoration: none; padding: .35rem .75rem; border-radius: 9999px; border: 1px solid transparent; transition: color .15s, border-color .15s, background-color .15s; }
+.subnav a:hover { color: var(--foreground); border-color: var(--border); background: color-mix(in srgb, var(--card) 70%, transparent); }
+.subnav .lbl { font-size: .8125rem; color: var(--muted-foreground); padding-right: .25rem; }
+.subnav.nums a { padding: .35rem .6rem; font-family: var(--font-mono); font-size: .75rem; }
+[id] { scroll-margin-top: 5.5rem; }
+
 /* section headers */
 .eyebrow { display: block; font-family: var(--font-sans); font-size: .875rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted-foreground); }
 :root[data-theme="dark"] .eyebrow { color: var(--brand); }
