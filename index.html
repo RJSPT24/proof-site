@@ -54,6 +54,16 @@
   .prose h3 { margin: 0; }
   .prose p { font-size: .875rem; line-height: 1.625; color: var(--muted-foreground); }
   .prose p a { color: var(--foreground); font-weight: 500; }
+  .prose.why { text-align: center; max-width: 42rem; margin-top: 2rem; }
+  .prose.why p { font-size: 1.0625rem; line-height: 1.7; margin-bottom: 1rem; }
+  .prose.why p.lead { color: var(--foreground); font-weight: 500; margin-top: 1.75rem; }
+  .steps.single { grid-template-columns: 1fr; max-width: 40rem; margin-inline: auto; }
+  .steps.single li { padding: 1.5rem .75rem; }
+  .steps.single li + li { border-top: 1px solid var(--border); }
+  .formlist { margin: 1rem 0; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: 1rem; background: color-mix(in srgb, var(--card) 60%, transparent); }
+  .formlist dt { font-weight: 600; font-size: .9375rem; color: var(--foreground); }
+  .formlist dd { margin: .25rem 0 0; font-size: .875rem; line-height: 1.625; color: var(--muted-foreground); }
+  .formlist dd + dt { margin-top: .9rem; }
   .formcards .card { min-height: 0; }
   .formcards .cta-row { justify-content: flex-start; margin-top: auto; padding-top: 1.25rem; gap: .5rem; }
   .formcards .cta, .formcards .cta-ghost { height: 2.5rem; padding: 0 1.1rem; font-size: .8125rem; margin-top: 0; }
@@ -97,19 +107,13 @@
 <section class="sec section-pad" id="why">
   <div class="container-page">
     <div class="sec-head">
-      <span class="eyebrow">Why PROOF?</span>
-      <h2>A common starting point</h2>
-      <p class="sub">KYC is governed by a mix of legal requirements, regulatory expectations, contractual obligations and industry practice. But none of that has produced a widely accepted standard for how the underlying KYC record should be collected and documented.</p>
+      <h2>Why PROOF?</h2>
     </div>
-    <div class="cards two">
-      <div class="card">
-        <h3>The problem</h3>
-        <p>So every fund, administrator and adviser ends up maintaining its own version of essentially the same process.</p>
-      </div>
-      <div class="card">
-        <h3>What PROOF changes</h3>
-        <p>PROOF creates a common starting point. The format is standard. The compliance decision remains yours.</p>
-      </div>
+    <div class="prose why">
+      <p>KYC is governed by a mix of legal requirements, regulatory expectations, contractual obligations and industry practice.</p>
+      <p>But none of that has produced a widely accepted standard for how the underlying KYC record should be collected and documented.</p>
+      <p>So every fund, administrator and adviser ends up maintaining its own version of essentially the same process.</p>
+      <p class="lead">PROOF creates a common starting point.<br>The format is standard.<br>The compliance decision remains yours.</p>
     </div>
   </div>
 </section>
@@ -118,18 +122,23 @@
   <div class="wash"></div>
   <div class="container-page">
     <div class="sec-head">
-      <span class="eyebrow">How PROOF works</span>
-      <h2>Choose, build, certify</h2>
-      <p class="sub">Three steps, the same every time.</p>
+      <h2>How PROOF works</h2>
     </div>
-    <div class="steps">
+    <div class="steps single">
       <ol>
         <li>
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l4 4v14H5V3h4z"/><path d="M9 12h6M9 16h6"/></svg></span>
           <div>
             <p class="n">01</p>
             <h3>Choose the form</h3>
-            <p>There are two core forms. If any relevant party is an entity or trust, an additional PROOF Entity form must also be completed.</p>
+            <p>There are two core forms.</p>
+            <dl class="formlist">
+              <dt>PROOF One-Time</dt>
+              <dd>For KYC that is completed once for a specific investment, closing, transfer or transaction.</dd>
+              <dt>PROOF Ongoing</dt>
+              <dd>For a continuing relationship that requires future review or monitoring.</dd>
+            </dl>
+            <p>If any relevant party is an entity or trust, an additional PROOF Entity form must also be completed.</p>
           </div>
         </li>
         <li>
@@ -149,16 +158,6 @@
           </div>
         </li>
       </ol>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th scope="col">Form</th><th scope="col">Use it for</th></tr></thead>
-          <tbody>
-            <tr><td class="axis">PROOF One-Time</td><td>KYC that is completed once for a specific investment, closing, transfer or transaction.</td></tr>
-            <tr><td class="axis">PROOF Ongoing</td><td>A continuing relationship that requires future review or monitoring.</td></tr>
-            <tr><td class="axis">PROOF Entity</td><td>An additional form, completed for each relevant entity or trust and used with either core form.</td></tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
 </section>
