@@ -31,9 +31,11 @@
   .content { margin-top: 3rem; }
 
   /* why: paragraphs, then the statement as a card */
-  .why-text { max-width: 40rem; margin: 0 auto; text-align: center; }
-  .why-text p { font-size: 1.0625rem; line-height: 1.625; color: var(--muted-foreground); margin: 0 0 1rem; }
-  .statement { max-width: 40rem; margin: 2rem auto 0; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border); background: var(--secondary); text-align: center; }
+  .why-text { max-width: 36rem; margin: 0 auto; text-align: left; }
+  .why-text p { font-size: 1.0625rem; line-height: 1.7; color: var(--muted-foreground); margin: 0; padding: 1.1rem 0; text-wrap: pretty; }
+  .why-text p + p { border-top: 1px solid var(--border); }
+  .why-text p:first-child { padding-top: 0; }
+  .statement { max-width: 36rem; margin: 2rem auto 0; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border); background: var(--secondary); text-align: center; }
   .statement p { margin: 0; font-size: 1.25rem; line-height: 1.5; font-weight: 500; color: var(--foreground); }
   .statement p span { display: block; }
   .statement p span + span { color: var(--muted-foreground); }
