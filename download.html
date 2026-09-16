@@ -11,10 +11,6 @@
 <link rel="stylesheet" href="assets/page.css">
 <link rel="stylesheet" href="assets/nav.css">
 <style>
-  .online { margin: 2rem 0 3rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; }
-  .toplink { display: inline-flex; align-items: center; gap: .5rem; height: 2.75rem; margin: 0; padding: 0 1.5rem; border-radius: 9999px; border: 1.5px solid var(--success); background: transparent; font-size: .875rem; font-weight: 600; letter-spacing: -0.01em; color: var(--success); text-decoration: none; transition: background-color .15s, color .15s; }
-  .toplink:hover { background: var(--success); color: #fff; }
-  .toplink::after { content: "\2192"; }
   .dl { font-size: .8125rem; font-weight: 600; white-space: nowrap; }
   .dl a { color: var(--foreground); }
   .dl span { opacity: .35; margin: 0 .45rem; font-weight: 400; }
@@ -47,7 +43,10 @@
 </header>
 <div class="wrap">
   <header class="mast">
+    <span class="eyebrow">Get started</span>
     <h1>Download the forms</h1>
+    <p class="standfirst">Use the online form (recommended)</p>
+    <a class="cta" href="create.html">Fill out the online form</a>
   </header>
 
   <div class="col">
@@ -80,10 +79,6 @@
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="online">
-    <a class="toplink" href="create.html">Or fill out an online version</a>
   </div>
 
   <div class="col">
